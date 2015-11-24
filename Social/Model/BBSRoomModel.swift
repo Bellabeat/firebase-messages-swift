@@ -41,10 +41,8 @@ public class BBSRoomModel: BBSModelBase {
     
     public override func serialize() -> [NSObject: AnyObject] {
         return [
-            self.key: [
-                KeyRoomName: self.name.value,
-                KeyRoomType: self.type.value
-            ]
+            KeyRoomName: self.name.value,
+            KeyRoomType: self.type.value
         ]
     }
     

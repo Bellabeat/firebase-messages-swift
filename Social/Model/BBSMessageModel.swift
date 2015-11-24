@@ -83,14 +83,12 @@ public class BBSMessageModel: BBSModelBase {
     
     public override func serialize() -> [NSObject: AnyObject] {
         return [
-            self.key: [
-                KeyMessageMessage: self.message.value,
-                KeyMessageSender: self.sender.value,
-                KeyMessagePoints: self.points.value,
-                KeyMessageTotalActivity: self.totalActivity.value,
-                KeyMessageTimestamp: self.timestamp.value,
-                KeyMessageVotes: self.votes
-            ]
+            KeyMessageMessage: self.message.value,
+            KeyMessageSender: self.sender.value,
+            KeyMessagePoints: self.points.value,
+            KeyMessageTotalActivity: self.totalActivity.value,
+            KeyMessageTimestamp: self.timestamp.value,
+            KeyMessageVotes: self.votes
         ]
     }
     

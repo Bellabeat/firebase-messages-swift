@@ -238,6 +238,9 @@
 		81F2B7241C04A28200C7772E /* BBSMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B7221C04A28200C7772E /* BBSMessageCollectionViewCell.swift */; };
 		81F2B7251C04A28200C7772E /* BBSMessageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F2B7231C04A28200C7772E /* BBSMessageCollectionViewCell.xib */; };
 		81F2B7281C04AB6D00C7772E /* BBSBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B7271C04AB6D00C7772E /* BBSBaseCollectionViewCell.swift */; };
+		81F2B72B1C04B61C00C7772E /* BBSNewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B7291C04B61C00C7772E /* BBSNewMessageViewController.swift */; };
+		81F2B72C1C04B61C00C7772E /* BBSNewMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F2B72A1C04B61C00C7772E /* BBSNewMessageViewController.xib */; };
+		81F2B72E1C04B96400C7772E /* BBSObserverContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B72D1C04B96400C7772E /* BBSObserverContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -480,6 +483,9 @@
 		81F2B7221C04A28200C7772E /* BBSMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSMessageCollectionViewCell.swift; path = UI/Message/BBSMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		81F2B7231C04A28200C7772E /* BBSMessageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSMessageCollectionViewCell.xib; path = UI/Message/BBSMessageCollectionViewCell.xib; sourceTree = "<group>"; };
 		81F2B7271C04AB6D00C7772E /* BBSBaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSBaseCollectionViewCell.swift; path = UI/Shared/BBSBaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		81F2B7291C04B61C00C7772E /* BBSNewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSNewMessageViewController.swift; path = UI/Message/BBSNewMessageViewController.swift; sourceTree = "<group>"; };
+		81F2B72A1C04B61C00C7772E /* BBSNewMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSNewMessageViewController.xib; path = UI/Message/BBSNewMessageViewController.xib; sourceTree = "<group>"; };
+		81F2B72D1C04B96400C7772E /* BBSObserverContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSObserverContainer.swift; path = UI/Shared/BBSObserverContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1006,6 +1012,8 @@
 				81F2B7231C04A28200C7772E /* BBSMessageCollectionViewCell.xib */,
 				81F2B71E1C04A13E00C7772E /* BBSMessageCollectionViewController.swift */,
 				81F2B71F1C04A13E00C7772E /* BBSMessageCollectionViewController.xib */,
+				81F2B7291C04B61C00C7772E /* BBSNewMessageViewController.swift */,
+				81F2B72A1C04B61C00C7772E /* BBSNewMessageViewController.xib */,
 			);
 			name = Message;
 			sourceTree = "<group>";
@@ -1014,6 +1022,7 @@
 			isa = PBXGroup;
 			children = (
 				81F2B7271C04AB6D00C7772E /* BBSBaseCollectionViewCell.swift */,
+				81F2B72D1C04B96400C7772E /* BBSObserverContainer.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -1084,6 +1093,7 @@
 				81EF0C3F1C045E4000881166 /* LaunchScreen.storyboard in Resources */,
 				81EF0E1C1C0473E400881166 /* BBSRoomCollectionViewCell.xib in Resources */,
 				81EF0C3C1C045E4000881166 /* Assets.xcassets in Resources */,
+				81F2B72C1C04B61C00C7772E /* BBSNewMessageViewController.xib in Resources */,
 				81EF0CBB1C04705800881166 /* Driver+Operators+arity.tt in Resources */,
 				81EF0DB71C04706700881166 /* CombineLatest+arity.tt in Resources */,
 				81F2B7211C04A13E00C7772E /* BBSMessageCollectionViewController.xib in Resources */,
@@ -1145,6 +1155,7 @@
 				81EF0DFD1C04706700881166 /* RxBox.swift in Sources */,
 				81F2B7181C0499EC00C7772E /* BBSMessageSorter.swift in Sources */,
 				81EF0D8E1C04706700881166 /* AsyncLock.swift in Sources */,
+				81F2B72B1C04B61C00C7772E /* BBSNewMessageViewController.swift in Sources */,
 				81EF0CF31C04705900881166 /* UISwitch+Rx.swift in Sources */,
 				81EF0CD91C04705800881166 /* RxCollectionViewDataSourceType.swift in Sources */,
 				81EF0CEE1C04705800881166 /* UIScrollView+Rx.swift in Sources */,
@@ -1292,6 +1303,7 @@
 				81EF0DDB1C04706700881166 /* SkipWhile.swift in Sources */,
 				81EF0C4A1C045F7800881166 /* BBSRoomModel.swift in Sources */,
 				81EF0CB21C04705800881166 /* _RXDelegateProxy.m in Sources */,
+				81F2B72E1C04B96400C7772E /* BBSObserverContainer.swift in Sources */,
 				81EF0CC21C04705800881166 /* KVORepresentable+CoreGraphics.swift in Sources */,
 				81EF0DA51C04706700881166 /* ScopedDisposable.swift in Sources */,
 				81F2B7011C04849300C7772E /* BBSRoomCollectionViewController.swift in Sources */,

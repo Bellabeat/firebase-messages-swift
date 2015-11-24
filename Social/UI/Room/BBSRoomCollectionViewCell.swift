@@ -20,9 +20,9 @@ public class BBSRoomCollectionViewCell: BBSBaseCollectionViewCell {
     
     public var room: BBSRoomModel? {
         didSet {
-            self.dispose()
+            self.observerContainer.dispose()
             if let room = self.room {
-                self.observers.append(room.name.bindTo(self.roomTitleLabel.rx_text))
+                self.observerContainer.add(room.name.bindTo(self.roomTitleLabel.rx_text))
             }
         }
     }

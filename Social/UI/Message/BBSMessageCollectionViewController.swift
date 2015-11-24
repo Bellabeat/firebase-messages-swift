@@ -18,6 +18,8 @@ public class BBSMessageCollectionViewController: UICollectionViewController, UIC
     private var data: Array<BBSMessageModel>
     private let sizingLabel: UILabel
     
+    private var observerContainer = BBSObserverContainer()
+    
     // MARK: - Init
     
     public init(dataStore: BBSMessageDataStore, userId: String) {
@@ -49,6 +51,14 @@ public class BBSMessageCollectionViewController: UICollectionViewController, UIC
 
         // Register cell classes
         self.collectionView!.registerNib(UINib(nibName: "BBSMessageCollectionViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: CellIdentifierMessage)
+        
+        let newMessageButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: nil, action: nil)
+        weak var weakSelf = self
+        self.observerContainer.add(newMessageButton.rx_tap.bindNext {
+            let vc = BBSNewMessageViewController(dataStore: weakSelf!.dataStore)
+            weakSelf!.navigationController!.pushViewController(vc, animated: true)
+        })
+        self.navigationItem.rightBarButtonItem = newMessageButton
     }
 
     public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {

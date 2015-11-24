@@ -24,19 +24,19 @@ public class BBSMessageCollectionViewCell: BBSBaseCollectionViewCell {
     
     public var message: BBSMessageModel? {
         didSet {
-            self.dispose()
+            self.observerContainer.dispose()
             if let message = self.message {
                 weak var weakSelf = self
-                self.observers.append(message.message.bindTo(self.messageTextLabel.rx_text))
-                self.observers.append(message.timestamp.map { "\($0)" }.bindTo(self.messageTimestampLabel.rx_text))
-                self.observers.append(message.points.map { "\($0)" }.bindTo(self.messagePointsLabel.rx_text))
-                self.observers.append(message.points.bindNext { _ in
+                self.observerContainer.add(message.message.bindTo(self.messageTextLabel.rx_text))
+                self.observerContainer.add(message.timestamp.map { "\($0)" }.bindTo(self.messageTimestampLabel.rx_text))
+                self.observerContainer.add(message.points.map { "\($0)" }.bindTo(self.messagePointsLabel.rx_text))
+                self.observerContainer.add(message.points.bindNext { _ in
                     weakSelf!.updateAppearance()
                 })
-                self.observers.append(self.upvoteButton.rx_controlEvents(.TouchUpInside).bindNext {
+                self.observerContainer.add(self.upvoteButton.rx_controlEvents(.TouchUpInside).bindNext {
                     weakSelf!.message!.upvoteForUser(weakSelf!.userId)
                 })
-                self.observers.append(self.downvoteButton.rx_controlEvents(.TouchUpInside).bindNext {
+                self.observerContainer.add(self.downvoteButton.rx_controlEvents(.TouchUpInside).bindNext {
                     weakSelf!.message!.downvoteForUser(weakSelf!.userId)
                 })
             }

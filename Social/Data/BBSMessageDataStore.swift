@@ -105,7 +105,17 @@ public class BBSMessageDataStore: NSObject {
     }
     
     public func saveMessage(message: BBSMessageModel) {
-        self.messages.updateChildValues(message.serialize())
+        let raw = message.serialize()
+        
+        if message.key.isEmpty {
+            // New
+            let child = self.messages.childByAutoId()
+            child.setValue(raw)
+            message.key = child.key
+        } else {
+            // Update
+            self.messages.updateChildValues([message.key: raw])
+        }
     }
     
 }
