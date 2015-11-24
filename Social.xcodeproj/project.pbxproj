@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EF1C3B69E210A5866EF0B6C /* Pods_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F2FECB2BE1EB2AF1CBB118 /* Pods_Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		81EF0C351C045E4000881166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0C341C045E4000881166 /* AppDelegate.swift */; };
 		81EF0C3C1C045E4000881166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3B1C045E4000881166 /* Assets.xcassets */; };
 		81EF0C3F1C045E4000881166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3D1C045E4000881166 /* LaunchScreen.storyboard */; };
 		81EF0C481C045EA000881166 /* BBSModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0C471C045EA000881166 /* BBSModelBase.swift */; };
 		81EF0C4A1C045F7800881166 /* BBSRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0C491C045F7800881166 /* BBSRoomModel.swift */; };
-		81EF0C4D1C04616D00881166 /* RoomDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0C4C1C04616D00881166 /* RoomDataStore.swift */; };
+		81EF0C4F1C04638100881166 /* BBSRoomDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0C4E1C04638100881166 /* BBSRoomDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7939DE978C02F8086DA79B1C /* Pods-Social.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social.release.xcconfig"; path = "Pods/Target Support Files/Pods-Social/Pods-Social.release.xcconfig"; sourceTree = "<group>"; };
 		81EF0C311C045E4000881166 /* Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Social.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EF0C341C045E4000881166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81EF0C3B1C045E4000881166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -23,7 +25,9 @@
 		81EF0C401C045E4000881166 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81EF0C471C045EA000881166 /* BBSModelBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSModelBase.swift; path = Model/BBSModelBase.swift; sourceTree = "<group>"; };
 		81EF0C491C045F7800881166 /* BBSRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSRoomModel.swift; path = Model/BBSRoomModel.swift; sourceTree = "<group>"; };
-		81EF0C4C1C04616D00881166 /* RoomDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoomDataStore.swift; path = Data/RoomDataStore.swift; sourceTree = "<group>"; };
+		81EF0C4E1C04638100881166 /* BBSRoomDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSRoomDataStore.swift; path = Data/BBSRoomDataStore.swift; sourceTree = "<group>"; };
+		9D87394E576A47811D1AB8CF /* Pods-Social.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Social/Pods-Social.debug.xcconfig"; sourceTree = "<group>"; };
+		C7F2FECB2BE1EB2AF1CBB118 /* Pods_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EF1C3B69E210A5866EF0B6C /* Pods_Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7FDAF5839727BB8222827311 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C7F2FECB2BE1EB2AF1CBB118 /* Pods_Social.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		81EF0C281C045E4000881166 = {
 			isa = PBXGroup;
 			children = (
 				81EF0C331C045E4000881166 /* Social */,
 				81EF0C321C045E4000881166 /* Products */,
+				A1C815DC0A573FA255BAC6D4 /* Pods */,
+				7FDAF5839727BB8222827311 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +73,7 @@
 			children = (
 				81EF0C4B1C04615C00881166 /* Data */,
 				81EF0C461C045E7800881166 /* Model */,
+				81EF0C501C046B1500881166 /* UI */,
 				81EF0C341C045E4000881166 /* AppDelegate.swift */,
 				81EF0C3B1C045E4000881166 /* Assets.xcassets */,
 				81EF0C3D1C045E4000881166 /* LaunchScreen.storyboard */,
@@ -78,9 +94,33 @@
 		81EF0C4B1C04615C00881166 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				81EF0C4C1C04616D00881166 /* RoomDataStore.swift */,
+				81EF0C4E1C04638100881166 /* BBSRoomDataStore.swift */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		81EF0C501C046B1500881166 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				81EF0C511C046B2400881166 /* Room */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		81EF0C511C046B2400881166 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Room;
+			sourceTree = "<group>";
+		};
+		A1C815DC0A573FA255BAC6D4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9D87394E576A47811D1AB8CF /* Pods-Social.debug.xcconfig */,
+				7939DE978C02F8086DA79B1C /* Pods-Social.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -90,9 +130,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81EF0C431C045E4000881166 /* Build configuration list for PBXNativeTarget "Social" */;
 			buildPhases = (
+				C46145D796ED4B09BC2B3C8F /* Check Pods Manifest.lock */,
 				81EF0C2D1C045E4000881166 /* Sources */,
 				81EF0C2E1C045E4000881166 /* Frameworks */,
 				81EF0C2F1C045E4000881166 /* Resources */,
+				653A980142BE4C321068C862 /* Embed Pods Frameworks */,
+				F4A04CBD4E027BD686A4D35B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -148,14 +191,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		653A980142BE4C321068C862 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Social/Pods-Social-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C46145D796ED4B09BC2B3C8F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F4A04CBD4E027BD686A4D35B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Social/Pods-Social-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		81EF0C2D1C045E4000881166 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81EF0C4F1C04638100881166 /* BBSRoomDataStore.swift in Sources */,
 				81EF0C481C045EA000881166 /* BBSModelBase.swift in Sources */,
 				81EF0C351C045E4000881166 /* AppDelegate.swift in Sources */,
-				81EF0C4D1C04616D00881166 /* RoomDataStore.swift in Sources */,
 				81EF0C4A1C045F7800881166 /* BBSRoomModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,6 +350,7 @@
 		};
 		81EF0C441C045E4000881166 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D87394E576A47811D1AB8CF /* Pods-Social.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Social/Info.plist;
@@ -271,6 +363,7 @@
 		};
 		81EF0C451C045E4000881166 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7939DE978C02F8086DA79B1C /* Pods-Social.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Social/Info.plist;
@@ -300,6 +393,7 @@
 				81EF0C451C045E4000881166 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

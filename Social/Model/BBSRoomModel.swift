@@ -6,35 +6,37 @@
 //  Copyright © 2015 Bellabeat. All rights reserved.
 //
 
-import UIKit
-
-class BBSRoomModel: BBSModelBase {
+public class BBSRoomModel: BBSModelBase {
 
     // MARK: - Properties
     
-    var name: String = ""
-    var type: String = ""
+    public var name: String = ""
+    public var type: String = ""
     
     // MARK: - Init
     
-    init(key: String, value: Dictionary<String, String>) {
+    public init(key: String, value: AnyObject) {
         super.init()
         self.key = key
-        self.updateWithDictionary(value)
+        self.updateWithObject(value)
+    }
+    
+    deinit {
+        print("BBSRoomModel deinit")
     }
     
     // MARK: - Overrides
     
-    override func updateWithDictionary(dictionary: Dictionary<String, String>) {
-        if let name = dictionary["name"] {
+    public override func updateWithObject(object: AnyObject) {
+        if let name = object.objectForKey("name") as? String {
             self.name = name
         }
-        if let type = dictionary["type"] {
+        if let type = object.objectForKey("type") as? String {
             self.type = type
         }
     }
     
-    override func serialize() -> Dictionary<String, String> {
+    public override func serialize() -> AnyObject {
         return [
             "name": self.name,
             "type": self.type

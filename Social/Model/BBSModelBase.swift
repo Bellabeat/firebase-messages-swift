@@ -8,11 +8,11 @@
 
 import UIKit
 
-class BBSModelBase: NSObject {
+public class BBSModelBase: NSObject {
     
-    var key: String = ""
+    public var key: String = ""
     
-    func updateWithDictionary(dictionary: Dictionary<String, String>) {}
-    func serialize() -> Dictionary<String, String> { return [:] }
+    public func updateWithObject(object: AnyObject) {}
+    public func serialize() -> AnyObject { return [:] }
     
 }
