@@ -233,6 +233,10 @@
 		81F2B7181C0499EC00C7772E /* BBSMessageSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B7171C0499EC00C7772E /* BBSMessageSorter.swift */; };
 		81F2B71A1C049DC000C7772E /* BBSNewMessageSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B7191C049DC000C7772E /* BBSNewMessageSorter.swift */; };
 		81F2B71C1C04A08F00C7772E /* BBSTopMessageSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B71B1C04A08F00C7772E /* BBSTopMessageSorter.swift */; };
+		81F2B7201C04A13E00C7772E /* BBSMessageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B71E1C04A13E00C7772E /* BBSMessageCollectionViewController.swift */; };
+		81F2B7211C04A13E00C7772E /* BBSMessageCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F2B71F1C04A13E00C7772E /* BBSMessageCollectionViewController.xib */; };
+		81F2B7241C04A28200C7772E /* BBSMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B7221C04A28200C7772E /* BBSMessageCollectionViewCell.swift */; };
+		81F2B7251C04A28200C7772E /* BBSMessageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F2B7231C04A28200C7772E /* BBSMessageCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -470,6 +474,10 @@
 		81F2B7171C0499EC00C7772E /* BBSMessageSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSMessageSorter.swift; path = Logic/BBSMessageSorter.swift; sourceTree = "<group>"; };
 		81F2B7191C049DC000C7772E /* BBSNewMessageSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSNewMessageSorter.swift; path = Logic/BBSNewMessageSorter.swift; sourceTree = "<group>"; };
 		81F2B71B1C04A08F00C7772E /* BBSTopMessageSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSTopMessageSorter.swift; path = Logic/BBSTopMessageSorter.swift; sourceTree = "<group>"; };
+		81F2B71E1C04A13E00C7772E /* BBSMessageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSMessageCollectionViewController.swift; path = UI/Message/BBSMessageCollectionViewController.swift; sourceTree = "<group>"; };
+		81F2B71F1C04A13E00C7772E /* BBSMessageCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSMessageCollectionViewController.xib; path = UI/Message/BBSMessageCollectionViewController.xib; sourceTree = "<group>"; };
+		81F2B7221C04A28200C7772E /* BBSMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSMessageCollectionViewCell.swift; path = UI/Message/BBSMessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		81F2B7231C04A28200C7772E /* BBSMessageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSMessageCollectionViewCell.xib; path = UI/Message/BBSMessageCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -558,6 +566,7 @@
 		81EF0C501C046B1500881166 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				81F2B71D1C04A11A00C7772E /* Message */,
 				81EF0C511C046B2400881166 /* Room */,
 			);
 			name = UI;
@@ -987,6 +996,17 @@
 			name = Logic;
 			sourceTree = "<group>";
 		};
+		81F2B71D1C04A11A00C7772E /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				81F2B7221C04A28200C7772E /* BBSMessageCollectionViewCell.swift */,
+				81F2B7231C04A28200C7772E /* BBSMessageCollectionViewCell.xib */,
+				81F2B71E1C04A13E00C7772E /* BBSMessageCollectionViewController.swift */,
+				81F2B71F1C04A13E00C7772E /* BBSMessageCollectionViewController.xib */,
+			);
+			name = Message;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1049,11 +1069,13 @@
 				81EF0DEA1C04706700881166 /* Zip+arity.tt in Resources */,
 				81EF0CD51C04705800881166 /* Info.plist in Resources */,
 				81EF0DAD1C04706700881166 /* Info.plist in Resources */,
+				81F2B7251C04A28200C7772E /* BBSMessageCollectionViewCell.xib in Resources */,
 				81EF0C3F1C045E4000881166 /* LaunchScreen.storyboard in Resources */,
 				81EF0E1C1C0473E400881166 /* BBSRoomCollectionViewCell.xib in Resources */,
 				81EF0C3C1C045E4000881166 /* Assets.xcassets in Resources */,
 				81EF0CBB1C04705800881166 /* Driver+Operators+arity.tt in Resources */,
 				81EF0DB71C04706700881166 /* CombineLatest+arity.tt in Resources */,
+				81F2B7211C04A13E00C7772E /* BBSMessageCollectionViewController.xib in Resources */,
 				81F2B7021C04849300C7772E /* BBSRoomCollectionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1148,6 +1170,7 @@
 				81EF0CCD1C04705800881166 /* NSObject+Rx+CoreGraphics.swift in Sources */,
 				81EF0DDE1C04706700881166 /* Switch.swift in Sources */,
 				81EF0E071C04706700881166 /* OperationQueueScheduler.swift in Sources */,
+				81F2B7201C04A13E00C7772E /* BBSMessageCollectionViewController.swift in Sources */,
 				81EF0CC51C04705800881166 /* Logging.swift in Sources */,
 				81EF0DB61C04706700881166 /* CombineLatest+arity.swift in Sources */,
 				81EF0CBA1C04705800881166 /* Driver+Operators+arity.swift in Sources */,
@@ -1188,6 +1211,7 @@
 				81EF0E001C04706700881166 /* ConcurrentMainScheduler.swift in Sources */,
 				81EF0DE01C04706700881166 /* TakeLast.swift in Sources */,
 				81EF0DE41C04706700881166 /* Timer.swift in Sources */,
+				81F2B7241C04A28200C7772E /* BBSMessageCollectionViewCell.swift in Sources */,
 				81EF0DAF1C04706700881166 /* Observable.swift in Sources */,
 				81EF0DA41C04706700881166 /* ScheduledDisposable.swift in Sources */,
 				81EF0CBE1C04705800881166 /* Driver.swift in Sources */,

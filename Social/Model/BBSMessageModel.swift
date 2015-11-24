@@ -32,7 +32,7 @@ public class BBSMessageModel: BBSModelBase {
     
     // MARK: - Private members
     
-    private let dataStore: BBSMessageDataStore
+    private weak var dataStore: BBSMessageDataStore?
     
     // MARK: - Init
     
@@ -128,7 +128,7 @@ public class BBSMessageModel: BBSModelBase {
             self.votes[userId] = UpvoteValue
         }
         
-        self.dataStore.saveMessage(self)
+        self.dataStore?.saveMessage(self)
     }
     
     public func downvoteForUser(userId: String) {
@@ -149,7 +149,7 @@ public class BBSMessageModel: BBSModelBase {
             self.votes[userId] = DownvoteValue
         }
         
-        self.dataStore.saveMessage(self)
+        self.dataStore?.saveMessage(self)
     }
     
 }

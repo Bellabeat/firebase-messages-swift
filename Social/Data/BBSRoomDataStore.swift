@@ -92,4 +92,15 @@ public class BBSRoomDataStore: NSObject {
         print("BBSRoomDataStore deinit")
     }
     
+    // MARK: - Public methods
+    
+    public func messageDataStoreForRoom(room: BBSRoomModel, userId: String) -> BBSMessageDataStore {
+        let sorter = BBSTopMessageSorter()
+        return self.messageDataStoreForRoom(room, sorter: sorter, userId: userId)
+    }
+    
+    public func messageDataStoreForRoom(room: BBSRoomModel, sorter: BBSMessageSorter, userId: String) -> BBSMessageDataStore {
+        return BBSMessageDataStore(root: self.root, room: room, sorter: sorter, userId: userId)
+    }
+    
 }

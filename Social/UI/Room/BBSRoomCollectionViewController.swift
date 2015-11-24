@@ -12,14 +12,14 @@ public class BBSRoomCollectionViewController: UICollectionViewController, UIColl
     
     // MARK: - Private members
     
-    let dataStore: BBSRoomDataStore
-    let userId: String
+    private let dataStore: BBSRoomDataStore
+    private let userId: String
     
-    var data: Array<BBSRoomModel>
+    private var data: Array<BBSRoomModel>
     
     // MARK: - Init
     
-    init(dataStore: BBSRoomDataStore, userId: String) {
+    public init(dataStore: BBSRoomDataStore, userId: String) {
         self.dataStore = dataStore
         self.userId = userId
         self.data = Array<BBSRoomModel>()
@@ -28,13 +28,16 @@ public class BBSRoomCollectionViewController: UICollectionViewController, UIColl
         self.dataStore.delegate = self
     }
     
-    public required init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("initWithCoder not supported")
     }
     
     deinit {
+        self.dataStore.delegate = nil
         print("BBSRoomCollectionViewController deinit")
     }
+    
+    // MARK: - View lifecycle
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +82,13 @@ public class BBSRoomCollectionViewController: UICollectionViewController, UIColl
 
     public override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+        
+        let room = self.data[indexPath.row]
+        let messageDataStore = self.dataStore.messageDataStoreForRoom(room, userId: self.userId)
+        
+        let vc = BBSMessageCollectionViewController(dataStore: messageDataStore, userId: self.userId)
+        vc.title = room.name
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - BBSRoomDataStoreDelegate
