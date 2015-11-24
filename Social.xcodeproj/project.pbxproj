@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1EF1C3B69E210A5866EF0B6C /* Pods_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F2FECB2BE1EB2AF1CBB118 /* Pods_Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		81EF0C351C045E4000881166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0C341C045E4000881166 /* AppDelegate.swift */; };
 		81EF0C3C1C045E4000881166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3B1C045E4000881166 /* Assets.xcassets */; };
 		81EF0C3F1C045E4000881166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3D1C045E4000881166 /* LaunchScreen.storyboard */; };
@@ -223,10 +222,15 @@
 		81EF0E1C1C0473E400881166 /* BBSRoomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0E1B1C0473E400881166 /* BBSRoomCollectionViewCell.xib */; };
 		81F2B7011C04849300C7772E /* BBSRoomCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B6FF1C04849300C7772E /* BBSRoomCollectionViewController.swift */; };
 		81F2B7021C04849300C7772E /* BBSRoomCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F2B7001C04849300C7772E /* BBSRoomCollectionViewController.xib */; };
+		81F2B7051C048CA100C7772E /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F2B7041C048CA100C7772E /* Firebase.framework */; };
+		81F2B7071C048CB400C7772E /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F2B7061C048CB400C7772E /* libicucore.tbd */; };
+		81F2B7091C048CBA00C7772E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F2B7081C048CBA00C7772E /* libc++.tbd */; };
+		81F2B70B1C048CBF00C7772E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F2B70A1C048CBF00C7772E /* CFNetwork.framework */; };
+		81F2B70D1C048CC300C7772E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F2B70C1C048CC300C7772E /* Security.framework */; };
+		81F2B70F1C048CC800C7772E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F2B70E1C048CC800C7772E /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7939DE978C02F8086DA79B1C /* Pods-Social.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social.release.xcconfig"; path = "Pods/Target Support Files/Pods-Social/Pods-Social.release.xcconfig"; sourceTree = "<group>"; };
 		81EF0C311C045E4000881166 /* Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Social.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EF0C341C045E4000881166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81EF0C3B1C045E4000881166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -450,8 +454,12 @@
 		81EF0E1B1C0473E400881166 /* BBSRoomCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSRoomCollectionViewCell.xib; path = UI/Room/BBSRoomCollectionViewCell.xib; sourceTree = "<group>"; };
 		81F2B6FF1C04849300C7772E /* BBSRoomCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSRoomCollectionViewController.swift; path = UI/Room/BBSRoomCollectionViewController.swift; sourceTree = "<group>"; };
 		81F2B7001C04849300C7772E /* BBSRoomCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSRoomCollectionViewController.xib; path = UI/Room/BBSRoomCollectionViewController.xib; sourceTree = "<group>"; };
-		9D87394E576A47811D1AB8CF /* Pods-Social.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Social/Pods-Social.debug.xcconfig"; sourceTree = "<group>"; };
-		C7F2FECB2BE1EB2AF1CBB118 /* Pods_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81F2B7041C048CA100C7772E /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = Firebase/Firebase.framework; sourceTree = "<group>"; };
+		81F2B7061C048CB400C7772E /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		81F2B7081C048CBA00C7772E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		81F2B70A1C048CBF00C7772E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		81F2B70C1C048CC300C7772E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		81F2B70E1C048CC800C7772E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -459,7 +467,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EF1C3B69E210A5866EF0B6C /* Pods_Social.framework in Frameworks */,
+				81F2B70F1C048CC800C7772E /* SystemConfiguration.framework in Frameworks */,
+				81F2B70D1C048CC300C7772E /* Security.framework in Frameworks */,
+				81F2B70B1C048CBF00C7772E /* CFNetwork.framework in Frameworks */,
+				81F2B7091C048CBA00C7772E /* libc++.tbd in Frameworks */,
+				81F2B7071C048CB400C7772E /* libicucore.tbd in Frameworks */,
+				81F2B7051C048CA100C7772E /* Firebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,7 +482,12 @@
 		7FDAF5839727BB8222827311 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C7F2FECB2BE1EB2AF1CBB118 /* Pods_Social.framework */,
+				81F2B70E1C048CC800C7772E /* SystemConfiguration.framework */,
+				81F2B70C1C048CC300C7772E /* Security.framework */,
+				81F2B70A1C048CBF00C7772E /* CFNetwork.framework */,
+				81F2B7081C048CBA00C7772E /* libc++.tbd */,
+				81F2B7061C048CB400C7772E /* libicucore.tbd */,
+				81F2B7041C048CA100C7772E /* Firebase.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -479,7 +497,6 @@
 			children = (
 				81EF0C331C045E4000881166 /* Social */,
 				81EF0C321C045E4000881166 /* Products */,
-				A1C815DC0A573FA255BAC6D4 /* Pods */,
 				7FDAF5839727BB8222827311 /* Frameworks */,
 				81EF0C521C04700F00881166 /* ThirdParty */,
 			);
@@ -547,6 +564,7 @@
 		81EF0C521C04700F00881166 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				81F2B7031C048C7700C7772E /* Firebase */,
 				81EF0C531C04703C00881166 /* RxSwift */,
 			);
 			name = ThirdParty;
@@ -939,13 +957,11 @@
 			path = Subjects;
 			sourceTree = "<group>";
 		};
-		A1C815DC0A573FA255BAC6D4 /* Pods */ = {
+		81F2B7031C048C7700C7772E /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				9D87394E576A47811D1AB8CF /* Pods-Social.debug.xcconfig */,
-				7939DE978C02F8086DA79B1C /* Pods-Social.release.xcconfig */,
 			);
-			name = Pods;
+			name = Firebase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -955,12 +971,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81EF0C431C045E4000881166 /* Build configuration list for PBXNativeTarget "Social" */;
 			buildPhases = (
-				C46145D796ED4B09BC2B3C8F /* Check Pods Manifest.lock */,
 				81EF0C2D1C045E4000881166 /* Sources */,
 				81EF0C2E1C045E4000881166 /* Frameworks */,
 				81EF0C2F1C045E4000881166 /* Resources */,
-				653A980142BE4C321068C862 /* Embed Pods Frameworks */,
-				F4A04CBD4E027BD686A4D35B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1023,54 +1036,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		653A980142BE4C321068C862 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Social/Pods-Social-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C46145D796ED4B09BC2B3C8F /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		F4A04CBD4E027BD686A4D35B /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Social/Pods-Social-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		81EF0C2D1C045E4000881166 /* Sources */ = {
@@ -1384,9 +1349,12 @@
 		};
 		81EF0C441C045E4000881166 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D87394E576A47811D1AB8CF /* Pods-Social.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Firebase",
+				);
 				INFOPLIST_FILE = Social/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1399,9 +1367,12 @@
 		};
 		81EF0C451C045E4000881166 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7939DE978C02F8086DA79B1C /* Pods-Social.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Firebase",
+				);
 				INFOPLIST_FILE = Social/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
