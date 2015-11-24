@@ -89,7 +89,6 @@ public class BBSRoomDataStore: NSObject {
     
     deinit {
         self.query.removeAllObservers()
-        
         print("BBSRoomDataStore deinit")
     }
     

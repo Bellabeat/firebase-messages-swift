@@ -6,6 +6,9 @@
 //  Copyright © 2015 Bellabeat. All rights reserved.
 //
 
+internal let KeyRoomName = "name"
+internal let KeyRoomType = "type"
+
 public class BBSRoomModel: BBSModelBase {
 
     // MARK: - Properties
@@ -28,18 +31,20 @@ public class BBSRoomModel: BBSModelBase {
     // MARK: - Overrides
     
     public override func updateWithObject(object: AnyObject) {
-        if let name = object.objectForKey("name") as? String {
+        if let name = object.objectForKey(KeyRoomName) as? String {
             self.name = name
         }
-        if let type = object.objectForKey("type") as? String {
+        if let type = object.objectForKey(KeyRoomType) as? String {
             self.type = type
         }
     }
     
-    public override func serialize() -> AnyObject {
+    public override func serialize() -> [NSObject: AnyObject] {
         return [
-            "name": self.name,
-            "type": self.type
+            self.key: [
+                KeyRoomName: self.name,
+                KeyRoomType: self.type
+            ]
         ]
     }
     

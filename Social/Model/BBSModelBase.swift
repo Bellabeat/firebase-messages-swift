@@ -13,6 +13,6 @@ public class BBSModelBase: NSObject {
     public var key: String = ""
     
     public func updateWithObject(object: AnyObject) {}
-    public func serialize() -> AnyObject { return [:] }
+    public func serialize() -> [NSObject: AnyObject] { return [:] }
     
 }

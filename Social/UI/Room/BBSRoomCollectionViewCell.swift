@@ -8,6 +8,8 @@
 
 import UIKit
 
+internal let CellIdentifierRoom = "roomCell"
+
 public class BBSRoomCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Outlets
@@ -15,8 +17,6 @@ public class BBSRoomCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var roomTitleLabel: UILabel!
     
     // MARK: - Properties
-    
-    public static let cellIdentifier = "roomCell"
     
     public var room: BBSRoomModel? {
         didSet {

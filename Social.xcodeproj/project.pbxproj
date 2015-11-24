@@ -228,6 +228,11 @@
 		81F2B70B1C048CBF00C7772E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F2B70A1C048CBF00C7772E /* CFNetwork.framework */; };
 		81F2B70D1C048CC300C7772E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F2B70C1C048CC300C7772E /* Security.framework */; };
 		81F2B70F1C048CC800C7772E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F2B70E1C048CC800C7772E /* SystemConfiguration.framework */; };
+		81F2B7111C048F1C00C7772E /* BBSMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B7101C048F1C00C7772E /* BBSMessageModel.swift */; };
+		81F2B7131C048FAA00C7772E /* BBSMessageDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B7121C048FAA00C7772E /* BBSMessageDataStore.swift */; };
+		81F2B7181C0499EC00C7772E /* BBSMessageSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B7171C0499EC00C7772E /* BBSMessageSorter.swift */; };
+		81F2B71A1C049DC000C7772E /* BBSNewMessageSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B7191C049DC000C7772E /* BBSNewMessageSorter.swift */; };
+		81F2B71C1C04A08F00C7772E /* BBSTopMessageSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B71B1C04A08F00C7772E /* BBSTopMessageSorter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -460,6 +465,11 @@
 		81F2B70A1C048CBF00C7772E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		81F2B70C1C048CC300C7772E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		81F2B70E1C048CC800C7772E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		81F2B7101C048F1C00C7772E /* BBSMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSMessageModel.swift; path = Model/BBSMessageModel.swift; sourceTree = "<group>"; };
+		81F2B7121C048FAA00C7772E /* BBSMessageDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSMessageDataStore.swift; path = Data/BBSMessageDataStore.swift; sourceTree = "<group>"; };
+		81F2B7171C0499EC00C7772E /* BBSMessageSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSMessageSorter.swift; path = Logic/BBSMessageSorter.swift; sourceTree = "<group>"; };
+		81F2B7191C049DC000C7772E /* BBSNewMessageSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSNewMessageSorter.swift; path = Logic/BBSNewMessageSorter.swift; sourceTree = "<group>"; };
+		81F2B71B1C04A08F00C7772E /* BBSTopMessageSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSTopMessageSorter.swift; path = Logic/BBSTopMessageSorter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -514,6 +524,7 @@
 			isa = PBXGroup;
 			children = (
 				81EF0C4B1C04615C00881166 /* Data */,
+				81F2B7141C0499BD00C7772E /* Logic */,
 				81EF0C461C045E7800881166 /* Model */,
 				81EF0C501C046B1500881166 /* UI */,
 				81EF0C341C045E4000881166 /* AppDelegate.swift */,
@@ -530,6 +541,7 @@
 			children = (
 				81EF0C471C045EA000881166 /* BBSModelBase.swift */,
 				81EF0C491C045F7800881166 /* BBSRoomModel.swift */,
+				81F2B7101C048F1C00C7772E /* BBSMessageModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -538,6 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				81EF0C4E1C04638100881166 /* BBSRoomDataStore.swift */,
+				81F2B7121C048FAA00C7772E /* BBSMessageDataStore.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -964,6 +977,16 @@
 			name = Firebase;
 			sourceTree = "<group>";
 		};
+		81F2B7141C0499BD00C7772E /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				81F2B7171C0499EC00C7772E /* BBSMessageSorter.swift */,
+				81F2B7191C049DC000C7772E /* BBSNewMessageSorter.swift */,
+				81F2B71B1C04A08F00C7772E /* BBSTopMessageSorter.swift */,
+			);
+			name = Logic;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1076,6 +1099,7 @@
 				81EF0DFC1C04706700881166 /* Rx.swift in Sources */,
 				81EF0CBD1C04705800881166 /* Driver+Subscription.swift in Sources */,
 				81EF0DFA1C04706700881166 /* ObserverType+Extensions.swift in Sources */,
+				81F2B7131C048FAA00C7772E /* BBSMessageDataStore.swift in Sources */,
 				81EF0DD61C04706700881166 /* ShareReplay1.swift in Sources */,
 				81EF0DD51C04706700881166 /* Sequence.swift in Sources */,
 				81EF0DFE1C04706700881166 /* AnonymousInvocable.swift in Sources */,
@@ -1085,6 +1109,7 @@
 				81EF0DEC1C04706700881166 /* Zip.swift in Sources */,
 				81EF0DCE1C04706700881166 /* Range.swift in Sources */,
 				81EF0DFD1C04706700881166 /* RxBox.swift in Sources */,
+				81F2B7181C0499EC00C7772E /* BBSMessageSorter.swift in Sources */,
 				81EF0D8E1C04706700881166 /* AsyncLock.swift in Sources */,
 				81EF0CF31C04705900881166 /* UISwitch+Rx.swift in Sources */,
 				81EF0CD91C04705800881166 /* RxCollectionViewDataSourceType.swift in Sources */,
@@ -1209,6 +1234,7 @@
 				81EF0DC11C04706700881166 /* ElementAt.swift in Sources */,
 				81EF0DE61C04706700881166 /* Using.swift in Sources */,
 				81EF0DD21C04706700881166 /* RetryWhen.swift in Sources */,
+				81F2B71A1C049DC000C7772E /* BBSNewMessageSorter.swift in Sources */,
 				81EF0CD21C04705800881166 /* RxCLLocationManagerDelegateProxy.swift in Sources */,
 				81EF0E011C04706700881166 /* CurrentThreadScheduler.swift in Sources */,
 				81EF0CE41C04705800881166 /* UIActionSheet+Rx.swift in Sources */,
@@ -1233,6 +1259,7 @@
 				81EF0CC21C04705800881166 /* KVORepresentable+CoreGraphics.swift in Sources */,
 				81EF0DA51C04706700881166 /* ScopedDisposable.swift in Sources */,
 				81F2B7011C04849300C7772E /* BBSRoomCollectionViewController.swift in Sources */,
+				81F2B71C1C04A08F00C7772E /* BBSTopMessageSorter.swift in Sources */,
 				81EF0D8F1C04706700881166 /* Lock.swift in Sources */,
 				81EF0DE51C04706700881166 /* ToArray.swift in Sources */,
 				81EF0D8C1C04706700881166 /* AnyObserver.swift in Sources */,
@@ -1245,6 +1272,7 @@
 				81EF0CD81C04705800881166 /* ItemEvents.swift in Sources */,
 				81EF0CDD1C04705800881166 /* RxCollectionViewDataSourceProxy.swift in Sources */,
 				81EF0DBB1C04706700881166 /* ConnectableObservable.swift in Sources */,
+				81F2B7111C048F1C00C7772E /* BBSMessageModel.swift in Sources */,
 				81EF0E0B1C04706700881166 /* SchedulerServices+Emulation.swift in Sources */,
 				81EF0DBF1C04706700881166 /* DistinctUntilChanged.swift in Sources */,
 			);

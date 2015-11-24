@@ -40,7 +40,7 @@ public class BBSRoomCollectionViewController: UICollectionViewController, UIColl
         super.viewDidLoad()
 
         // Register cell classes
-        self.collectionView!.registerNib(UINib(nibName: "BBSRoomCollectionViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: BBSRoomCollectionViewCell.cellIdentifier)
+        self.collectionView!.registerNib(UINib(nibName: "BBSRoomCollectionViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: CellIdentifierRoom)
     }
     
     public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -70,7 +70,7 @@ public class BBSRoomCollectionViewController: UICollectionViewController, UIColl
     }
 
     public override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(BBSRoomCollectionViewCell.cellIdentifier, forIndexPath: indexPath) as! BBSRoomCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifierRoom, forIndexPath: indexPath) as! BBSRoomCollectionViewCell
         cell.room = self.data[indexPath.row]
         return cell
     }
