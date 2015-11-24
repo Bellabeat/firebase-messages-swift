@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "BC5704D2D703AC1F59E236B0F183BBA0DBEC5AB7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BC5704D2D703AC1F59E236B0F183BBA0DBEC5AB7" : 0,
+    "8B123162C394A0A0A138779108E4C59DD771865A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BCEE1268-BFE8-40F0-95CE-FA11AD50FE3E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BC5704D2D703AC1F59E236B0F183BBA0DBEC5AB7" : "firebase-messages-swift\/",
+    "8B123162C394A0A0A138779108E4C59DD771865A" : "firebase-messages-swift\/RxSwift\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Social",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Social.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:ReactiveX\/RxSwift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8B123162C394A0A0A138779108E4C59DD771865A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:ifabijanovic\/firebase-messages-swift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BC5704D2D703AC1F59E236B0F183BBA0DBEC5AB7"
+    }
+  ]
+}
