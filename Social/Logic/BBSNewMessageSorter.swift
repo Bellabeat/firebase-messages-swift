@@ -28,7 +28,7 @@ public class BBSNewMessageSorter: BBSMessageSorter {
         var tempData = array
         tempData.append(message)
         
-        let data = tempData.sort { $0.timestamp > $1.timestamp }
+        let data = tempData.sort { $0.timestamp.value > $1.timestamp.value }
         return data.indexOf(message)
     }
     

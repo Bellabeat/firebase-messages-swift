@@ -13,8 +13,8 @@ public class BBSRoomModel: BBSModelBase {
 
     // MARK: - Properties
     
-    public var name: String = ""
-    public var type: String = ""
+    public var name = Variable<String>("")
+    public var type = Variable<String>("")
     
     // MARK: - Init
     
@@ -32,18 +32,18 @@ public class BBSRoomModel: BBSModelBase {
     
     public override func updateWithObject(object: AnyObject) {
         if let name = object.objectForKey(KeyRoomName) as? String {
-            self.name = name
+            self.name.value = name
         }
         if let type = object.objectForKey(KeyRoomType) as? String {
-            self.type = type
+            self.type.value = type
         }
     }
     
     public override func serialize() -> [NSObject: AnyObject] {
         return [
             self.key: [
-                KeyRoomName: self.name,
-                KeyRoomType: self.type
+                KeyRoomName: self.name.value,
+                KeyRoomType: self.type.value
             ]
         ]
     }

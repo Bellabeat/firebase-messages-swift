@@ -237,6 +237,7 @@
 		81F2B7211C04A13E00C7772E /* BBSMessageCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F2B71F1C04A13E00C7772E /* BBSMessageCollectionViewController.xib */; };
 		81F2B7241C04A28200C7772E /* BBSMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B7221C04A28200C7772E /* BBSMessageCollectionViewCell.swift */; };
 		81F2B7251C04A28200C7772E /* BBSMessageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F2B7231C04A28200C7772E /* BBSMessageCollectionViewCell.xib */; };
+		81F2B7281C04AB6D00C7772E /* BBSBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B7271C04AB6D00C7772E /* BBSBaseCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -478,6 +479,7 @@
 		81F2B71F1C04A13E00C7772E /* BBSMessageCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSMessageCollectionViewController.xib; path = UI/Message/BBSMessageCollectionViewController.xib; sourceTree = "<group>"; };
 		81F2B7221C04A28200C7772E /* BBSMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSMessageCollectionViewCell.swift; path = UI/Message/BBSMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		81F2B7231C04A28200C7772E /* BBSMessageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSMessageCollectionViewCell.xib; path = UI/Message/BBSMessageCollectionViewCell.xib; sourceTree = "<group>"; };
+		81F2B7271C04AB6D00C7772E /* BBSBaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSBaseCollectionViewCell.swift; path = UI/Shared/BBSBaseCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -568,6 +570,7 @@
 			children = (
 				81F2B71D1C04A11A00C7772E /* Message */,
 				81EF0C511C046B2400881166 /* Room */,
+				81F2B7261C04AB4700C7772E /* Shared */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1007,6 +1010,14 @@
 			name = Message;
 			sourceTree = "<group>";
 		};
+		81F2B7261C04AB4700C7772E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				81F2B7271C04AB6D00C7772E /* BBSBaseCollectionViewCell.swift */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1109,6 +1120,7 @@
 				81EF0CF11C04705900881166 /* UISlider+Rx.swift in Sources */,
 				81EF0CDC1C04705800881166 /* RxAlertViewDelegateProxy.swift in Sources */,
 				81EF0CC31C04705800881166 /* KVORepresentable+Swift.swift in Sources */,
+				81F2B7281C04AB6D00C7772E /* BBSBaseCollectionViewCell.swift in Sources */,
 				81EF0CD31C04705800881166 /* RxCocoa.swift in Sources */,
 				81EF0E081C04706700881166 /* RecursiveScheduler.swift in Sources */,
 				81EF0CE31C04705800881166 /* RxTextViewDelegateProxy.swift in Sources */,

@@ -23,11 +23,11 @@ public class BBSMessageModel: BBSModelBase {
     
     // MARK: - Properties
     
-    public var message: String = ""
-    public var sender: String = ""
-    public var points: Int = 0
-    public var totalActivity: Int = 0
-    public var timestamp: Double = 0.0
+    public var message = Variable<String>("")
+    public var sender = Variable<String>("")
+    public var points = Variable<Int>(0)
+    public var totalActivity = Variable<Int>(0)
+    public var timestamp = Variable<Double>(0)
     public var votes: Dictionary<String, String> = [:]
     
     // MARK: - Private members
@@ -38,12 +38,12 @@ public class BBSMessageModel: BBSModelBase {
     
     public init(dataStore: BBSMessageDataStore, senderId: String) {
         self.dataStore = dataStore
+        self.sender.value = senderId
+        self.points.value = 1
+        self.totalActivity.value = 1
         super.init()
         
-        self.sender = senderId
-        self.points = 1
-        self.totalActivity = 1
-        self.votes[sender] = UpvoteValue
+        self.votes[senderId] = UpvoteValue
     }
     
     public init(dataStore: BBSMessageDataStore, key: String, value: AnyObject) {
@@ -62,19 +62,19 @@ public class BBSMessageModel: BBSModelBase {
     
     public override func updateWithObject(object: AnyObject) {
         if let message = object.objectForKey(KeyMessageMessage) as? String {
-            self.message = message
+            self.message.value = message
         }
         if let sender = object.objectForKey(KeyMessageSender) as? String {
-            self.sender = sender
+            self.sender.value = sender
         }
         if let points = object.objectForKey(KeyMessagePoints) as? Int {
-            self.points = points
+            self.points.value = points
         }
         if let totalActivity = object.objectForKey(KeyMessageTotalActivity) as? Int {
-            self.totalActivity = totalActivity
+            self.totalActivity.value = totalActivity
         }
         if let timestamp = object.objectForKey(KeyMessageTimestamp) as? Double {
-            self.timestamp = timestamp
+            self.timestamp.value = timestamp
         }
         if let votes = object.objectForKey(KeyMessageVotes) as? Dictionary<String, String> {
             self.votes = votes
@@ -84,11 +84,11 @@ public class BBSMessageModel: BBSModelBase {
     public override func serialize() -> [NSObject: AnyObject] {
         return [
             self.key: [
-                KeyMessageMessage: self.message,
-                KeyMessageSender: self.sender,
-                KeyMessagePoints: self.points,
-                KeyMessageTotalActivity: self.totalActivity,
-                KeyMessageTimestamp: self.timestamp,
+                KeyMessageMessage: self.message.value,
+                KeyMessageSender: self.sender.value,
+                KeyMessagePoints: self.points.value,
+                KeyMessageTotalActivity: self.totalActivity.value,
+                KeyMessageTimestamp: self.timestamp.value,
                 KeyMessageVotes: self.votes
             ]
         ]
@@ -113,18 +113,18 @@ public class BBSMessageModel: BBSModelBase {
     public func upvoteForUser(userId: String) {
         if self.didUpvoteForUser(userId) {
             // Upvoted, reverse
-            self.points--
-            self.totalActivity--;
+            self.points.value--
+            self.totalActivity.value--;
             self.votes[userId] = NeutralValue
         } else if self.didDownvoteForUser(userId) {
             // Downvoted, reverse
-            self.points++
-            self.totalActivity--
+            self.points.value++
+            self.totalActivity.value--
             self.votes[userId] = NeutralValue
         } else {
             // Neutral position, upvote
-            self.points++
-            self.totalActivity++
+            self.points.value++
+            self.totalActivity.value++
             self.votes[userId] = UpvoteValue
         }
         
@@ -134,18 +134,18 @@ public class BBSMessageModel: BBSModelBase {
     public func downvoteForUser(userId: String) {
         if self.didDownvoteForUser(userId) {
             // Downvoted, reverse
-            self.points++
-            self.totalActivity--;
+            self.points.value++
+            self.totalActivity.value--;
             self.votes[userId] = NeutralValue
         } else if self.didUpvoteForUser(userId) {
             // Upvoted, reverse
-            self.points--
-            self.totalActivity--
+            self.points.value--
+            self.totalActivity.value--
             self.votes[userId] = NeutralValue
         } else {
             // Neutral position, downvote
-            self.points--
-            self.totalActivity++
+            self.points.value--
+            self.totalActivity.value++
             self.votes[userId] = DownvoteValue
         }
         

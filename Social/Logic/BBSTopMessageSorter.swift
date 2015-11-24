@@ -28,7 +28,7 @@ public class BBSTopMessageSorter: BBSMessageSorter {
         var tempData = array
         tempData.append(message)
         
-        let data = tempData.sort { $0.points > $1.points }
+        let data = tempData.sort { $0.points.value > $1.points.value }
         return data.indexOf(message)
     }
     

@@ -87,7 +87,7 @@ public class BBSRoomCollectionViewController: UICollectionViewController, UIColl
         let messageDataStore = self.dataStore.messageDataStoreForRoom(room, userId: self.userId)
         
         let vc = BBSMessageCollectionViewController(dataStore: messageDataStore, userId: self.userId)
-        vc.title = room.name
+        vc.title = room.name.value
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

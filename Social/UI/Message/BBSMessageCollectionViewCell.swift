@@ -10,7 +10,7 @@ import UIKit
 
 internal let CellIdentifierMessage = "messageCell"
 
-public class BBSMessageCollectionViewCell: UICollectionViewCell {
+public class BBSMessageCollectionViewCell: BBSBaseCollectionViewCell {
 
     // MARK: - Outlets
     
@@ -26,31 +26,40 @@ public class BBSMessageCollectionViewCell: UICollectionViewCell {
         didSet {
             self.dispose()
             if let message = self.message {
-                self.observers.append(Variable(message.message).bindTo(self.messageTextLabel.rx_text))
-                self.observers.append(Variable(message.timestamp).map { "\($0)" }.bindTo(self.messageTimestampLabel.rx_text))
-                self.observers.append(Variable(message.points).map { "\($0)" }.bindTo(self.messagePointsLabel.rx_text))
+                weak var weakSelf = self
+                self.observers.append(message.message.bindTo(self.messageTextLabel.rx_text))
+                self.observers.append(message.timestamp.map { "\($0)" }.bindTo(self.messageTimestampLabel.rx_text))
+                self.observers.append(message.points.map { "\($0)" }.bindTo(self.messagePointsLabel.rx_text))
+                self.observers.append(message.points.bindNext { _ in
+                    weakSelf!.updateAppearance()
+                })
+                self.observers.append(self.upvoteButton.rx_controlEvents(.TouchUpInside).bindNext {
+                    weakSelf!.message!.upvoteForUser(weakSelf!.userId)
+                })
+                self.observers.append(self.downvoteButton.rx_controlEvents(.TouchUpInside).bindNext {
+                    weakSelf!.message!.downvoteForUser(weakSelf!.userId)
+                })
             }
         }
     }
     
     public var userId: String = ""
     
-    // MARK: - Private members
+    // MARK: - Private methods
     
-    private var observers: Array<Disposable> = []
-    
-    private func dispose() {
-        for observer in self.observers {
-            observer.dispose()
+    private func updateAppearance() {
+        if let message = self.message {
+            if message.didUpvoteForUser(self.userId) {
+                self.upvoteButton.setTitleColor(UIColor.greenColor(), forState: .Normal)
+                self.downvoteButton.setTitleColor(UIColor(colorLiteralRed: 0, green: 122.0/255.0, blue: 1.0, alpha: 1.0), forState: .Normal)
+            } else if message.didDownvoteForUser(self.userId) {
+                self.downvoteButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+                self.upvoteButton.setTitleColor(UIColor(colorLiteralRed: 0, green: 122.0/255.0, blue: 1.0, alpha: 1.0), forState: .Normal)
+            } else {
+                self.upvoteButton.setTitleColor(UIColor(colorLiteralRed: 0, green: 122.0/255.0, blue: 1.0, alpha: 1.0), forState: .Normal)
+                self.downvoteButton.setTitleColor(UIColor(colorLiteralRed: 0, green: 122.0/255.0, blue: 1.0, alpha: 1.0), forState: .Normal)
+            }
         }
-        self.observers = []
-    }
-    
-    // MARK: - Init
-    
-    deinit {
-        self.dispose()
-        print("BBSMessageCollectionViewCell deinit")
     }
 
 }

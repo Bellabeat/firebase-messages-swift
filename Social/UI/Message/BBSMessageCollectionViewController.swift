@@ -76,7 +76,7 @@ public class BBSMessageCollectionViewController: UICollectionViewController, UIC
     public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         self.sizingLabel.preferredMaxLayoutWidth = collectionView.frame.size.width - 70.0
         let model = self.data[indexPath.row]
-        self.sizingLabel.text = model.message
+        self.sizingLabel.text = model.message.value
         
         let size = self.sizingLabel.intrinsicContentSize()
         let height = size.height + 47.0

@@ -10,7 +10,7 @@ import UIKit
 
 internal let CellIdentifierRoom = "roomCell"
 
-public class BBSRoomCollectionViewCell: UICollectionViewCell {
+public class BBSRoomCollectionViewCell: BBSBaseCollectionViewCell {
 
     // MARK: - Outlets
     
@@ -20,25 +20,11 @@ public class BBSRoomCollectionViewCell: UICollectionViewCell {
     
     public var room: BBSRoomModel? {
         didSet {
-            if let titleObserver = self.titleObserver {
-                titleObserver.dispose()
-                self.titleObserver = nil
-            }
-            
+            self.dispose()
             if let room = self.room {
-                self.titleObserver = Variable(room.name).bindTo(self.roomTitleLabel.rx_text)
+                self.observers.append(room.name.bindTo(self.roomTitleLabel.rx_text))
             }
         }
-    }
-    
-    // MARK: - Private members
-    
-    var titleObserver: Disposable?
-    
-    // MARK: - Init
-    
-    deinit {
-        print("BBSRoomCollectionViewCell deinit")
     }
     
 }
