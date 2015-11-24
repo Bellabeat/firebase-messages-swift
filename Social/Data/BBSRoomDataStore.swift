@@ -14,6 +14,7 @@ public protocol BBSRoomDataStoreDelegate: NSObjectProtocol {
     func roomDataStore(dataStore: BBSRoomDataStore, didAddRoom room:BBSRoomModel)
     func roomDataStore(dataStore: BBSRoomDataStore, didUpdateRoom room:BBSRoomModel)
     func roomDataStore(dataStore: BBSRoomDataStore, didRemoveRoom room:BBSRoomModel)
+    func roomDataStoreHasNoData(dataStore: BBSRoomDataStore)
     
 }
 
@@ -82,6 +83,15 @@ public class BBSRoomDataStore: NSObject {
                 
                 if let delegate = weakSelf?.delegate {
                     delegate.roomDataStore(weakSelf!, didRemoveRoom: model)
+                }
+            }
+        })
+        
+        // Value
+        self.query.observeEventType(.Value, withBlock: { snapshot in
+            if snapshot.value is NSNull {
+                if let delegate = weakSelf?.delegate {
+                    delegate.roomDataStoreHasNoData(weakSelf!)
                 }
             }
         })

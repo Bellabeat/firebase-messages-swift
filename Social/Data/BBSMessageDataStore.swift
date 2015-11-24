@@ -14,6 +14,7 @@ public protocol BBSMessageDataStoreDelegate: NSObjectProtocol {
     func messageDataStore(dataStore: BBSMessageDataStore, didAddMessage message:BBSMessageModel)
     func messageDataStore(dataStore: BBSMessageDataStore, didUpdateMessage message:BBSMessageModel)
     func messageDataStore(dataStore: BBSMessageDataStore, didRemoveMessage message:BBSMessageModel)
+    func messageDataStoreHasNoData(dataStore: BBSMessageDataStore)
     
 }
 
@@ -88,6 +89,15 @@ public class BBSMessageDataStore: NSObject {
                 
                 if let delegate = weakSelf?.delegate {
                     delegate.messageDataStore(weakSelf!, didRemoveMessage: model)
+                }
+            }
+        })
+        
+        // Value
+        self.query.observeEventType(.Value, withBlock: { snapshot in
+            if snapshot.value is NSNull {
+                if let delegate = weakSelf?.delegate {
+                    delegate.messageDataStoreHasNoData(weakSelf!)
                 }
             }
         })

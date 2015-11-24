@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class BBSRoomCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, BBSRoomDataStoreDelegate {
+public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, BBSRoomDataStoreDelegate {
     
     // MARK: - Private members
     
@@ -44,18 +44,6 @@ public class BBSRoomCollectionViewController: UICollectionViewController, UIColl
 
         // Register cell classes
         self.collectionView!.registerNib(UINib(nibName: "BBSRoomCollectionViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: CellIdentifierRoom)
-    }
-    
-    public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        if #available(iOS 8, *) {
-            super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-            self.collectionViewLayout.invalidateLayout()
-        }
-    }
-    
-    public override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        super.willRotateToInterfaceOrientation(toInterfaceOrientation, duration: duration)
-        self.collectionViewLayout.invalidateLayout()
     }
     
     // MARK: UICollectionViewDataSource
@@ -94,12 +82,23 @@ public class BBSRoomCollectionViewController: UICollectionViewController, UIColl
     // MARK: - BBSRoomDataStoreDelegate
     
     public func roomDataStore(dataStore: BBSRoomDataStore, didAddRoom room: BBSRoomModel) {
+        self.hideLoader()
         self.data.append(room)
         let newIndex = self.data.count - 1
         self.collectionView!.insertItemsAtIndexPaths([NSIndexPath(forItem: newIndex, inSection: 0)])
     }
     
     public func roomDataStore(dataStore: BBSRoomDataStore, didUpdateRoom room: BBSRoomModel) {}
-    public func roomDataStore(dataStore: BBSRoomDataStore, didRemoveRoom room: BBSRoomModel) {}
+    
+    public func roomDataStore(dataStore: BBSRoomDataStore, didRemoveRoom room: BBSRoomModel) {
+        if let index = self.data.indexOf(room) {
+            self.data.removeAtIndex(index)
+            self.collectionView!.deleteItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
+        }
+    }
+    
+    public func roomDataStoreHasNoData(dataStore: BBSRoomDataStore) {
+        self.hideLoader()
+    }
     
 }

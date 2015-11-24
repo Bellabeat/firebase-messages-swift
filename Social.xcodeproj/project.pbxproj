@@ -241,6 +241,9 @@
 		81F2B72B1C04B61C00C7772E /* BBSNewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B7291C04B61C00C7772E /* BBSNewMessageViewController.swift */; };
 		81F2B72C1C04B61C00C7772E /* BBSNewMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F2B72A1C04B61C00C7772E /* BBSNewMessageViewController.xib */; };
 		81F2B72E1C04B96400C7772E /* BBSObserverContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B72D1C04B96400C7772E /* BBSObserverContainer.swift */; };
+		81F2B7311C04C10400C7772E /* BBSLoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B72F1C04C10400C7772E /* BBSLoadingCollectionReusableView.swift */; };
+		81F2B7321C04C10400C7772E /* BBSLoadingCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F2B7301C04C10400C7772E /* BBSLoadingCollectionReusableView.xib */; };
+		81F2B7341C04C19900C7772E /* BBSBaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B7331C04C19900C7772E /* BBSBaseCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -486,6 +489,9 @@
 		81F2B7291C04B61C00C7772E /* BBSNewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSNewMessageViewController.swift; path = UI/Message/BBSNewMessageViewController.swift; sourceTree = "<group>"; };
 		81F2B72A1C04B61C00C7772E /* BBSNewMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSNewMessageViewController.xib; path = UI/Message/BBSNewMessageViewController.xib; sourceTree = "<group>"; };
 		81F2B72D1C04B96400C7772E /* BBSObserverContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSObserverContainer.swift; path = UI/Shared/BBSObserverContainer.swift; sourceTree = "<group>"; };
+		81F2B72F1C04C10400C7772E /* BBSLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSLoadingCollectionReusableView.swift; path = UI/Shared/BBSLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
+		81F2B7301C04C10400C7772E /* BBSLoadingCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSLoadingCollectionReusableView.xib; path = UI/Shared/BBSLoadingCollectionReusableView.xib; sourceTree = "<group>"; };
+		81F2B7331C04C19900C7772E /* BBSBaseCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSBaseCollectionViewController.swift; path = UI/Shared/BBSBaseCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1022,6 +1028,9 @@
 			isa = PBXGroup;
 			children = (
 				81F2B7271C04AB6D00C7772E /* BBSBaseCollectionViewCell.swift */,
+				81F2B7331C04C19900C7772E /* BBSBaseCollectionViewController.swift */,
+				81F2B72F1C04C10400C7772E /* BBSLoadingCollectionReusableView.swift */,
+				81F2B7301C04C10400C7772E /* BBSLoadingCollectionReusableView.xib */,
 				81F2B72D1C04B96400C7772E /* BBSObserverContainer.swift */,
 			);
 			name = Shared;
@@ -1087,6 +1096,7 @@
 			files = (
 				81EF0DA11C04706700881166 /* NAryDisposable.tt in Resources */,
 				81EF0DEA1C04706700881166 /* Zip+arity.tt in Resources */,
+				81F2B7321C04C10400C7772E /* BBSLoadingCollectionReusableView.xib in Resources */,
 				81EF0CD51C04705800881166 /* Info.plist in Resources */,
 				81EF0DAD1C04706700881166 /* Info.plist in Resources */,
 				81F2B7251C04A28200C7772E /* BBSMessageCollectionViewCell.xib in Resources */,
@@ -1169,6 +1179,7 @@
 				81EF0CC61C04705800881166 /* Observable+Bind.swift in Sources */,
 				81EF0D981C04706700881166 /* Queue.swift in Sources */,
 				81EF0CDE1C04705800881166 /* RxCollectionViewDelegateProxy.swift in Sources */,
+				81F2B7341C04C19900C7772E /* BBSBaseCollectionViewController.swift in Sources */,
 				81EF0CE71C04705800881166 /* UIButton+Rx.swift in Sources */,
 				81EF0CB61C04705800881166 /* ControlEvent.swift in Sources */,
 				81EF0DD11C04706700881166 /* Repeat.swift in Sources */,
@@ -1180,6 +1191,7 @@
 				81EF0DAE1C04706700881166 /* Observable+Extensions.swift in Sources */,
 				81EF0CB81C04705800881166 /* ControlEvent+Driver.swift in Sources */,
 				81EF0D9D1C04706700881166 /* CompositeDisposable.swift in Sources */,
+				81F2B7311C04C10400C7772E /* BBSLoadingCollectionReusableView.swift in Sources */,
 				81EF0E0D1C04706700881166 /* SchedulerType.swift in Sources */,
 				81EF0CE91C04705800881166 /* UIControl+Rx.swift in Sources */,
 				81EF0DC81C04706700881166 /* Merge.swift in Sources */,

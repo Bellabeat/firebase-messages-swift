@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class BBSMessageCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, BBSMessageDataStoreDelegate {
+public class BBSMessageCollectionViewController: BBSBaseCollectionViewController, BBSMessageDataStoreDelegate {
     
     // MARK: - Private members
     
@@ -61,18 +61,6 @@ public class BBSMessageCollectionViewController: UICollectionViewController, UIC
         self.navigationItem.rightBarButtonItem = newMessageButton
     }
 
-    public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        if #available(iOS 8, *) {
-            super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-            self.collectionViewLayout.invalidateLayout()
-        }
-    }
-    
-    public override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        super.willRotateToInterfaceOrientation(toInterfaceOrientation, duration: duration)
-        self.collectionViewLayout.invalidateLayout()
-    }
-
     // MARK: UICollectionViewDataSource
 
     public override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -104,6 +92,7 @@ public class BBSMessageCollectionViewController: UICollectionViewController, UIC
     // MARK: - BBSMessageDataStoreDelegate
     
     public func messageDataStore(dataStore: BBSMessageDataStore, didAddMessage message: BBSMessageModel) {
+        self.hideLoader()
         if let index = self.dataStore.sorter.indexForMessage(message, inArray: self.data) {
             self.data.insert(message, atIndex: index)
             self.collectionView!.insertItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
@@ -117,6 +106,10 @@ public class BBSMessageCollectionViewController: UICollectionViewController, UIC
             self.data.removeAtIndex(index)
             self.collectionView!.deleteItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
         }
+    }
+    
+    public func messageDataStoreHasNoData(dataStore: BBSMessageDataStore) {
+        self.hideLoader()
     }
     
 }

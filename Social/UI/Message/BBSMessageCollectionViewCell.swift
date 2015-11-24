@@ -10,7 +10,7 @@ import UIKit
 
 internal let CellIdentifierMessage = "messageCell"
 
-public class BBSMessageCollectionViewCell: BBSBaseCollectionViewCell {
+internal class BBSMessageCollectionViewCell: BBSBaseCollectionViewCell {
 
     // MARK: - Outlets
     
@@ -22,7 +22,7 @@ public class BBSMessageCollectionViewCell: BBSBaseCollectionViewCell {
     
     // MARK: - Properties
     
-    public var message: BBSMessageModel? {
+    internal var message: BBSMessageModel? {
         didSet {
             self.observerContainer.dispose()
             if let message = self.message {
@@ -43,7 +43,7 @@ public class BBSMessageCollectionViewCell: BBSBaseCollectionViewCell {
         }
     }
     
-    public var userId: String = ""
+    internal var userId: String = ""
     
     // MARK: - Private methods
     

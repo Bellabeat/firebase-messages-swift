@@ -10,7 +10,7 @@ import UIKit
 
 internal let CellIdentifierRoom = "roomCell"
 
-public class BBSRoomCollectionViewCell: BBSBaseCollectionViewCell {
+internal class BBSRoomCollectionViewCell: BBSBaseCollectionViewCell {
 
     // MARK: - Outlets
     
@@ -18,7 +18,7 @@ public class BBSRoomCollectionViewCell: BBSBaseCollectionViewCell {
     
     // MARK: - Properties
     
-    public var room: BBSRoomModel? {
+    internal var room: BBSRoomModel? {
         didSet {
             self.observerContainer.dispose()
             if let room = self.room {
