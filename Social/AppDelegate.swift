@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        let user = "u1"
+        let rootRef = Firebase(url: "https://bellabeat-feedback.firebaseio.com/")
+        let roomDataStore = BBSRoomDataStore(root: rootRef)
+        
+        let rootViewController = BBSRoomCollectionViewController(dataStore: roomDataStore, userId: user)
+        let navController = UINavigationController(rootViewController: rootViewController)
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window!.rootViewController = navController
+        self.window!.makeKeyAndVisible()
+        
         return true
     }
 

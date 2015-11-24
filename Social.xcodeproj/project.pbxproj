@@ -219,6 +219,10 @@
 		81EF0E101C04706700881166 /* ReplaySubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0D891C04706700881166 /* ReplaySubject.swift */; };
 		81EF0E111C04706700881166 /* SubjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0D8A1C04706700881166 /* SubjectType.swift */; };
 		81EF0E121C04706700881166 /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0D8B1C04706700881166 /* Variable.swift */; };
+		81EF0E181C04736500881166 /* BBSRoomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0E171C04736500881166 /* BBSRoomCollectionViewCell.swift */; };
+		81EF0E1C1C0473E400881166 /* BBSRoomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0E1B1C0473E400881166 /* BBSRoomCollectionViewCell.xib */; };
+		81F2B7011C04849300C7772E /* BBSRoomCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2B6FF1C04849300C7772E /* BBSRoomCollectionViewController.swift */; };
+		81F2B7021C04849300C7772E /* BBSRoomCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F2B7001C04849300C7772E /* BBSRoomCollectionViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -442,6 +446,10 @@
 		81EF0D8A1C04706700881166 /* SubjectType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectType.swift; sourceTree = "<group>"; };
 		81EF0D8B1C04706700881166 /* Variable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
 		81EF0E161C0471B800881166 /* Social-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Social-Bridging-Header.h"; sourceTree = "<group>"; };
+		81EF0E171C04736500881166 /* BBSRoomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSRoomCollectionViewCell.swift; path = UI/Room/BBSRoomCollectionViewCell.swift; sourceTree = "<group>"; };
+		81EF0E1B1C0473E400881166 /* BBSRoomCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSRoomCollectionViewCell.xib; path = UI/Room/BBSRoomCollectionViewCell.xib; sourceTree = "<group>"; };
+		81F2B6FF1C04849300C7772E /* BBSRoomCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSRoomCollectionViewController.swift; path = UI/Room/BBSRoomCollectionViewController.swift; sourceTree = "<group>"; };
+		81F2B7001C04849300C7772E /* BBSRoomCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSRoomCollectionViewController.xib; path = UI/Room/BBSRoomCollectionViewController.xib; sourceTree = "<group>"; };
 		9D87394E576A47811D1AB8CF /* Pods-Social.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Social/Pods-Social.debug.xcconfig"; sourceTree = "<group>"; };
 		C7F2FECB2BE1EB2AF1CBB118 /* Pods_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -528,6 +536,10 @@
 		81EF0C511C046B2400881166 /* Room */ = {
 			isa = PBXGroup;
 			children = (
+				81EF0E171C04736500881166 /* BBSRoomCollectionViewCell.swift */,
+				81EF0E1B1C0473E400881166 /* BBSRoomCollectionViewCell.xib */,
+				81F2B6FF1C04849300C7772E /* BBSRoomCollectionViewController.swift */,
+				81F2B7001C04849300C7772E /* BBSRoomCollectionViewController.xib */,
 			);
 			name = Room;
 			sourceTree = "<group>";
@@ -1002,9 +1014,11 @@
 				81EF0CD51C04705800881166 /* Info.plist in Resources */,
 				81EF0DAD1C04706700881166 /* Info.plist in Resources */,
 				81EF0C3F1C045E4000881166 /* LaunchScreen.storyboard in Resources */,
+				81EF0E1C1C0473E400881166 /* BBSRoomCollectionViewCell.xib in Resources */,
 				81EF0C3C1C045E4000881166 /* Assets.xcassets in Resources */,
 				81EF0CBB1C04705800881166 /* Driver+Operators+arity.tt in Resources */,
 				81EF0DB71C04706700881166 /* CombineLatest+arity.tt in Resources */,
+				81F2B7021C04849300C7772E /* BBSRoomCollectionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1240,6 +1254,7 @@
 				81EF0CD71C04705800881166 /* RxTableViewReactiveArrayDataSource.swift in Sources */,
 				81EF0DF51C04706700881166 /* Observable+Time.swift in Sources */,
 				81EF0E0C1C04706700881166 /* SerialDispatchQueueScheduler.swift in Sources */,
+				81EF0E181C04736500881166 /* BBSRoomCollectionViewCell.swift in Sources */,
 				81EF0CEC1C04705800881166 /* UIImageView+Rx.swift in Sources */,
 				81EF0E111C04706700881166 /* SubjectType.swift in Sources */,
 				81EF0CDB1C04705800881166 /* RxActionSheetDelegateProxy.swift in Sources */,
@@ -1252,6 +1267,7 @@
 				81EF0CB21C04705800881166 /* _RXDelegateProxy.m in Sources */,
 				81EF0CC21C04705800881166 /* KVORepresentable+CoreGraphics.swift in Sources */,
 				81EF0DA51C04706700881166 /* ScopedDisposable.swift in Sources */,
+				81F2B7011C04849300C7772E /* BBSRoomCollectionViewController.swift in Sources */,
 				81EF0D8F1C04706700881166 /* Lock.swift in Sources */,
 				81EF0DE51C04706700881166 /* ToArray.swift in Sources */,
 				81EF0D8C1C04706700881166 /* AnyObserver.swift in Sources */,
