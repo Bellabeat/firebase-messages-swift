@@ -9,6 +9,9 @@
 import UIKit
 import Firebase
 
+public let BBSNotificationMessageSorterDidChange = "messageSorterDidChange"
+public let BBSKeyNewMessageSorter = "newMessageSorter"
+
 public protocol BBSMessageDataStoreDelegate: NSObjectProtocol {
     
     func messageDataStore(dataStore: BBSMessageDataStore, didAddMessage message:BBSMessageModel)
@@ -23,13 +26,13 @@ public class BBSMessageDataStore: NSObject {
     // MARK: - Properties
     
     weak public var delegate: BBSMessageDataStoreDelegate?
-    public let sorter: BBSMessageSorter
+    public private(set) var sorter: BBSMessageSorter
     
     // MARK: - Private members
     
     private let root: Firebase
     private let messages: Firebase
-    private let query: FQuery
+    private var query: FQuery
     private let userId: String
     private var data: Dictionary<String, BBSMessageModel>
     
@@ -47,6 +50,58 @@ public class BBSMessageDataStore: NSObject {
         self.data = Dictionary<String, BBSMessageModel>()
         super.init()
         
+        self.startObserving()
+    }
+    
+    public convenience init(root: Firebase, userId: String) {
+        self.init(root: root, room: nil, sorter: nil, userId: userId)
+    }
+    
+    public convenience init(root: Firebase, sorter: BBSMessageSorter, userId: String) {
+        self.init(root: root, room: nil, sorter: sorter, userId: userId)
+    }
+    
+    deinit {
+        self.query.removeAllObservers()
+        print("BBSMessageDataStore deinit")
+    }
+
+    // MARK: - Public methods
+    
+    public func newMessage() -> BBSMessageModel {
+        return BBSMessageModel(dataStore: self, senderId: self.userId)
+    }
+    
+    public func saveMessage(message: BBSMessageModel) {
+        let raw = message.serialize()
+        
+        if message.key.isEmpty {
+            // New
+            let child = self.messages.childByAutoId()
+            child.setValue(raw)
+            message.key = child.key
+        } else {
+            // Update
+            self.messages.updateChildValues([message.key: raw])
+        }
+    }
+    
+    public func changeSorter(sorter: BBSMessageSorter) {
+        if self.sorter.title != sorter.title {
+            self.query.removeAllObservers()
+            
+            self.sorter = sorter
+            self.query = self.sorter.queryForRef(self.messages)
+            self.data.removeAll()
+            
+            self.startObserving()
+            NSNotificationCenter.defaultCenter().postNotificationName(BBSNotificationMessageSorterDidChange, object: self, userInfo: [BBSKeyNewMessageSorter: sorter])
+        }
+    }
+    
+    // MARK: - Internal methods
+    
+    internal func startObserving() {
         weak var weakSelf = self
         
         // Add
@@ -102,41 +157,6 @@ public class BBSMessageDataStore: NSObject {
             }
         })
     }
-    
-    public convenience init(root: Firebase, userId: String) {
-        self.init(root: root, room: nil, sorter: nil, userId: userId)
-    }
-    
-    public convenience init(root: Firebase, sorter: BBSMessageSorter, userId: String) {
-        self.init(root: root, room: nil, sorter: sorter, userId: userId)
-    }
-    
-    deinit {
-        self.query.removeAllObservers()
-        print("BBSMessageDataStore deinit")
-    }
-
-    // MARK: - Public methods
-    
-    public func newMessage() -> BBSMessageModel {
-        return BBSMessageModel(dataStore: self, senderId: self.userId)
-    }
-    
-    public func saveMessage(message: BBSMessageModel) {
-        let raw = message.serialize()
-        
-        if message.key.isEmpty {
-            // New
-            let child = self.messages.childByAutoId()
-            child.setValue(raw)
-            message.key = child.key
-        } else {
-            // Update
-            self.messages.updateChildValues([message.key: raw])
-        }
-    }
-    
-    // MARK: - Internal methods
     
     internal func upvoteMessage(message: BBSMessageModel, forUser userId: String) {
         var raw = message.serialize()

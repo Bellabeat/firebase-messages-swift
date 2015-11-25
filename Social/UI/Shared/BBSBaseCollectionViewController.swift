@@ -15,7 +15,10 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
     public var theme: BBSUITheme?
     
     internal var didLoad = false
+    internal var isVisible = false
     internal let sizingLabel: UILabel
+    
+    internal var observerContainer = BBSObserverContainer()
     
     // MARK: - Init
     
@@ -36,8 +39,17 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
         super.viewDidLoad()
         
         self.theme?.applyToViewController(self)
-        self.collectionView!.registerNib(UINib(nibName: "BBSInfoCollectionReusableView", bundle: NSBundle.mainBundle()), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ViewIdentifierInfo)
         self.collectionView!.registerNib(UINib(nibName: "BBSLoadingCollectionReusableView", bundle: NSBundle.mainBundle()), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: ViewIdentifierLoading)
+    }
+    
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.isVisible = true
+    }
+    
+    public override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.isVisible = false
     }
     
     public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -75,6 +87,13 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
     }
     
     // MARK: - Methods
+    
+    internal func showLoader() {
+        if self.didLoad {
+            self.didLoad = false
+            self.collectionViewLayout.invalidateLayout()
+        }
+    }
     
     internal func hideLoader() {
         if !self.didLoad {

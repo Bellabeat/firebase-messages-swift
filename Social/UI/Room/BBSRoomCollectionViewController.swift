@@ -48,6 +48,7 @@ public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, B
 
         // Register cell classes
         self.collectionView!.registerNib(UINib(nibName: "BBSRoomCollectionViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: CellIdentifierRoom)
+        self.collectionView!.registerNib(UINib(nibName: "BBSInfoCollectionReusableView", bundle: NSBundle.mainBundle()), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ViewIdentifierInfo)
     }
     
     // MARK: UICollectionViewDataSource
@@ -69,7 +70,7 @@ public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, B
             let width = collectionView.frame.size.width - 20.0
             let font = self.theme != nil ? UIFont(name: theme!.contentFontName, size: 18.0)! : UIFont.systemFontOfSize(18.0)
             
-            let height = self.heightForText(globalDataStore.global.note.value, font: font, width: width) + 30.0
+            let height = self.heightForText(globalDataStore.global.note.value, font: font, width: width) + 20.0
             return CGSizeMake(collectionView.frame.size.width, height)
         }
         return CGSizeZero

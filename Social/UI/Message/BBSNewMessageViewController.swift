@@ -65,6 +65,7 @@ public class BBSNewMessageViewController: UIViewController {
             let message = weakSelf!.message
             message.message.value = weakSelf!.inputTextView.text
             message.timestamp.value = NSDate().timeIntervalSince1970
+            weakSelf!.dataStore.changeSorter(BBSNewMessageSorter())
             weakSelf!.dataStore.saveMessage(message)
             
             weakSelf!.navigationController!.popViewControllerAnimated(true)

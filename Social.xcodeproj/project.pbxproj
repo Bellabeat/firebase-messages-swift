@@ -27,6 +27,8 @@
 		81886E481C0606E50011A8D3 /* BBSGlobalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E471C0606E50011A8D3 /* BBSGlobalModel.swift */; };
 		81886E4A1C0607370011A8D3 /* BBSGlobalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E491C0607370011A8D3 /* BBSGlobalDataStore.swift */; };
 		81886E4C1C060BDD0011A8D3 /* BBSBaseCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E4B1C060BDD0011A8D3 /* BBSBaseCollectionReusableView.swift */; };
+		81886E4F1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E4D1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.swift */; };
+		81886E501C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81886E4E1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.xib */; };
 		81EF0C351C045E4000881166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0C341C045E4000881166 /* AppDelegate.swift */; };
 		81EF0C3C1C045E4000881166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3B1C045E4000881166 /* Assets.xcassets */; };
 		81EF0C3F1C045E4000881166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3D1C045E4000881166 /* LaunchScreen.storyboard */; };
@@ -322,6 +324,8 @@
 		81886E471C0606E50011A8D3 /* BBSGlobalModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSGlobalModel.swift; path = Model/BBSGlobalModel.swift; sourceTree = "<group>"; };
 		81886E491C0607370011A8D3 /* BBSGlobalDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSGlobalDataStore.swift; path = Data/BBSGlobalDataStore.swift; sourceTree = "<group>"; };
 		81886E4B1C060BDD0011A8D3 /* BBSBaseCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSBaseCollectionReusableView.swift; path = UI/Shared/BBSBaseCollectionReusableView.swift; sourceTree = "<group>"; };
+		81886E4D1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSMessageHeaderCollectionReusableView.swift; path = UI/Message/BBSMessageHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		81886E4E1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSMessageHeaderCollectionReusableView.xib; path = UI/Message/BBSMessageHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		81EF0C311C045E4000881166 /* Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Social.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EF0C341C045E4000881166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81EF0C3B1C045E4000881166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1152,6 +1156,8 @@
 				81F2B7231C04A28200C7772E /* BBSMessageCollectionViewCell.xib */,
 				81F2B71E1C04A13E00C7772E /* BBSMessageCollectionViewController.swift */,
 				81F2B71F1C04A13E00C7772E /* BBSMessageCollectionViewController.xib */,
+				81886E4D1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.swift */,
+				81886E4E1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.xib */,
 				81F2B7291C04B61C00C7772E /* BBSNewMessageViewController.swift */,
 				81F2B72A1C04B61C00C7772E /* BBSNewMessageViewController.xib */,
 			);
@@ -1259,6 +1265,7 @@
 			files = (
 				81EF0DA11C04706700881166 /* NAryDisposable.tt in Resources */,
 				81EF0DEA1C04706700881166 /* Zip+arity.tt in Resources */,
+				81886E501C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.xib in Resources */,
 				81F2B7321C04C10400C7772E /* BBSLoadingCollectionReusableView.xib in Resources */,
 				81EF0CD51C04705800881166 /* Info.plist in Resources */,
 				81EF0DAD1C04706700881166 /* Info.plist in Resources */,
@@ -1333,6 +1340,7 @@
 				81EF0DFD1C04706700881166 /* RxBox.swift in Sources */,
 				81F2B7181C0499EC00C7772E /* BBSMessageSorter.swift in Sources */,
 				81EF0D8E1C04706700881166 /* AsyncLock.swift in Sources */,
+				81886E4F1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.swift in Sources */,
 				81F2B72B1C04B61C00C7772E /* BBSNewMessageViewController.swift in Sources */,
 				81EF0CF31C04705900881166 /* UISwitch+Rx.swift in Sources */,
 				81EF0CD91C04705800881166 /* RxCollectionViewDataSourceType.swift in Sources */,

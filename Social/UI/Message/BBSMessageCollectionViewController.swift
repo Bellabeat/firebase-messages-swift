@@ -18,7 +18,7 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
     
     private var data: Array<BBSMessageModel>
     
-    private var observerContainer = BBSObserverContainer()
+    private var sorterObserver: Disposable?
     
     // MARK: - Init
     
@@ -30,6 +30,8 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
         
         super.init(nibName: "BBSMessageCollectionViewController", bundle: NSBundle.mainBundle())
         self.dataStore.delegate = self
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "messageSorterDidChange:", name: BBSNotificationMessageSorterDidChange, object: nil)
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -38,6 +40,7 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
     
     deinit {
         self.dataStore.delegate = nil
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         print("BBSMessageCollectionViewController deinit")
     }
     
@@ -48,6 +51,7 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
 
         // Register cell classes
         self.collectionView!.registerNib(UINib(nibName: "BBSMessageCollectionViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: CellIdentifierMessage)
+        self.collectionView!.registerNib(UINib(nibName: "BBSMessageHeaderCollectionReusableView", bundle: NSBundle.mainBundle()), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ViewIdentifierMessageHeader)
         
         let newMessageButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: nil, action: nil)
         weak var weakSelf = self
@@ -87,7 +91,7 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
             let width = collectionView.frame.size.width - 20.0
             let font = self.theme != nil ? UIFont(name: theme!.contentFontName, size: 18.0)! : UIFont.systemFontOfSize(18.0)
     
-            let height = self.heightForText(room.note.value, font: font, width: width) + 30.0
+            let height = self.heightForText(room.note.value, font: font, width: width) + 60.0
             return CGSizeMake(collectionView.frame.size.width, height)
         }
         return CGSizeZero
@@ -109,13 +113,20 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
     public override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             if let room = self.room {
-                let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ViewIdentifierInfo, forIndexPath: indexPath) as! BBSInfoCollectionReusableView
+                let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ViewIdentifierMessageHeader, forIndexPath: indexPath) as! BBSMessageHeaderCollectionReusableView
                 
                 if let theme = self.theme {
                     view.applyTheme(theme)
                 }
                 
                 view.room = room
+                
+                weak var weakSelf = self
+                self.sorterObserver?.dispose()
+                self.sorterObserver = view.sorterSegmentedControl.rx_value.bindNext { index in
+                    let sorter = index == 0 ? BBSTopMessageSorter() : BBSNewMessageSorter()
+                    weakSelf!.dataStore.changeSorter(sorter)
+                }
                 
                 return view
             }
@@ -146,4 +157,11 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
         self.hideLoader()
     }
     
+    // MARK: - Methods
+    
+    internal func messageSorterDidChange(notification: NSNotification) {
+        self.data.removeAll()
+        self.showLoader()
+        self.collectionView!.reloadData()
+    }
 }
