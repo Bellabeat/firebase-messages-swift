@@ -12,4 +12,14 @@ internal let ViewIdentifierLoading = "loadingView"
 
 internal class BBSLoadingCollectionReusableView: UICollectionReusableView {
 
+    // MARK: - Outlets
+    
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
+    // MARK: - Methods
+    
+    internal func applyTheme(theme: BBSUITheme) {
+        self.activityIndicatorView.color = theme.activityIndicatorTintColor
+    }
+    
 }

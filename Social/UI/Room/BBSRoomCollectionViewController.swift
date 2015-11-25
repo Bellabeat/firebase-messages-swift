@@ -29,7 +29,7 @@ public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, B
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        fatalError("initWithCoder not supported")
+        fatalError("init(coder:) not supported")
     }
     
     deinit {
@@ -62,7 +62,13 @@ public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, B
 
     public override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifierRoom, forIndexPath: indexPath) as! BBSRoomCollectionViewCell
+        
+        if let theme = self.theme {
+            cell.applyTheme(theme)
+        }
+        
         cell.room = self.data[indexPath.row]
+        
         return cell
     }
 
@@ -76,6 +82,7 @@ public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, B
         
         let vc = BBSMessageCollectionViewController(dataStore: messageDataStore, userId: self.userId)
         vc.title = room.name.value
+        vc.theme = self.theme
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

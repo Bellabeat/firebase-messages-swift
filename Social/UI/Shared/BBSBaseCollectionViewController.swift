@@ -9,9 +9,10 @@
 import UIKit
 
 public class BBSBaseCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
-    // MARK: - Properties
     
+    //MARK: - Properties
+    
+    public var theme: BBSUITheme?
     internal var didLoad = false
     
     // MARK: - View lifecycle
@@ -19,6 +20,7 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.theme?.applyToViewController(self)
         self.collectionView!.registerNib(UINib(nibName: "BBSLoadingCollectionReusableView", bundle: NSBundle.mainBundle()), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: ViewIdentifierLoading)
     }
     
@@ -33,6 +35,10 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
         super.willRotateToInterfaceOrientation(toInterfaceOrientation, duration: duration)
         self.collectionViewLayout.invalidateLayout()
     }
+    
+    public override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return self.theme != nil ? self.theme!.statusBarStyle : .Default
+    }
 
     // MARK: UICollectionViewDataSource
     
@@ -42,7 +48,11 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
     
     public override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionFooter {
-            return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ViewIdentifierLoading, forIndexPath: indexPath)
+            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ViewIdentifierLoading, forIndexPath: indexPath) as! BBSLoadingCollectionReusableView
+            if let theme = self.theme {
+                view.applyTheme(theme)
+            }
+            return view
         }
         
         return UICollectionReusableView()

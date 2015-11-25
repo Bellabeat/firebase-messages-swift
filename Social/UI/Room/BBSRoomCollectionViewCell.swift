@@ -27,4 +27,11 @@ internal class BBSRoomCollectionViewCell: BBSBaseCollectionViewCell {
         }
     }
     
+    // MARK: - Methods
+    
+    override func applyTheme(theme: BBSUITheme) {
+        self.roomTitleLabel.font = UIFont(name: theme.contentFontName, size: 34.0)
+        self.roomTitleLabel.textColor = theme.contentTextColor
+    }
+    
 }

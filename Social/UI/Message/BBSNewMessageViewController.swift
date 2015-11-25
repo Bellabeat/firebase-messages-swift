@@ -14,6 +14,10 @@ public class BBSNewMessageViewController: UIViewController {
     
     @IBOutlet weak var inputTextView: UITextView!
     
+    // MARK: - Properties
+    
+    public var theme: BBSUITheme?
+    
     // MARK: - Private members
     
     private let dataStore: BBSMessageDataStore
@@ -31,23 +35,31 @@ public class BBSNewMessageViewController: UIViewController {
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        fatalError("initWithCoder not supported")
+        fatalError("init(coder:) not supported")
     }
     
     deinit {
         print("BBSNewMessageViewController deinit")
     }
+    
+    // MARK: - View lifecycle
 
     public override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "New Message"
+        if let theme = self.theme {
+            theme.applyToViewController(self)
+            self.inputTextView.font = UIFont(name: theme.contentFontName, size: 15.0)
+            self.inputTextView.textColor = theme.contentTextColor
+            self.inputTextView.tintColor = theme.contentTintColor
+        }
         
         let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: nil, action: nil)
         weak var weakSelf = self
         
         // Enabled
-        self.observerContainer.add(self.inputTextView.rx_text.map { !$0.isEmpty }.bindTo(saveButton.rx_enabled))
+        self.observerContainer.add(self.inputTextView.rx_text.map { $0.characters.count > 9 }.bindTo(saveButton.rx_enabled))
         // Tap
         self.observerContainer.add(saveButton.rx_tap.bindNext {
             let message = weakSelf!.message
@@ -63,6 +75,10 @@ public class BBSNewMessageViewController: UIViewController {
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.inputTextView.becomeFirstResponder()
+    }
+    
+    public override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return self.theme != nil ? self.theme!.statusBarStyle : .Default
     }
 
 }

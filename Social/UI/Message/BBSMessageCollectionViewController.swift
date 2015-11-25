@@ -26,17 +26,17 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
         self.dataStore = dataStore
         self.userId = userId
         self.data = Array<BBSMessageModel>()
-        
         self.sizingLabel = UILabel()
-        self.sizingLabel.numberOfLines = 0
-        self.sizingLabel.font = UIFont.systemFontOfSize(15.0)
         
         super.init(nibName: "BBSMessageCollectionViewController", bundle: NSBundle.mainBundle())
         self.dataStore.delegate = self
+        
+        self.sizingLabel.numberOfLines = 0
+        self.sizingLabel.font = UIFont.systemFontOfSize(18.0)
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        fatalError("initWithCoder not supported")
+        fatalError("init(coder:) not supported")
     }
     
     deinit {
@@ -56,6 +56,7 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
         weak var weakSelf = self
         self.observerContainer.add(newMessageButton.rx_tap.bindNext {
             let vc = BBSNewMessageViewController(dataStore: weakSelf!.dataStore)
+            vc.theme = weakSelf!.theme
             weakSelf!.navigationController!.pushViewController(vc, animated: true)
         })
         self.navigationItem.rightBarButtonItem = newMessageButton
@@ -73,19 +74,28 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
     
     public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         self.sizingLabel.preferredMaxLayoutWidth = collectionView.frame.size.width - 70.0
+        if let theme = self.theme {
+            self.sizingLabel.font = UIFont(name: theme.contentFontName, size: 18.0)
+        }
         let model = self.data[indexPath.row]
         self.sizingLabel.text = model.message.value
         
         let size = self.sizingLabel.intrinsicContentSize()
-        let height = size.height + 47.0
+        let height = size.height + 53.0
         
-        return CGSizeMake(collectionView.frame.size.width, max(height, 92.0))
+        return CGSizeMake(collectionView.frame.size.width, max(height, 110.0))
     }
 
     public override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifierMessage, forIndexPath: indexPath) as! BBSMessageCollectionViewCell
+        
+        if let theme = self.theme {
+            cell.applyTheme(theme)
+        }
+        
         cell.userId = self.userId
         cell.message = self.data[indexPath.row]
+        
         return cell
     }
 

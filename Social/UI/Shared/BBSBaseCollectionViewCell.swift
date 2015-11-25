@@ -20,4 +20,8 @@ public class BBSBaseCollectionViewCell: UICollectionViewCell {
     
     internal var observerContainer = BBSObserverContainer()
     
+    // MARK: - Methods
+    
+    internal func applyTheme(theme: BBSUITheme) {}
+    
 }

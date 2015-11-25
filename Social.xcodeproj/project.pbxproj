@@ -17,6 +17,10 @@
 		8108CFBF1C05BFE700836B65 /* TTTUnitOfInformationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8108CFB51C05BFE700836B65 /* TTTUnitOfInformationFormatter.m */; };
 		8108CFC01C05BFE700836B65 /* TTTURLRequestFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8108CFB71C05BFE700836B65 /* TTTURLRequestFormatter.m */; };
 		8108CFDE1C05BFEF00836B65 /* FormatterKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8108CFC21C05BFEF00836B65 /* FormatterKit.strings */; };
+		8108CFE01C05DBF300836B65 /* BBSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8108CFDF1C05DBF300836B65 /* BBSNavigationController.swift */; };
+		8108CFE21C05DCB600836B65 /* BBSUITheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8108CFE11C05DCB600836B65 /* BBSUITheme.swift */; };
+		8108CFE51C05E2FD00836B65 /* BBSUIDarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8108CFE41C05E2FD00836B65 /* BBSUIDarkTheme.swift */; };
+		8108CFE71C05E6C500836B65 /* BBSFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8108CFE61C05E6C500836B65 /* BBSFactory.swift */; };
 		81EF0C351C045E4000881166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0C341C045E4000881166 /* AppDelegate.swift */; };
 		81EF0C3C1C045E4000881166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3B1C045E4000881166 /* Assets.xcassets */; };
 		81EF0C3F1C045E4000881166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3D1C045E4000881166 /* LaunchScreen.storyboard */; };
@@ -302,6 +306,10 @@
 		8108CFDB1C05BFEF00836B65 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/FormatterKit.strings; sourceTree = "<group>"; };
 		8108CFDC1C05BFEF00836B65 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FormatterKit.strings"; sourceTree = "<group>"; };
 		8108CFDD1C05BFEF00836B65 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/FormatterKit.strings"; sourceTree = "<group>"; };
+		8108CFDF1C05DBF300836B65 /* BBSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSNavigationController.swift; path = UI/Shared/BBSNavigationController.swift; sourceTree = "<group>"; };
+		8108CFE11C05DCB600836B65 /* BBSUITheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSUITheme.swift; path = UI/Shared/BBSUITheme.swift; sourceTree = "<group>"; };
+		8108CFE41C05E2FD00836B65 /* BBSUIDarkTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSUIDarkTheme.swift; path = UI/Shared/BBSUIDarkTheme.swift; sourceTree = "<group>"; };
+		8108CFE61C05E6C500836B65 /* BBSFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSFactory.swift; sourceTree = "<group>"; };
 		81EF0C311C045E4000881166 /* Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Social.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EF0C341C045E4000881166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81EF0C3B1C045E4000881166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -614,6 +622,15 @@
 			path = FormatterKit/Localizations;
 			sourceTree = "<group>";
 		};
+		8108CFE31C05E2EA00836B65 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				8108CFE11C05DCB600836B65 /* BBSUITheme.swift */,
+				8108CFE41C05E2FD00836B65 /* BBSUIDarkTheme.swift */,
+			);
+			name = Theme;
+			sourceTree = "<group>";
+		};
 		81EF0C281C045E4000881166 = {
 			isa = PBXGroup;
 			children = (
@@ -640,6 +657,7 @@
 				81EF0C461C045E7800881166 /* Model */,
 				81EF0C501C046B1500881166 /* UI */,
 				81EF0C341C045E4000881166 /* AppDelegate.swift */,
+				8108CFE61C05E6C500836B65 /* BBSFactory.swift */,
 				81EF0C3B1C045E4000881166 /* Assets.xcassets */,
 				81EF0C3D1C045E4000881166 /* LaunchScreen.storyboard */,
 				81EF0C401C045E4000881166 /* Info.plist */,
@@ -1118,10 +1136,12 @@
 		81F2B7261C04AB4700C7772E /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				8108CFE31C05E2EA00836B65 /* Theme */,
 				81F2B7271C04AB6D00C7772E /* BBSBaseCollectionViewCell.swift */,
 				81F2B7331C04C19900C7772E /* BBSBaseCollectionViewController.swift */,
 				81F2B72F1C04C10400C7772E /* BBSLoadingCollectionReusableView.swift */,
 				81F2B7301C04C10400C7772E /* BBSLoadingCollectionReusableView.xib */,
+				8108CFDF1C05DBF300836B65 /* BBSNavigationController.swift */,
 				81F2B72D1C04B96400C7772E /* BBSObserverContainer.swift */,
 			);
 			name = Shared;
@@ -1261,6 +1281,7 @@
 				81EF0CC31C04705800881166 /* KVORepresentable+Swift.swift in Sources */,
 				81F2B7281C04AB6D00C7772E /* BBSBaseCollectionViewCell.swift in Sources */,
 				81EF0CD31C04705800881166 /* RxCocoa.swift in Sources */,
+				8108CFE51C05E2FD00836B65 /* BBSUIDarkTheme.swift in Sources */,
 				8108CFBE1C05BFE700836B65 /* TTTTimeIntervalFormatter.m in Sources */,
 				81EF0E081C04706700881166 /* RecursiveScheduler.swift in Sources */,
 				81EF0CE31C04705800881166 /* RxTextViewDelegateProxy.swift in Sources */,
@@ -1375,7 +1396,9 @@
 				81EF0DA41C04706700881166 /* ScheduledDisposable.swift in Sources */,
 				81EF0CBE1C04705800881166 /* Driver.swift in Sources */,
 				81EF0E061C04706700881166 /* MainScheduler.swift in Sources */,
+				8108CFE71C05E6C500836B65 /* BBSFactory.swift in Sources */,
 				81EF0E101C04706700881166 /* ReplaySubject.swift in Sources */,
+				8108CFE01C05DBF300836B65 /* BBSNavigationController.swift in Sources */,
 				81EF0CCE1C04705800881166 /* NSObject+Rx+KVORepresentable.swift in Sources */,
 				81EF0DED1C04706700881166 /* Observable+Aggregate.swift in Sources */,
 				81EF0DBE1C04706700881166 /* DelaySubscription.swift in Sources */,
@@ -1398,6 +1421,7 @@
 				81EF0CB31C04705800881166 /* _RXKVOObserver.m in Sources */,
 				81EF0DB91C04706700881166 /* CombineLatest.swift in Sources */,
 				81EF0D9A1C04706700881166 /* AnonymousDisposable.swift in Sources */,
+				8108CFE21C05DCB600836B65 /* BBSUITheme.swift in Sources */,
 				81EF0C351C045E4000881166 /* AppDelegate.swift in Sources */,
 				81EF0DC61C04706700881166 /* Just.swift in Sources */,
 				81EF0CDF1C04705800881166 /* RxScrollViewDelegateProxy.swift in Sources */,

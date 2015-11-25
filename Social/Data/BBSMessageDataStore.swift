@@ -35,14 +35,14 @@ public class BBSMessageDataStore: NSObject {
     
     // MARK: - Init
     
-    public init(root: Firebase, room: BBSRoomModel, sorter: BBSMessageSorter, userId: String) {
+    public init(root: Firebase, room: BBSRoomModel?, sorter: BBSMessageSorter?, userId: String) {
         self.root = root
-        self.sorter = sorter
+        self.sorter = sorter != nil ? sorter! : BBSTopMessageSorter()
         self.userId = userId
         
-        let path = "messages/\(room.key)"
+        let path = room != nil ? "messages/\(room!.key)" : "messages"
         self.messages = root.childByAppendingPath(path)
-        self.query = sorter.queryForRef(self.messages)
+        self.query = self.sorter.queryForRef(self.messages)
         
         self.data = Dictionary<String, BBSMessageModel>()
         super.init()
@@ -101,6 +101,14 @@ public class BBSMessageDataStore: NSObject {
                 }
             }
         })
+    }
+    
+    public convenience init(root: Firebase, userId: String) {
+        self.init(root: root, room: nil, sorter: nil, userId: userId)
+    }
+    
+    public convenience init(root: Firebase, sorter: BBSMessageSorter, userId: String) {
+        self.init(root: root, room: nil, sorter: sorter, userId: userId)
     }
     
     deinit {

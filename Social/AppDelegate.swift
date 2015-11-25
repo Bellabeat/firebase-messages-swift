@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,14 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let user = "u1"
-        let rootRef = Firebase(url: "https://bellabeat-feedback.firebaseio.com/")
-        let roomDataStore = BBSRoomDataStore(root: rootRef)
-        
-        let rootViewController = BBSRoomCollectionViewController(dataStore: roomDataStore, userId: user)
-        let navController = UINavigationController(rootViewController: rootViewController)
+        let rootViewController = BBSFactory.createSocialStackWithUrl("https://bellabeat-feedback.firebaseio.com/", forUser: user)
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window!.rootViewController = navController
+        self.window!.rootViewController = rootViewController
         self.window!.makeKeyAndVisible()
         
         return true
