@@ -13,7 +13,22 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
     //MARK: - Properties
     
     public var theme: BBSUITheme?
+    
     internal var didLoad = false
+    internal let sizingLabel: UILabel
+    
+    // MARK: - Init
+    
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        self.sizingLabel = UILabel()
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        self.sizingLabel.numberOfLines = 0
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) not supported")
+    }
     
     // MARK: - View lifecycle
     
@@ -21,6 +36,7 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
         super.viewDidLoad()
         
         self.theme?.applyToViewController(self)
+        self.collectionView!.registerNib(UINib(nibName: "BBSInfoCollectionReusableView", bundle: NSBundle.mainBundle()), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ViewIdentifierInfo)
         self.collectionView!.registerNib(UINib(nibName: "BBSLoadingCollectionReusableView", bundle: NSBundle.mainBundle()), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: ViewIdentifierLoading)
     }
     
@@ -65,6 +81,15 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
             self.didLoad = true
             self.collectionViewLayout.invalidateLayout()
         }
+    }
+    
+    internal func heightForText(text: String, font: UIFont, width: CGFloat) -> CGFloat {
+        self.sizingLabel.preferredMaxLayoutWidth = width
+        self.sizingLabel.font = font
+        self.sizingLabel.text = text
+        
+        let size = self.sizingLabel.intrinsicContentSize()
+        return size.height
     }
 
 }

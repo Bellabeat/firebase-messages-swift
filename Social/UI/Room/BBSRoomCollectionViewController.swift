@@ -8,24 +8,27 @@
 
 import UIKit
 
-public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, BBSRoomDataStoreDelegate {
+public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, BBSRoomDataStoreDelegate, BBSGlobalDataStoreDelegate {
     
     // MARK: - Private members
     
     private let dataStore: BBSRoomDataStore
+    private let globalDataStore: BBSGlobalDataStore
     private let userId: String
     
     private var data: Array<BBSRoomModel>
     
     // MARK: - Init
     
-    public init(dataStore: BBSRoomDataStore, userId: String) {
+    public init(dataStore: BBSRoomDataStore, globalDataStore: BBSGlobalDataStore, userId: String) {
         self.dataStore = dataStore
+        self.globalDataStore = globalDataStore
         self.userId = userId
         self.data = Array<BBSRoomModel>()
         
         super.init(nibName: "BBSRoomCollectionViewController", bundle: NSBundle.mainBundle())
         self.dataStore.delegate = self
+        self.globalDataStore.delegate = self
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -34,6 +37,7 @@ public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, B
     
     deinit {
         self.dataStore.delegate = nil
+        self.globalDataStore.delegate = nil
         print("BBSRoomCollectionViewController deinit")
     }
     
@@ -59,6 +63,17 @@ public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, B
     public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(collectionView.frame.size.width, 100.0)
     }
+    
+    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if !self.globalDataStore.global.note.value.isEmpty {
+            let width = collectionView.frame.size.width - 20.0
+            let font = self.theme != nil ? UIFont(name: theme!.contentFontName, size: 18.0)! : UIFont.systemFontOfSize(18.0)
+            
+            let height = self.heightForText(globalDataStore.global.note.value, font: font, width: width) + 30.0
+            return CGSizeMake(collectionView.frame.size.width, height)
+        }
+        return CGSizeZero
+    }
 
     public override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifierRoom, forIndexPath: indexPath) as! BBSRoomCollectionViewCell
@@ -70,6 +85,21 @@ public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, B
         cell.room = self.data[indexPath.row]
         
         return cell
+    }
+    
+    public override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        if kind == UICollectionElementKindSectionHeader {
+            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ViewIdentifierInfo, forIndexPath: indexPath) as! BBSInfoCollectionReusableView
+            
+            if let theme = self.theme {
+                view.applyTheme(theme)
+            }
+            
+            view.global = self.globalDataStore.global
+            
+            return view
+        }
+        return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath)
     }
 
     // MARK: UICollectionViewDelegate
@@ -106,6 +136,12 @@ public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, B
     
     public func roomDataStoreHasNoData(dataStore: BBSRoomDataStore) {
         self.hideLoader()
+    }
+    
+    // MARK: - BBSGlobalDataStoreDelegate
+    
+    public func globalDataStoreDidUpdate(dataStore: BBSGlobalDataStore) {
+        self.collectionViewLayout.invalidateLayout()
     }
     
 }

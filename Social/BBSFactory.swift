@@ -31,8 +31,9 @@ public class BBSFactory: NSObject {
     public class func createRoomsControllerWithUrl(url: String, forUser userId: String, withTheme theme: BBSUITheme?) -> BBSRoomCollectionViewController {
         let rootRef = Firebase(url: url)
         let dataStore = BBSRoomDataStore(root: rootRef)
+        let globalDataStore = BBSGlobalDataStore(root: rootRef)
         
-        let roomsViewController = BBSRoomCollectionViewController(dataStore: dataStore, userId: userId)
+        let roomsViewController = BBSRoomCollectionViewController(dataStore: dataStore, globalDataStore: globalDataStore, userId: userId)
         roomsViewController.theme = theme
         roomsViewController.title = "Rooms"
         

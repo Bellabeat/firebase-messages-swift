@@ -10,7 +10,7 @@ import UIKit
 
 internal let ViewIdentifierLoading = "loadingView"
 
-internal class BBSLoadingCollectionReusableView: UICollectionReusableView {
+internal class BBSLoadingCollectionReusableView: BBSBaseCollectionReusableView {
 
     // MARK: - Outlets
     
@@ -18,7 +18,7 @@ internal class BBSLoadingCollectionReusableView: UICollectionReusableView {
     
     // MARK: - Methods
     
-    internal func applyTheme(theme: BBSUITheme) {
+    internal override func applyTheme(theme: BBSUITheme) {
         self.activityIndicatorView.color = theme.activityIndicatorTintColor
     }
     

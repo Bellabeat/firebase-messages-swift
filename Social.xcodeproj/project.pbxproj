@@ -24,6 +24,9 @@
 		81886E431C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E411C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.swift */; };
 		81886E441C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81886E421C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.xib */; };
 		81886E461C0602590011A8D3 /* BBSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E451C0602590011A8D3 /* BBSLabel.swift */; };
+		81886E481C0606E50011A8D3 /* BBSGlobalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E471C0606E50011A8D3 /* BBSGlobalModel.swift */; };
+		81886E4A1C0607370011A8D3 /* BBSGlobalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E491C0607370011A8D3 /* BBSGlobalDataStore.swift */; };
+		81886E4C1C060BDD0011A8D3 /* BBSBaseCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E4B1C060BDD0011A8D3 /* BBSBaseCollectionReusableView.swift */; };
 		81EF0C351C045E4000881166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0C341C045E4000881166 /* AppDelegate.swift */; };
 		81EF0C3C1C045E4000881166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3B1C045E4000881166 /* Assets.xcassets */; };
 		81EF0C3F1C045E4000881166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3D1C045E4000881166 /* LaunchScreen.storyboard */; };
@@ -316,6 +319,9 @@
 		81886E411C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSInfoCollectionReusableView.swift; path = UI/Shared/BBSInfoCollectionReusableView.swift; sourceTree = "<group>"; };
 		81886E421C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSInfoCollectionReusableView.xib; path = UI/Shared/BBSInfoCollectionReusableView.xib; sourceTree = "<group>"; };
 		81886E451C0602590011A8D3 /* BBSLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSLabel.swift; path = UI/Shared/BBSLabel.swift; sourceTree = "<group>"; };
+		81886E471C0606E50011A8D3 /* BBSGlobalModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSGlobalModel.swift; path = Model/BBSGlobalModel.swift; sourceTree = "<group>"; };
+		81886E491C0607370011A8D3 /* BBSGlobalDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSGlobalDataStore.swift; path = Data/BBSGlobalDataStore.swift; sourceTree = "<group>"; };
+		81886E4B1C060BDD0011A8D3 /* BBSBaseCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSBaseCollectionReusableView.swift; path = UI/Shared/BBSBaseCollectionReusableView.swift; sourceTree = "<group>"; };
 		81EF0C311C045E4000881166 /* Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Social.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EF0C341C045E4000881166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81EF0C3B1C045E4000881166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -689,6 +695,7 @@
 				81EF0C471C045EA000881166 /* BBSModelBase.swift */,
 				81EF0C491C045F7800881166 /* BBSRoomModel.swift */,
 				81F2B7101C048F1C00C7772E /* BBSMessageModel.swift */,
+				81886E471C0606E50011A8D3 /* BBSGlobalModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -698,6 +705,7 @@
 			children = (
 				81EF0C4E1C04638100881166 /* BBSRoomDataStore.swift */,
 				81F2B7121C048FAA00C7772E /* BBSMessageDataStore.swift */,
+				81886E491C0607370011A8D3 /* BBSGlobalDataStore.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -1155,6 +1163,7 @@
 			children = (
 				81886E401C05FDB50011A8D3 /* CollectionReusableView */,
 				8108CFE31C05E2EA00836B65 /* Theme */,
+				81886E4B1C060BDD0011A8D3 /* BBSBaseCollectionReusableView.swift */,
 				81F2B7271C04AB6D00C7772E /* BBSBaseCollectionViewCell.swift */,
 				81F2B7331C04C19900C7772E /* BBSBaseCollectionViewController.swift */,
 				8108CFDF1C05DBF300836B65 /* BBSNavigationController.swift */,
@@ -1350,6 +1359,7 @@
 				81EF0DAE1C04706700881166 /* Observable+Extensions.swift in Sources */,
 				81EF0CB81C04705800881166 /* ControlEvent+Driver.swift in Sources */,
 				81EF0D9D1C04706700881166 /* CompositeDisposable.swift in Sources */,
+				81886E481C0606E50011A8D3 /* BBSGlobalModel.swift in Sources */,
 				81F2B7311C04C10400C7772E /* BBSLoadingCollectionReusableView.swift in Sources */,
 				81EF0E0D1C04706700881166 /* SchedulerType.swift in Sources */,
 				81EF0CE91C04705800881166 /* UIControl+Rx.swift in Sources */,
@@ -1457,6 +1467,7 @@
 				81EF0CE11C04705800881166 /* RxTableViewDataSourceProxy.swift in Sources */,
 				81EF0DFF1C04706700881166 /* ConcurrentDispatchQueueScheduler.swift in Sources */,
 				81EF0CEA1C04705800881166 /* UIDatePicker+Rx.swift in Sources */,
+				81886E4A1C0607370011A8D3 /* BBSGlobalDataStore.swift in Sources */,
 				81EF0CC71C04705800881166 /* ControlTarget.swift in Sources */,
 				81EF0CCB1C04705800881166 /* KVOObserver.swift in Sources */,
 				81EF0DBD1C04706700881166 /* Deferred.swift in Sources */,
@@ -1484,6 +1495,7 @@
 				81EF0DE31C04706700881166 /* Throttle.swift in Sources */,
 				81EF0DB41C04706700881166 /* Buffer.swift in Sources */,
 				81EF0DDB1C04706700881166 /* SkipWhile.swift in Sources */,
+				81886E4C1C060BDD0011A8D3 /* BBSBaseCollectionReusableView.swift in Sources */,
 				81EF0C4A1C045F7800881166 /* BBSRoomModel.swift in Sources */,
 				81EF0CB21C04705800881166 /* _RXDelegateProxy.m in Sources */,
 				81F2B72E1C04B96400C7772E /* BBSObserverContainer.swift in Sources */,
