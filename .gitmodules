@@ -1,3 +1,6 @@
 [submodule "RxSwift"]
 	path = RxSwift
 	url = git@github.com:ReactiveX/RxSwift.git
+[submodule "FormatterKit"]
+	path = FormatterKit
+	url = git@github.com:mattt/FormatterKit.git
