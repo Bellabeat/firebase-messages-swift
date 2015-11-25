@@ -80,7 +80,7 @@ public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, B
         let room = self.data[indexPath.row]
         let messageDataStore = self.dataStore.messageDataStoreForRoom(room, userId: self.userId)
         
-        let vc = BBSMessageCollectionViewController(dataStore: messageDataStore, userId: self.userId)
+        let vc = BBSMessageCollectionViewController(dataStore: messageDataStore, room: room, userId: self.userId)
         vc.title = room.name.value
         vc.theme = self.theme
         self.navigationController?.pushViewController(vc, animated: true)

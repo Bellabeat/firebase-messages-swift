@@ -53,7 +53,7 @@ public class BBSFactory: NSObject {
         let rootRef = Firebase(url: url)
         let dataStore = BBSMessageDataStore(root: rootRef, room: nil, sorter: sorter, userId: userId)
         
-        let messagesViewController = BBSMessageCollectionViewController(dataStore: dataStore, userId: userId)
+        let messagesViewController = BBSMessageCollectionViewController(dataStore: dataStore, room: nil, userId: userId)
         messagesViewController.theme = theme
         messagesViewController.title = "Messages"
         

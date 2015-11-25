@@ -18,6 +18,7 @@
                 </activityIndicatorView>
             </subviews>
             <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="q7r-zr-8a3" firstAttribute="centerX" secondItem="U6b-Vx-4bR" secondAttribute="centerX" id="XaO-QQ-Fou"/>
                 <constraint firstItem="q7r-zr-8a3" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="hTD-02-9qy"/>

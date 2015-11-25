@@ -39,7 +39,7 @@
                             <constraint firstAttribute="height" constant="22" id="Qie-af-bgJ"/>
                         </constraints>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgF-rN-1wt">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="530" translatesAutoresizingMaskIntoConstraints="NO" id="vgF-rN-1wt" customClass="BBSLabel" customModule="Social" customModuleProvider="target">
                         <rect key="frame" x="10" y="10" width="530" height="22"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>

@@ -21,6 +21,9 @@
 		8108CFE21C05DCB600836B65 /* BBSUITheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8108CFE11C05DCB600836B65 /* BBSUITheme.swift */; };
 		8108CFE51C05E2FD00836B65 /* BBSUIDarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8108CFE41C05E2FD00836B65 /* BBSUIDarkTheme.swift */; };
 		8108CFE71C05E6C500836B65 /* BBSFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8108CFE61C05E6C500836B65 /* BBSFactory.swift */; };
+		81886E431C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E411C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.swift */; };
+		81886E441C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81886E421C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.xib */; };
+		81886E461C0602590011A8D3 /* BBSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E451C0602590011A8D3 /* BBSLabel.swift */; };
 		81EF0C351C045E4000881166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0C341C045E4000881166 /* AppDelegate.swift */; };
 		81EF0C3C1C045E4000881166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3B1C045E4000881166 /* Assets.xcassets */; };
 		81EF0C3F1C045E4000881166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3D1C045E4000881166 /* LaunchScreen.storyboard */; };
@@ -310,6 +313,9 @@
 		8108CFE11C05DCB600836B65 /* BBSUITheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSUITheme.swift; path = UI/Shared/BBSUITheme.swift; sourceTree = "<group>"; };
 		8108CFE41C05E2FD00836B65 /* BBSUIDarkTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSUIDarkTheme.swift; path = UI/Shared/BBSUIDarkTheme.swift; sourceTree = "<group>"; };
 		8108CFE61C05E6C500836B65 /* BBSFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSFactory.swift; sourceTree = "<group>"; };
+		81886E411C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSInfoCollectionReusableView.swift; path = UI/Shared/BBSInfoCollectionReusableView.swift; sourceTree = "<group>"; };
+		81886E421C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSInfoCollectionReusableView.xib; path = UI/Shared/BBSInfoCollectionReusableView.xib; sourceTree = "<group>"; };
+		81886E451C0602590011A8D3 /* BBSLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSLabel.swift; path = UI/Shared/BBSLabel.swift; sourceTree = "<group>"; };
 		81EF0C311C045E4000881166 /* Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Social.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EF0C341C045E4000881166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81EF0C3B1C045E4000881166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -629,6 +635,17 @@
 				8108CFE41C05E2FD00836B65 /* BBSUIDarkTheme.swift */,
 			);
 			name = Theme;
+			sourceTree = "<group>";
+		};
+		81886E401C05FDB50011A8D3 /* CollectionReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				81F2B72F1C04C10400C7772E /* BBSLoadingCollectionReusableView.swift */,
+				81F2B7301C04C10400C7772E /* BBSLoadingCollectionReusableView.xib */,
+				81886E411C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.swift */,
+				81886E421C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.xib */,
+			);
+			name = CollectionReusableView;
 			sourceTree = "<group>";
 		};
 		81EF0C281C045E4000881166 = {
@@ -1136,13 +1153,13 @@
 		81F2B7261C04AB4700C7772E /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				81886E401C05FDB50011A8D3 /* CollectionReusableView */,
 				8108CFE31C05E2EA00836B65 /* Theme */,
 				81F2B7271C04AB6D00C7772E /* BBSBaseCollectionViewCell.swift */,
 				81F2B7331C04C19900C7772E /* BBSBaseCollectionViewController.swift */,
-				81F2B72F1C04C10400C7772E /* BBSLoadingCollectionReusableView.swift */,
-				81F2B7301C04C10400C7772E /* BBSLoadingCollectionReusableView.xib */,
 				8108CFDF1C05DBF300836B65 /* BBSNavigationController.swift */,
 				81F2B72D1C04B96400C7772E /* BBSObserverContainer.swift */,
+				81886E451C0602590011A8D3 /* BBSLabel.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -1244,6 +1261,7 @@
 				81F2B72C1C04B61C00C7772E /* BBSNewMessageViewController.xib in Resources */,
 				81EF0CBB1C04705800881166 /* Driver+Operators+arity.tt in Resources */,
 				81EF0DB71C04706700881166 /* CombineLatest+arity.tt in Resources */,
+				81886E441C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.xib in Resources */,
 				81F2B7211C04A13E00C7772E /* BBSMessageCollectionViewController.xib in Resources */,
 				81F2B7021C04849300C7772E /* BBSRoomCollectionViewController.xib in Resources */,
 			);
@@ -1344,6 +1362,7 @@
 				81EF0DF81C04706700881166 /* ObserverBase.swift in Sources */,
 				81EF0CD61C04705800881166 /* RxCollectionViewReactiveArrayDataSource.swift in Sources */,
 				81EF0CCD1C04705800881166 /* NSObject+Rx+CoreGraphics.swift in Sources */,
+				81886E461C0602590011A8D3 /* BBSLabel.swift in Sources */,
 				81EF0DDE1C04706700881166 /* Switch.swift in Sources */,
 				81EF0E071C04706700881166 /* OperationQueueScheduler.swift in Sources */,
 				81F2B7201C04A13E00C7772E /* BBSMessageCollectionViewController.swift in Sources */,
@@ -1454,6 +1473,7 @@
 				81EF0E041C04706700881166 /* InvocableScheduledItem.swift in Sources */,
 				81EF0CD71C04705800881166 /* RxTableViewReactiveArrayDataSource.swift in Sources */,
 				81EF0DF51C04706700881166 /* Observable+Time.swift in Sources */,
+				81886E431C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.swift in Sources */,
 				81EF0E0C1C04706700881166 /* SerialDispatchQueueScheduler.swift in Sources */,
 				81EF0E181C04736500881166 /* BBSRoomCollectionViewCell.swift in Sources */,
 				81EF0CEC1C04705800881166 /* UIImageView+Rx.swift in Sources */,

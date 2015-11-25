@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="infoView" id="U6b-Vx-4bR" customClass="BBSInfoCollectionReusableView" customModule="Social" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="580" translatesAutoresizingMaskIntoConstraints="NO" id="omb-02-u4f" customClass="BBSLabel" customModule="Social" customModuleProvider="target">
+                    <rect key="frame" x="10" y="10" width="580" height="24"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="omb-02-u4f" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="8D0-wb-kmn"/>
+                <constraint firstAttribute="bottom" secondItem="omb-02-u4f" secondAttribute="bottom" constant="10" id="YlX-7G-PTg"/>
+                <constraint firstAttribute="trailing" secondItem="omb-02-u4f" secondAttribute="trailing" constant="10" id="elA-xL-bcx"/>
+                <constraint firstItem="omb-02-u4f" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="10" id="vVf-C8-bjg"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="YlX-7G-PTg"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="textLabel" destination="omb-02-u4f" id="6md-Kb-vTC"/>
+            </connections>
+        </collectionReusableView>
+    </objects>
+</document>
