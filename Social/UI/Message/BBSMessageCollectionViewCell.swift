@@ -11,7 +11,7 @@ import UIKit
 internal let CellIdentifierMessage = "messageCell"
 
 internal class BBSMessageCollectionViewCell: BBSBaseCollectionViewCell {
-
+    
     // MARK: - Outlets
     
     @IBOutlet weak var messageTextLabel: UILabel!
@@ -28,22 +28,29 @@ internal class BBSMessageCollectionViewCell: BBSBaseCollectionViewCell {
             if let message = self.message {
                 weak var weakSelf = self
                 self.observerContainer.add(message.message.bindTo(self.messageTextLabel.rx_text))
-                self.observerContainer.add(message.timestamp.map { "\($0)" }.bindTo(self.messageTimestampLabel.rx_text))
+                self.observerContainer.add(message.timestamp.map {
+                    let seconds = $0 - NSDate().timeIntervalSince1970
+                    return BBSMessageCollectionViewCell.timeFormatter.stringForTimeInterval(seconds)
+                    }.bindTo(self.messageTimestampLabel.rx_text))
                 self.observerContainer.add(message.points.map { "\($0)" }.bindTo(self.messagePointsLabel.rx_text))
                 self.observerContainer.add(message.points.bindNext { _ in
                     weakSelf!.updateAppearance()
-                })
+                    })
                 self.observerContainer.add(self.upvoteButton.rx_controlEvents(.TouchUpInside).bindNext {
                     weakSelf!.message!.upvoteForUser(weakSelf!.userId)
-                })
+                    })
                 self.observerContainer.add(self.downvoteButton.rx_controlEvents(.TouchUpInside).bindNext {
                     weakSelf!.message!.downvoteForUser(weakSelf!.userId)
-                })
+                    })
             }
         }
     }
     
     internal var userId: String = ""
+    
+    // MARK: - Private members
+    
+    private static let timeFormatter = TTTTimeIntervalFormatter()
     
     // MARK: - Private methods
     
@@ -61,5 +68,5 @@ internal class BBSMessageCollectionViewCell: BBSBaseCollectionViewCell {
             }
         }
     }
-
+    
 }

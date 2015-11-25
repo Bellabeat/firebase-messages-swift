@@ -10,5 +10,6 @@
 #define Social_Bridging_Header_h
 
 #import "RxCocoa.h"
+#import "TTTTimeIntervalFormatter.h"
 
 #endif /* Social_Bridging_Header_h */
