@@ -31,12 +31,8 @@ public class BBSRoomModel: BBSModelBase {
     // MARK: - Overrides
     
     public override func updateWithObject(object: AnyObject) {
-        if let name = object.objectForKey(KeyRoomName) as? String {
-            self.name.value = name
-        }
-        if let type = object.objectForKey(KeyRoomType) as? String {
-            self.type.value = type
-        }
+        self.name.value = object.objectForKey(KeyRoomName) as? String ?? ""
+        self.type.value = object.objectForKey(KeyRoomType) as? String ?? ""
     }
     
     public override func serialize() -> [NSObject: AnyObject] {

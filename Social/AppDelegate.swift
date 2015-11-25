@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let user = "u1"
+        let user = "u2"
         let rootViewController = BBSFactory.createSocialStackWithUrl("https://bellabeat-feedback.firebaseio.com/", forUser: user)
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)

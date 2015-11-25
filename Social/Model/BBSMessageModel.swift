@@ -9,7 +9,6 @@
 import UIKit
 
 public let UpvoteValue = "u"
-public let NeutralValue = "n"
 public let DownvoteValue = "d"
 
 internal let KeyMessageMessage = "message"
@@ -61,24 +60,12 @@ public class BBSMessageModel: BBSModelBase {
     // MARK: - Overrides
     
     public override func updateWithObject(object: AnyObject) {
-        if let message = object.objectForKey(KeyMessageMessage) as? String {
-            self.message.value = message
-        }
-        if let sender = object.objectForKey(KeyMessageSender) as? String {
-            self.sender.value = sender
-        }
-        if let points = object.objectForKey(KeyMessagePoints) as? Int {
-            self.points.value = points
-        }
-        if let totalActivity = object.objectForKey(KeyMessageTotalActivity) as? Int {
-            self.totalActivity.value = totalActivity
-        }
-        if let timestamp = object.objectForKey(KeyMessageTimestamp) as? Double {
-            self.timestamp.value = timestamp
-        }
-        if let votes = object.objectForKey(KeyMessageVotes) as? Dictionary<String, String> {
-            self.votes = votes
-        }
+        self.message.value = object.objectForKey(KeyMessageMessage) as? String ?? ""
+        self.sender.value = object.objectForKey(KeyMessageSender) as? String ?? ""
+        self.timestamp.value = object.objectForKey(KeyMessageTimestamp) as? Double ?? 0.0
+        self.votes = object.objectForKey(KeyMessageVotes) as? Dictionary<String, String> ?? Dictionary<String, String>()
+        self.points.value = object.objectForKey(KeyMessagePoints) as? Int ?? 0
+        self.totalActivity.value = object.objectForKey(KeyMessageTotalActivity) as? Int ?? 0
     }
     
     public override func serialize() -> [NSObject: AnyObject] {
@@ -109,45 +96,11 @@ public class BBSMessageModel: BBSModelBase {
     }
     
     public func upvoteForUser(userId: String) {
-        if self.didUpvoteForUser(userId) {
-            // Upvoted, reverse
-            self.points.value--
-            self.totalActivity.value--;
-            self.votes[userId] = NeutralValue
-        } else if self.didDownvoteForUser(userId) {
-            // Downvoted, reverse
-            self.points.value++
-            self.totalActivity.value--
-            self.votes[userId] = NeutralValue
-        } else {
-            // Neutral position, upvote
-            self.points.value++
-            self.totalActivity.value++
-            self.votes[userId] = UpvoteValue
-        }
-        
-        self.dataStore?.saveMessage(self)
+        self.dataStore?.upvoteMessage(self, forUser: userId)
     }
     
     public func downvoteForUser(userId: String) {
-        if self.didDownvoteForUser(userId) {
-            // Downvoted, reverse
-            self.points.value++
-            self.totalActivity.value--;
-            self.votes[userId] = NeutralValue
-        } else if self.didUpvoteForUser(userId) {
-            // Upvoted, reverse
-            self.points.value--
-            self.totalActivity.value--
-            self.votes[userId] = NeutralValue
-        } else {
-            // Neutral position, downvote
-            self.points.value--
-            self.totalActivity.value++
-            self.votes[userId] = DownvoteValue
-        }
-        
-        self.dataStore?.saveMessage(self)
+        self.dataStore?.downvoteMessage(self, forUser: userId)
     }
     
 }

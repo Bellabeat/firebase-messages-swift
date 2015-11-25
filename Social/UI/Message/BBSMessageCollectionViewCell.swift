@@ -32,17 +32,17 @@ internal class BBSMessageCollectionViewCell: BBSBaseCollectionViewCell {
                 self.observerContainer.add(message.timestamp.map {
                     let seconds = $0 - NSDate().timeIntervalSince1970
                     return BBSMessageCollectionViewCell.timeFormatter.stringForTimeInterval(seconds)
-                    }.bindTo(self.messageTimestampLabel.rx_text))
+                }.bindTo(self.messageTimestampLabel.rx_text))
                 self.observerContainer.add(message.points.map { "\($0)" }.bindTo(self.messagePointsLabel.rx_text))
                 self.observerContainer.add(message.points.bindNext { _ in
                     weakSelf!.updateAppearance()
-                    })
+                })
                 self.observerContainer.add(self.upvoteButton.rx_controlEvents(.TouchUpInside).bindNext {
                     weakSelf!.message!.upvoteForUser(weakSelf!.userId)
-                    })
+                })
                 self.observerContainer.add(self.downvoteButton.rx_controlEvents(.TouchUpInside).bindNext {
                     weakSelf!.message!.downvoteForUser(weakSelf!.userId)
-                    })
+                })
             }
         }
     }

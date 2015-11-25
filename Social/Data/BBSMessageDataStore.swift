@@ -136,4 +136,78 @@ public class BBSMessageDataStore: NSObject {
         }
     }
     
+    // MARK: - Internal methods
+    
+    internal func upvoteMessage(message: BBSMessageModel, forUser userId: String) {
+        var raw = message.serialize()
+        let ref = self.messages.childByAppendingPath(message.key)
+        ref.runTransactionBlock({ mutableData -> FTransactionResult! in
+            var points = mutableData.value.objectForKey(KeyMessagePoints) as! Int
+            var totalActivity = mutableData.value.objectForKey(KeyMessageTotalActivity) as! Int
+            var votes = mutableData.value.objectForKey(KeyMessageVotes) as? Dictionary<String, String> ?? Dictionary<String, String>()
+            
+            if let voteForUser = votes[userId] {
+                if voteForUser == UpvoteValue {
+                    // Upvoted, reverse
+                    points--
+                    totalActivity--
+                    votes[userId] = nil
+                } else {
+                    // Downvoted, reverse
+                    points++
+                    totalActivity--
+                    votes[userId] = nil
+                }
+            } else {
+                // User never voted on this message, upvote
+                points++
+                totalActivity++
+                votes[userId] = UpvoteValue
+            }
+            
+            raw[KeyMessagePoints] = points
+            raw[KeyMessageTotalActivity] = totalActivity
+            raw[KeyMessageVotes] = votes
+            mutableData.value = raw
+            
+            return FTransactionResult.successWithValue(mutableData)
+        })
+    }
+    
+    internal func downvoteMessage(message: BBSMessageModel, forUser userId: String) {
+        var raw = message.serialize()
+        let ref = self.messages.childByAppendingPath(message.key)
+        ref.runTransactionBlock({ mutableData -> FTransactionResult! in
+            var points = mutableData.value.objectForKey(KeyMessagePoints) as! Int
+            var totalActivity = mutableData.value.objectForKey(KeyMessageTotalActivity) as! Int
+            var votes = mutableData.value.objectForKey(KeyMessageVotes) as? Dictionary<String, String> ?? Dictionary<String, String>()
+            
+            if let voteForUser = votes[userId] {
+                if voteForUser == DownvoteValue {
+                    // Downvoted, reverse
+                    points++
+                    totalActivity--
+                    votes[userId] = nil
+                } else {
+                    // Upvoted, reverse
+                    points--
+                    totalActivity--
+                    votes[userId] = nil
+                }
+            } else {
+                // User never voted on this message, downvote
+                points--
+                totalActivity++
+                votes[userId] = DownvoteValue
+            }
+            
+            raw[KeyMessagePoints] = points
+            raw[KeyMessageTotalActivity] = totalActivity
+            raw[KeyMessageVotes] = votes
+            mutableData.value = raw
+            
+            return FTransactionResult.successWithValue(mutableData)
+        })
+    }
+    
 }
