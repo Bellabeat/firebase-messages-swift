@@ -15,11 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let user = "u2"
-        let rootViewController = BBSFactory.createSocialStackWithUrl("https://bellabeat-feedback.firebaseio.com/", forUser: user)
+        
+        let root = BBSLoginViewController(nibName: "BBSLoginViewController", bundle: NSBundle.mainBundle())
+        let nav = BBSNavigationController(rootViewController: root)
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window!.rootViewController = rootViewController
+        self.window!.rootViewController = nav
         self.window!.makeKeyAndVisible()
         
         return true

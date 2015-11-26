@@ -29,6 +29,8 @@
 		81886E4C1C060BDD0011A8D3 /* BBSBaseCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E4B1C060BDD0011A8D3 /* BBSBaseCollectionReusableView.swift */; };
 		81886E4F1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E4D1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.swift */; };
 		81886E501C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81886E4E1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.xib */; };
+		81886E541C063A620011A8D3 /* BBSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E521C063A620011A8D3 /* BBSLoginViewController.swift */; };
+		81886E551C063A620011A8D3 /* BBSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81886E531C063A620011A8D3 /* BBSLoginViewController.xib */; };
 		81EF0C351C045E4000881166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0C341C045E4000881166 /* AppDelegate.swift */; };
 		81EF0C3C1C045E4000881166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3B1C045E4000881166 /* Assets.xcassets */; };
 		81EF0C3F1C045E4000881166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3D1C045E4000881166 /* LaunchScreen.storyboard */; };
@@ -326,6 +328,8 @@
 		81886E4B1C060BDD0011A8D3 /* BBSBaseCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSBaseCollectionReusableView.swift; path = UI/Shared/BBSBaseCollectionReusableView.swift; sourceTree = "<group>"; };
 		81886E4D1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSMessageHeaderCollectionReusableView.swift; path = UI/Message/BBSMessageHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		81886E4E1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSMessageHeaderCollectionReusableView.xib; path = UI/Message/BBSMessageHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
+		81886E521C063A620011A8D3 /* BBSLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSLoginViewController.swift; path = UI/Private/BBSLoginViewController.swift; sourceTree = "<group>"; };
+		81886E531C063A620011A8D3 /* BBSLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSLoginViewController.xib; path = UI/Private/BBSLoginViewController.xib; sourceTree = "<group>"; };
 		81EF0C311C045E4000881166 /* Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Social.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EF0C341C045E4000881166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81EF0C3B1C045E4000881166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -658,6 +662,15 @@
 			name = CollectionReusableView;
 			sourceTree = "<group>";
 		};
+		81886E511C063A490011A8D3 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				81886E521C063A620011A8D3 /* BBSLoginViewController.swift */,
+				81886E531C063A620011A8D3 /* BBSLoginViewController.xib */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
 		81EF0C281C045E4000881166 = {
 			isa = PBXGroup;
 			children = (
@@ -717,6 +730,7 @@
 		81EF0C501C046B1500881166 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				81886E511C063A490011A8D3 /* Private */,
 				81F2B71D1C04A11A00C7772E /* Message */,
 				81EF0C511C046B2400881166 /* Room */,
 				81F2B7261C04AB4700C7772E /* Shared */,
@@ -1275,6 +1289,7 @@
 				81EF0E1C1C0473E400881166 /* BBSRoomCollectionViewCell.xib in Resources */,
 				81EF0C3C1C045E4000881166 /* Assets.xcassets in Resources */,
 				81F2B72C1C04B61C00C7772E /* BBSNewMessageViewController.xib in Resources */,
+				81886E551C063A620011A8D3 /* BBSLoginViewController.xib in Resources */,
 				81EF0CBB1C04705800881166 /* Driver+Operators+arity.tt in Resources */,
 				81EF0DB71C04706700881166 /* CombineLatest+arity.tt in Resources */,
 				81886E441C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.xib in Resources */,
@@ -1373,6 +1388,7 @@
 				81EF0CE91C04705800881166 /* UIControl+Rx.swift in Sources */,
 				81EF0DC81C04706700881166 /* Merge.swift in Sources */,
 				81EF0CF21C04705900881166 /* UIStepper+Rx.swift in Sources */,
+				81886E541C063A620011A8D3 /* BBSLoginViewController.swift in Sources */,
 				81EF0DEE1C04706700881166 /* Observable+Binding.swift in Sources */,
 				81EF0E051C04706700881166 /* InvocableType.swift in Sources */,
 				81EF0E0F1C04706700881166 /* PublishSubject.swift in Sources */,

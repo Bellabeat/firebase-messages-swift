@@ -16,13 +16,35 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bellabeat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZt-x5-9nL">
+                                <rect key="frame" x="231" y="216" width="140" height="41"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Social" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AI6-Dj-TMp">
+                                <rect key="frame" x="206" y="257" width="188" height="86"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="72"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rZt-x5-9nL" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="2Dk-ma-XrA"/>
+                            <constraint firstItem="rZt-x5-9nL" firstAttribute="bottom" secondItem="AI6-Dj-TMp" secondAttribute="top" id="J05-4J-jJN"/>
+                            <constraint firstItem="AI6-Dj-TMp" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Kf4-rC-Zel"/>
+                            <constraint firstItem="AI6-Dj-TMp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="sYQ-8I-hAB"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="172" y="512"/>
         </scene>
     </scenes>
 </document>

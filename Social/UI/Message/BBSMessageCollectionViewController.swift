@@ -84,10 +84,6 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
     
     public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if let room = self.room {
-            if room.note.value.isEmpty {
-                return CGSizeZero
-            }
-            
             let width = collectionView.frame.size.width - 20.0
             let font = self.theme != nil ? UIFont(name: theme!.contentFontName, size: 18.0)! : UIFont.systemFontOfSize(18.0)
     
