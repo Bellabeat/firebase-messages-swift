@@ -24,18 +24,15 @@ public class BBSTopMessageSorter: BBSMessageSorter {
         return ref.queryOrderedByChild(KeyMessagePoints).queryLimitedToLast(self.limit)
     }
     
-    public override func indexForMessage(message: BBSMessageModel, inArray array: Array<BBSMessageModel>) -> Int? {
-        var tempData = array
-        tempData.append(message)
-        
-        let data = tempData.sort {
+    public override func sortMessages(messages: Array<BBSMessageModel>) -> Array<BBSMessageModel> {
+        return messages.sort {
             if $0.points.value == $1.points.value {
+                // Sort by timestamp if points value is equal
                 return $0.timestamp.value > $1.timestamp.value
             }
-            
+            // Sort by points value
             return $0.points.value > $1.points.value
         }
-        return data.indexOf(message)
     }
     
 }

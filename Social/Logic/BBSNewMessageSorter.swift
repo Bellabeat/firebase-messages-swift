@@ -24,12 +24,8 @@ public class BBSNewMessageSorter: BBSMessageSorter {
         return ref.queryOrderedByPriority().queryLimitedToLast(self.limit)
     }
     
-    public override func indexForMessage(message: BBSMessageModel, inArray array: Array<BBSMessageModel>) -> Int? {
-        var tempData = array
-        tempData.append(message)
-        
-        let data = tempData.sort { $0.timestamp.value > $1.timestamp.value }
-        return data.indexOf(message)
+    public override func sortMessages(messages: Array<BBSMessageModel>) -> Array<BBSMessageModel> {
+        return messages.sort { $0.timestamp.value > $1.timestamp.value }
     }
     
 }

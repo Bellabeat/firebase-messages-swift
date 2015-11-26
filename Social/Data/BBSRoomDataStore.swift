@@ -46,11 +46,10 @@ public class BBSRoomDataStore: NSObject {
         weak var weakSelf = self
         self.query.observeSingleEventOfType(.Value, withBlock: { snapshot in
             var rooms = Array<BBSRoomModel>()
-            if let values = snapshot.value as? [String: AnyObject] {
-                for (key, value) in values {
-                    let model = BBSRoomModel(key: key, value: value)
-                    rooms.append(model)
-                }
+            let enumerator = snapshot.children
+            while let child = enumerator.nextObject() as? FDataSnapshot {
+                let model = BBSRoomModel(key: child.key, value: child.value)
+                rooms.append(model)
             }
             
             if let delegate = weakSelf?.delegate {

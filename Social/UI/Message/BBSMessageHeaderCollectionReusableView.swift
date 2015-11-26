@@ -28,28 +28,4 @@ internal class BBSMessageHeaderCollectionReusableView: BBSBaseCollectionReusable
         }
     }
     
-    // MARK; - Init
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "messageSorterDidChange:", name: BBSNotificationMessageSorterDidChange, object: nil)
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    // MARK: - Private methods
-    
-    internal func messageSorterDidChange(notification: NSNotification) {
-        if let sorter = notification.userInfo?[BBSKeyNewMessageSorter] {
-            if sorter is BBSTopMessageSorter {
-                self.sorterSegmentedControl.selectedSegmentIndex = 0
-            } else if sorter is BBSNewMessageSorter {
-                self.sorterSegmentedControl.selectedSegmentIndex = 1
-            }
-        }
-    }
-    
 }
