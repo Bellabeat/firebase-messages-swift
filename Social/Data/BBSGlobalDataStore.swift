@@ -10,9 +10,7 @@ import UIKit
 import Firebase
 
 public protocol BBSGlobalDataStoreDelegate: NSObjectProtocol {
-    
     func globalDataStoreDidUpdate(dataStore: BBSGlobalDataStore)
-    
 }
 
 public class BBSGlobalDataStore: NSObject {
@@ -51,7 +49,7 @@ public class BBSGlobalDataStore: NSObject {
     
     deinit {
         self.root.removeAllObservers()
-        print("BBSRoomDataStore deinit")
+        print("BBSGlobalDataStore deinit")
     }
     
 }

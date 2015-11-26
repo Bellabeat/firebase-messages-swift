@@ -11,6 +11,10 @@ import Firebase
 
 public class BBSFactory: NSObject {
 
+    public class func enablePersistence() {
+        Firebase.defaultConfig().persistenceEnabled = true
+    }
+    
     // MARK: - Stack creation
     
     public class func createSocialStackWithUrl(url: String, forUser userId: String) -> UINavigationController {

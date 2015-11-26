@@ -10,12 +10,7 @@ import UIKit
 import Firebase
 
 public protocol BBSRoomDataStoreDelegate: NSObjectProtocol {
-    
-    func roomDataStore(dataStore: BBSRoomDataStore, didAddRoom room:BBSRoomModel)
-    func roomDataStore(dataStore: BBSRoomDataStore, didUpdateRoom room:BBSRoomModel)
-    func roomDataStore(dataStore: BBSRoomDataStore, didRemoveRoom room:BBSRoomModel)
-    func roomDataStoreHasNoData(dataStore: BBSRoomDataStore)
-    
+    func roomDataStore(dataStore: BBSRoomDataStore, didLoadData data:Array<BBSRoomModel>)
 }
 
 public class BBSRoomDataStore: NSObject {
@@ -28,7 +23,6 @@ public class BBSRoomDataStore: NSObject {
     
     private var root: Firebase!
     private var query: FQuery!
-    private var data: Dictionary<String, BBSRoomModel>!
     
     // MARK: - Init
     
@@ -38,63 +32,7 @@ public class BBSRoomDataStore: NSObject {
         let rooms = root.childByAppendingPath("rooms")
         self.query = rooms.queryOrderedByChild("name")
         
-        self.data = Dictionary<String, BBSRoomModel>()
         super.init()
-        
-        weak var weakSelf = self
-
-        // Add
-        self.query.observeEventType(.ChildAdded, withBlock: { snapshot in
-            if snapshot.value is NSNull {
-                return
-            }
-            
-            let model = BBSRoomModel(key: snapshot.key, value: snapshot.value)
-            weakSelf?.data[model.key] = model
-            
-            if let delegate = weakSelf?.delegate {
-                delegate.roomDataStore(weakSelf!, didAddRoom: model)
-            }
-        })
-        
-        // Update
-        self.query.observeEventType(.ChildChanged, withBlock: { snapshot in
-            if snapshot.value is NSNull {
-                return
-            }
-            
-            if let model = weakSelf?.data[snapshot.key] {
-                model.updateWithObject(snapshot.value)
-                
-                if let delegate = weakSelf?.delegate {
-                    delegate.roomDataStore(weakSelf!, didUpdateRoom: model)
-                }
-            }
-        })
-        
-        // Remove
-        self.query.observeEventType(.ChildRemoved, withBlock: { snapshot in
-            if snapshot.value is NSNull {
-                return
-            }
-            
-            if let model = weakSelf?.data[snapshot.key] {
-                weakSelf?.data[snapshot.key] = nil
-                
-                if let delegate = weakSelf?.delegate {
-                    delegate.roomDataStore(weakSelf!, didRemoveRoom: model)
-                }
-            }
-        })
-        
-        // Value
-        self.query.observeEventType(.Value, withBlock: { snapshot in
-            if snapshot.value is NSNull {
-                if let delegate = weakSelf?.delegate {
-                    delegate.roomDataStoreHasNoData(weakSelf!)
-                }
-            }
-        })
     }
     
     deinit {
@@ -103,6 +41,23 @@ public class BBSRoomDataStore: NSObject {
     }
     
     // MARK: - Public methods
+    
+    public func loadAsync() {
+        weak var weakSelf = self
+        self.query.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            var rooms = Array<BBSRoomModel>()
+            if let values = snapshot.value as? [String: AnyObject] {
+                for (key, value) in values {
+                    let model = BBSRoomModel(key: key, value: value)
+                    rooms.append(model)
+                }
+            }
+            
+            if let delegate = weakSelf?.delegate {
+                delegate.roomDataStore(weakSelf!, didLoadData: rooms)
+            }
+        })
+    }
     
     public func messageDataStoreForRoom(room: BBSRoomModel, userId: String) -> BBSMessageDataStore {
         let sorter = BBSTopMessageSorter()
