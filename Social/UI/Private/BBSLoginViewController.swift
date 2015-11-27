@@ -20,7 +20,7 @@ internal class BBSLoginViewController: UIViewController {
     
     // MARK: - Properties
     
-    public var theme: BBSUITheme?
+    internal var theme: BBSUITheme?
     
     // MARK: - Private members
     

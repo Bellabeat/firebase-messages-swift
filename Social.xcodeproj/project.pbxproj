@@ -31,6 +31,8 @@
 		81886E501C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81886E4E1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.xib */; };
 		81886E541C063A620011A8D3 /* BBSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E521C063A620011A8D3 /* BBSLoginViewController.swift */; };
 		81886E551C063A620011A8D3 /* BBSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81886E531C063A620011A8D3 /* BBSLoginViewController.xib */; };
+		81CF62101C08772C00EC49C7 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81CF620E1C08772C00EC49C7 /* Crashlytics.framework */; };
+		81CF62111C08772C00EC49C7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81CF620F1C08772C00EC49C7 /* Fabric.framework */; };
 		81EF0C351C045E4000881166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF0C341C045E4000881166 /* AppDelegate.swift */; };
 		81EF0C3C1C045E4000881166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3B1C045E4000881166 /* Assets.xcassets */; };
 		81EF0C3F1C045E4000881166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81EF0C3D1C045E4000881166 /* LaunchScreen.storyboard */; };
@@ -330,6 +332,8 @@
 		81886E4E1C0614130011A8D3 /* BBSMessageHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSMessageHeaderCollectionReusableView.xib; path = UI/Message/BBSMessageHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		81886E521C063A620011A8D3 /* BBSLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSLoginViewController.swift; path = UI/Private/BBSLoginViewController.swift; sourceTree = "<group>"; };
 		81886E531C063A620011A8D3 /* BBSLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSLoginViewController.xib; path = UI/Private/BBSLoginViewController.xib; sourceTree = "<group>"; };
+		81CF620E1C08772C00EC49C7 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Fabric/Crashlytics.framework; sourceTree = "<group>"; };
+		81CF620F1C08772C00EC49C7 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Fabric/Fabric.framework; sourceTree = "<group>"; };
 		81EF0C311C045E4000881166 /* Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Social.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EF0C341C045E4000881166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81EF0C3B1C045E4000881166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -585,9 +589,11 @@
 				81F2B70F1C048CC800C7772E /* SystemConfiguration.framework in Frameworks */,
 				81F2B70D1C048CC300C7772E /* Security.framework in Frameworks */,
 				81F2B70B1C048CBF00C7772E /* CFNetwork.framework in Frameworks */,
+				81CF62111C08772C00EC49C7 /* Fabric.framework in Frameworks */,
 				81F2B7091C048CBA00C7772E /* libc++.tbd in Frameworks */,
 				81F2B7071C048CB400C7772E /* libicucore.tbd in Frameworks */,
 				81F2B7051C048CA100C7772E /* Firebase.framework in Frameworks */,
+				81CF62101C08772C00EC49C7 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,6 +677,15 @@
 			name = Private;
 			sourceTree = "<group>";
 		};
+		81CF62091C08769200EC49C7 /* Fabric */ = {
+			isa = PBXGroup;
+			children = (
+				81CF620E1C08772C00EC49C7 /* Crashlytics.framework */,
+				81CF620F1C08772C00EC49C7 /* Fabric.framework */,
+			);
+			name = Fabric;
+			sourceTree = "<group>";
+		};
 		81EF0C281C045E4000881166 = {
 			isa = PBXGroup;
 			children = (
@@ -752,6 +767,7 @@
 		81EF0C521C04700F00881166 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				81CF62091C08769200EC49C7 /* Fabric */,
 				81F2B7031C048C7700C7772E /* Firebase */,
 				8108CFA51C05BFD900836B65 /* FormatterKit */,
 				81EF0C531C04703C00881166 /* RxSwift */,
@@ -1203,6 +1219,7 @@
 				81EF0C2D1C045E4000881166 /* Sources */,
 				81EF0C2E1C045E4000881166 /* Frameworks */,
 				81EF0C2F1C045E4000881166 /* Resources */,
+				81C5F8E41C08740B00FE4D83 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -1299,6 +1316,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		81C5F8E41C08740B00FE4D83 /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ]; then\n    ./Fabric/Fabric.framework/run d8ad766606bd3bc774be00d81029b5924ebd77bf 2127752e1ea5ff8c280d4fddc71e0f288a01894a26abc58976f649e71681d37b\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		81EF0C2D1C045E4000881166 /* Sources */ = {
@@ -1680,9 +1714,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Firebase",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Fabric",
 				);
 				INFOPLIST_FILE = Social/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1698,9 +1735,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Firebase",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Fabric",
 				);
 				INFOPLIST_FILE = Social/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
