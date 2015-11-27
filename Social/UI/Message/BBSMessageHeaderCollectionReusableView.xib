@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="messageHeaderView" id="U6b-Vx-4bR" customClass="BBSMessageHeaderCollectionReusableView" customModule="Social" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YBm-cW-1nm">
+                    <rect key="frame" x="10" y="10" width="580" height="29"/>
+                    <animations/>
+                    <segments>
+                        <segment title="Top"/>
+                        <segment title="New"/>
+                    </segments>
+                </segmentedControl>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="580" translatesAutoresizingMaskIntoConstraints="NO" id="FPL-8R-jZp" customClass="BBSLabel" customModule="Social" customModuleProvider="target">
+                    <rect key="frame" x="10" y="48" width="580" height="22"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="18"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <animations/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="YBm-cW-1nm" secondAttribute="trailing" constant="10" id="7AU-Aj-JH4"/>
+                <constraint firstItem="YBm-cW-1nm" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="Equ-aV-C50"/>
+                <constraint firstItem="YBm-cW-1nm" firstAttribute="centerX" secondItem="U6b-Vx-4bR" secondAttribute="centerX" id="Fpj-5a-YbV"/>
+                <constraint firstItem="FPL-8R-jZp" firstAttribute="top" secondItem="YBm-cW-1nm" secondAttribute="bottom" constant="10" id="VvM-9b-JGe"/>
+                <constraint firstItem="FPL-8R-jZp" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="WpM-kW-Age"/>
+                <constraint firstAttribute="trailing" secondItem="FPL-8R-jZp" secondAttribute="trailing" constant="10" id="XUv-YB-RnC"/>
+                <constraint firstItem="YBm-cW-1nm" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="10" id="qnX-NV-sDg"/>
+            </constraints>
+            <connections>
+                <outlet property="sorterSegmentedControl" destination="YBm-cW-1nm" id="xSb-Tk-H89"/>
+                <outlet property="textLabel" destination="FPL-8R-jZp" id="1W1-uZ-2yL"/>
+            </connections>
+        </collectionReusableView>
+    </objects>
+</document>
