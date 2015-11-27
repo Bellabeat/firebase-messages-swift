@@ -51,6 +51,7 @@ public class BBSMessageDataStore: NSObject {
     
     deinit {
         self.query.removeAllObservers()
+        self.query.keepSynced(false)
         print("BBSMessageDataStore deinit")
     }
 
@@ -58,6 +59,7 @@ public class BBSMessageDataStore: NSObject {
     
     public func loadAsync() {
         weak var weakSelf = self
+        self.query.keepSynced(true)
         self.query.observeSingleEventOfType(.Value, withBlock: { snapshot in
             var messages = Array<BBSMessageModel>()
             let enumerator = snapshot.children
@@ -94,6 +96,7 @@ public class BBSMessageDataStore: NSObject {
     public func changeSorter(sorter: BBSMessageSorter) -> Bool {
         if self.sorter.title != sorter.title {
             self.query.removeAllObservers()
+            self.query.keepSynced(false)
             
             self.sorter = sorter
             self.query = self.sorter.queryForRef(self.messages)
@@ -108,6 +111,10 @@ public class BBSMessageDataStore: NSObject {
         var raw = message.serialize()
         let ref = self.messages.childByAppendingPath(message.key)
         ref.runTransactionBlock({ mutableData -> FTransactionResult! in
+            if mutableData.value is NSNull {
+                return FTransactionResult.successWithValue(mutableData)
+            }
+            
             var points = mutableData.value.objectForKey(KeyMessagePoints) as! Int
             var totalActivity = mutableData.value.objectForKey(KeyMessageTotalActivity) as! Int
             var votes = mutableData.value.objectForKey(KeyMessageVotes) as? Dictionary<String, String> ?? Dictionary<String, String>()
@@ -144,6 +151,10 @@ public class BBSMessageDataStore: NSObject {
         var raw = message.serialize()
         let ref = self.messages.childByAppendingPath(message.key)
         ref.runTransactionBlock({ mutableData -> FTransactionResult! in
+            if mutableData.value is NSNull {
+                return FTransactionResult.successWithValue(mutableData)
+            }
+            
             var points = mutableData.value.objectForKey(KeyMessagePoints) as! Int
             var totalActivity = mutableData.value.objectForKey(KeyMessageTotalActivity) as! Int
             var votes = mutableData.value.objectForKey(KeyMessageVotes) as? Dictionary<String, String> ?? Dictionary<String, String>()

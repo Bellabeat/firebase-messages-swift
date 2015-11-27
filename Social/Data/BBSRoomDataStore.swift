@@ -37,6 +37,7 @@ public class BBSRoomDataStore: NSObject {
     
     deinit {
         self.query.removeAllObservers()
+        self.query.keepSynced(false)
         print("BBSRoomDataStore deinit")
     }
     
@@ -44,6 +45,7 @@ public class BBSRoomDataStore: NSObject {
     
     public func loadAsync() {
         weak var weakSelf = self
+        self.query.keepSynced(true)
         self.query.observeSingleEventOfType(.Value, withBlock: { snapshot in
             var rooms = Array<BBSRoomModel>()
             let enumerator = snapshot.children

@@ -19,6 +19,7 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
     private var data: Array<BBSMessageModel>
     
     private var sorterObserver: Disposable?
+    private var newMessageController: BBSNewMessageViewController?
     
     // MARK: - Init
     
@@ -56,11 +57,24 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
         self.observerContainer.add(newMessageButton.rx_tap.bindNext {
             let vc = BBSNewMessageViewController(dataStore: weakSelf!.dataStore)
             vc.theme = weakSelf!.theme
+            weakSelf!.newMessageController = vc
             weakSelf!.navigationController!.pushViewController(vc, animated: true)
         })
         self.navigationItem.rightBarButtonItem = newMessageButton
         
         self.dataStore.loadAsync()
+    }
+    
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let newMessageController = self.newMessageController {
+            if let message = newMessageController.message {
+                self.data.insert(message, atIndex: 0)
+                self.collectionView!.insertItemsAtIndexPaths([NSIndexPath(forItem: 0, inSection: 0)])
+                self.newMessageController = nil
+            }
+        }
     }
     
     // MARK: - Overrides
