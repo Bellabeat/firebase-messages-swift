@@ -15,8 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        BBSFactory.enablePersistence()
         
         let root = BBSLoginViewController(nibName: "BBSLoginViewController", bundle: NSBundle.mainBundle())
+        root.title = "Login"
         let nav = BBSNavigationController(rootViewController: root)
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)

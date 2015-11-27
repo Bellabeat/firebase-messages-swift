@@ -22,8 +22,8 @@ public class BBSMessageSorter: NSObject {
         return FQuery()
     }
     
-    public func indexForMessage(message: BBSMessageModel, inArray array: Array<BBSMessageModel>) -> Int? {
-        return 0
+    public func sortMessages(messages: Array<BBSMessageModel>) -> Array<BBSMessageModel> {
+        return messages
     }
     
 }

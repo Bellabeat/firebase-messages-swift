@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q1F-3a-49v">
-                    <rect key="frame" x="200.5" y="100" width="200" height="30"/>
+                    <rect key="frame" x="200" y="100" width="200" height="30"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="hD8-bC-GYD"/>

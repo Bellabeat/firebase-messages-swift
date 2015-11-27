@@ -17,11 +17,11 @@ public class BBSNewMessageViewController: UIViewController {
     // MARK: - Properties
     
     public var theme: BBSUITheme?
+    public private(set) var message: BBSMessageModel?
     
     // MARK: - Private members
     
     private let dataStore: BBSMessageDataStore
-    private var message: BBSMessageModel
     
     private var observerContainer = BBSObserverContainer()
     
@@ -29,8 +29,6 @@ public class BBSNewMessageViewController: UIViewController {
     
     public init(dataStore: BBSMessageDataStore) {
         self.dataStore = dataStore
-        self.message = dataStore.newMessage()
-        
         super.init(nibName: "BBSNewMessageViewController", bundle: NSBundle.mainBundle())
     }
     
@@ -62,11 +60,11 @@ public class BBSNewMessageViewController: UIViewController {
         self.observerContainer.add(self.inputTextView.rx_text.map { $0.characters.count > 9 }.bindTo(saveButton.rx_enabled))
         // Tap
         self.observerContainer.add(saveButton.rx_tap.bindNext {
-            let message = weakSelf!.message
+            let message = weakSelf!.dataStore.newMessage()
             message.message.value = weakSelf!.inputTextView.text
             message.timestamp.value = NSDate().timeIntervalSince1970
-            weakSelf!.dataStore.changeSorter(BBSNewMessageSorter())
-            weakSelf!.dataStore.saveMessage(message)
+            weakSelf!.dataStore.createMessage(message)
+            weakSelf!.message = message
             
             weakSelf!.navigationController!.popViewControllerAnimated(true)
         })

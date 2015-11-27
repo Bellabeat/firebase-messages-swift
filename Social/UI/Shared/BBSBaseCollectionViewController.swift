@@ -17,6 +17,7 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
     internal var didLoad = false
     internal var isVisible = false
     internal let sizingLabel: UILabel
+    internal var refreshControl: UIRefreshControl
     
     internal var observerContainer = BBSObserverContainer()
     
@@ -24,6 +25,7 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         self.sizingLabel = UILabel()
+        self.refreshControl = UIRefreshControl()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         self.sizingLabel.numberOfLines = 0
@@ -40,6 +42,10 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
         
         self.theme?.applyToViewController(self)
         self.collectionView!.registerNib(UINib(nibName: "BBSLoadingCollectionReusableView", bundle: NSBundle.mainBundle()), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: ViewIdentifierLoading)
+        
+        self.refreshControl.addTarget(self, action: "onRefresh", forControlEvents: .ValueChanged)
+        self.collectionView!.addSubview(self.refreshControl)
+        self.collectionView!.alwaysBounceVertical = true
     }
     
     public override func viewWillAppear(animated: Bool) {
@@ -100,6 +106,10 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
             self.didLoad = true
             self.collectionViewLayout.invalidateLayout()
         }
+    }
+    
+    internal func onRefresh() {
+        self.refreshControl.endRefreshing()
     }
     
     internal func heightForText(text: String, font: UIFont, width: CGFloat) -> CGFloat {

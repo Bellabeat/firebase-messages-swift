@@ -79,6 +79,16 @@ public class BBSMessageModel: BBSModelBase {
         ]
     }
     
+    // MARK: - Internal methods
+    
+    internal class func pointsForVotes(votes: Dictionary<String, String>) -> Int {
+        var points = 0
+        for (_, value) in votes {
+            points += value == UpvoteValue ? 1 : -1
+        }
+        return points
+    }
+    
     // MARK: - Public methods
     
     public func didUpvoteForUser(userId: String) -> Bool {
@@ -96,11 +106,35 @@ public class BBSMessageModel: BBSModelBase {
     }
     
     public func upvoteForUser(userId: String) {
-        self.dataStore?.upvoteMessage(self, forUser: userId)
+        if self.didUpvoteForUser(userId) {
+            // Already upvoted, reverse upvote
+            self.votes[userId] = nil
+            self.points.value--
+            self.totalActivity.value--
+        } else {
+            let pointsDiff = self.didDownvoteForUser(userId) ? 2 : 1
+            self.votes[userId] = UpvoteValue
+            self.points.value += pointsDiff
+            self.totalActivity.value++
+        }
+        
+        self.dataStore?.updateMessage(self, forUser: userId)
     }
     
     public func downvoteForUser(userId: String) {
-        self.dataStore?.downvoteMessage(self, forUser: userId)
+        if self.didDownvoteForUser(userId) {
+            // Already downvoted, reverse downvote
+            self.votes[userId] = nil
+            self.points.value++
+            self.totalActivity.value--
+        } else {
+            let pointsDiff = self.didUpvoteForUser(userId) ? 2 : 1
+            self.votes[userId] = DownvoteValue
+            self.points.value -= pointsDiff
+            self.totalActivity.value++
+        }
+        
+        self.dataStore?.updateMessage(self, forUser: userId)
     }
     
 }

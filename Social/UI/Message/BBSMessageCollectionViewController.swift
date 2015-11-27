@@ -19,6 +19,7 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
     private var data: Array<BBSMessageModel>
     
     private var sorterObserver: Disposable?
+    private var newMessageController: BBSNewMessageViewController?
     
     // MARK: - Init
     
@@ -30,8 +31,6 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
         
         super.init(nibName: "BBSMessageCollectionViewController", bundle: NSBundle.mainBundle())
         self.dataStore.delegate = self
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "messageSorterDidChange:", name: BBSNotificationMessageSorterDidChange, object: nil)
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -58,9 +57,31 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
         self.observerContainer.add(newMessageButton.rx_tap.bindNext {
             let vc = BBSNewMessageViewController(dataStore: weakSelf!.dataStore)
             vc.theme = weakSelf!.theme
+            weakSelf!.newMessageController = vc
             weakSelf!.navigationController!.pushViewController(vc, animated: true)
         })
         self.navigationItem.rightBarButtonItem = newMessageButton
+        
+        self.dataStore.loadAsync()
+    }
+    
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let newMessageController = self.newMessageController {
+            if let message = newMessageController.message {
+                self.data.insert(message, atIndex: 0)
+                self.collectionView!.insertItemsAtIndexPaths([NSIndexPath(forItem: 0, inSection: 0)])
+                self.newMessageController = nil
+            }
+        }
+    }
+    
+    // MARK: - Overrides
+    
+    override func onRefresh() {
+        self.dataStore.loadAsync()
+        super.onRefresh()
     }
 
     // MARK: UICollectionViewDataSource
@@ -121,7 +142,10 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
                 self.sorterObserver?.dispose()
                 self.sorterObserver = view.sorterSegmentedControl.rx_value.bindNext { index in
                     let sorter = index == 0 ? BBSTopMessageSorter() : BBSNewMessageSorter()
-                    weakSelf!.dataStore.changeSorter(sorter)
+                    if weakSelf!.dataStore.changeSorter(sorter) {
+                        weakSelf!.showLoader()
+                        weakSelf!.dataStore.loadAsync()
+                    }
                 }
                 
                 return view
@@ -132,32 +156,10 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
 
     // MARK: - BBSMessageDataStoreDelegate
     
-    public func messageDataStore(dataStore: BBSMessageDataStore, didAddMessage message: BBSMessageModel) {
+    public func messageDataStore(dataStore: BBSMessageDataStore, didLoadData data: Array<BBSMessageModel>) {
         self.hideLoader()
-        if let index = self.dataStore.sorter.indexForMessage(message, inArray: self.data) {
-            self.data.insert(message, atIndex: index)
-            self.collectionView!.insertItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
-        }
+        self.data = data
+        self.collectionView?.reloadData()
     }
     
-    public func messageDataStore(dataStore: BBSMessageDataStore, didUpdateMessage message: BBSMessageModel) {}
-    
-    public func messageDataStore(dataStore: BBSMessageDataStore, didRemoveMessage message: BBSMessageModel) {
-        if let index = self.data.indexOf(message) {
-            self.data.removeAtIndex(index)
-            self.collectionView!.deleteItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
-        }
-    }
-    
-    public func messageDataStoreHasNoData(dataStore: BBSMessageDataStore) {
-        self.hideLoader()
-    }
-    
-    // MARK: - Methods
-    
-    internal func messageSorterDidChange(notification: NSNotification) {
-        self.data.removeAll()
-        self.showLoader()
-        self.collectionView!.reloadData()
-    }
 }

@@ -49,6 +49,15 @@ public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, B
         // Register cell classes
         self.collectionView!.registerNib(UINib(nibName: "BBSRoomCollectionViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: CellIdentifierRoom)
         self.collectionView!.registerNib(UINib(nibName: "BBSInfoCollectionReusableView", bundle: NSBundle.mainBundle()), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ViewIdentifierInfo)
+        
+        self.dataStore.loadAsync()
+    }
+    
+    // MARK: - Overrides
+    
+    override func onRefresh() {
+        self.dataStore.loadAsync()
+        super.onRefresh()
     }
     
     // MARK: UICollectionViewDataSource
@@ -119,24 +128,10 @@ public class BBSRoomCollectionViewController: BBSBaseCollectionViewController, B
     
     // MARK: - BBSRoomDataStoreDelegate
     
-    public func roomDataStore(dataStore: BBSRoomDataStore, didAddRoom room: BBSRoomModel) {
+    public func roomDataStore(dataStore: BBSRoomDataStore, didLoadData data: Array<BBSRoomModel>) {
         self.hideLoader()
-        self.data.append(room)
-        let newIndex = self.data.count - 1
-        self.collectionView!.insertItemsAtIndexPaths([NSIndexPath(forItem: newIndex, inSection: 0)])
-    }
-    
-    public func roomDataStore(dataStore: BBSRoomDataStore, didUpdateRoom room: BBSRoomModel) {}
-    
-    public func roomDataStore(dataStore: BBSRoomDataStore, didRemoveRoom room: BBSRoomModel) {
-        if let index = self.data.indexOf(room) {
-            self.data.removeAtIndex(index)
-            self.collectionView!.deleteItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
-        }
-    }
-    
-    public func roomDataStoreHasNoData(dataStore: BBSRoomDataStore) {
-        self.hideLoader()
+        self.data = data
+        self.collectionView?.reloadData()
     }
     
     // MARK: - BBSGlobalDataStoreDelegate
