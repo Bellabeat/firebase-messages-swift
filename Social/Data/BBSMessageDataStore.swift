@@ -79,17 +79,42 @@ public class BBSMessageDataStore: NSObject {
         return BBSMessageModel(dataStore: self, senderId: self.userId)
     }
     
-    public func saveMessage(message: BBSMessageModel) {
+    public func createMessage(message: BBSMessageModel) {
         let raw = message.serialize()
-        
         if message.key.isEmpty {
-            // New
             let child = self.messages.childByAutoId()
             child.setValue(raw)
             message.key = child.key
         } else {
-            // Update
-            self.messages.updateChildValues([message.key: raw])
+            print("Attemped to update message in createMessage method")
+        }
+    }
+    
+    public func updateMessage(message: BBSMessageModel, forUser userId: String) {
+        var raw = message.serialize()
+        let voteValue = message.votes[userId]
+        let ref = self.messages.childByAppendingPath(message.key)
+        ref.runTransactionBlock { mutableData -> FTransactionResult! in
+            if mutableData.value is NSNull {
+                // Stale data, return success to continue transaction, we will get another callback
+                return FTransactionResult.successWithValue(mutableData)
+            }
+            
+            // Get up to date votes dictionary
+            var votes = mutableData.value.objectForKey(KeyMessageVotes) as? Dictionary<String, String> ?? Dictionary<String, String>()
+            // Update it with local value for user
+            votes[userId] = voteValue
+            // Calculate points and total activity
+            let points = BBSMessageModel.pointsForVotes(votes)
+            let totalActivity = votes.count
+            
+            // Update mutable data
+            raw[KeyMessagePoints] = points
+            raw[KeyMessageTotalActivity] = totalActivity
+            raw[KeyMessageVotes] = votes
+            mutableData.value = raw
+            
+            return FTransactionResult.successWithValue(mutableData)
         }
     }
     
@@ -103,88 +128,6 @@ public class BBSMessageDataStore: NSObject {
             return true
         }
         return false
-    }
-    
-    // MARK: - Internal methods
-    
-    internal func upvoteMessage(message: BBSMessageModel, forUser userId: String) {
-        var raw = message.serialize()
-        let ref = self.messages.childByAppendingPath(message.key)
-        ref.runTransactionBlock({ mutableData -> FTransactionResult! in
-            if mutableData.value is NSNull {
-                return FTransactionResult.successWithValue(mutableData)
-            }
-            
-            var points = mutableData.value.objectForKey(KeyMessagePoints) as! Int
-            var totalActivity = mutableData.value.objectForKey(KeyMessageTotalActivity) as! Int
-            var votes = mutableData.value.objectForKey(KeyMessageVotes) as? Dictionary<String, String> ?? Dictionary<String, String>()
-            
-            if let voteForUser = votes[userId] {
-                if voteForUser == UpvoteValue {
-                    // Upvoted, reverse
-                    points--
-                    totalActivity--
-                    votes[userId] = nil
-                } else {
-                    // Downvoted, reverse
-                    points++
-                    totalActivity--
-                    votes[userId] = nil
-                }
-            } else {
-                // User never voted on this message, upvote
-                points++
-                totalActivity++
-                votes[userId] = UpvoteValue
-            }
-            
-            raw[KeyMessagePoints] = points
-            raw[KeyMessageTotalActivity] = totalActivity
-            raw[KeyMessageVotes] = votes
-            mutableData.value = raw
-            
-            return FTransactionResult.successWithValue(mutableData)
-        })
-    }
-    
-    internal func downvoteMessage(message: BBSMessageModel, forUser userId: String) {
-        var raw = message.serialize()
-        let ref = self.messages.childByAppendingPath(message.key)
-        ref.runTransactionBlock({ mutableData -> FTransactionResult! in
-            if mutableData.value is NSNull {
-                return FTransactionResult.successWithValue(mutableData)
-            }
-            
-            var points = mutableData.value.objectForKey(KeyMessagePoints) as! Int
-            var totalActivity = mutableData.value.objectForKey(KeyMessageTotalActivity) as! Int
-            var votes = mutableData.value.objectForKey(KeyMessageVotes) as? Dictionary<String, String> ?? Dictionary<String, String>()
-            
-            if let voteForUser = votes[userId] {
-                if voteForUser == DownvoteValue {
-                    // Downvoted, reverse
-                    points++
-                    totalActivity--
-                    votes[userId] = nil
-                } else {
-                    // Upvoted, reverse
-                    points--
-                    totalActivity--
-                    votes[userId] = nil
-                }
-            } else {
-                // User never voted on this message, downvote
-                points--
-                totalActivity++
-                votes[userId] = DownvoteValue
-            }
-            
-            raw[KeyMessagePoints] = points
-            raw[KeyMessageTotalActivity] = totalActivity
-            raw[KeyMessageVotes] = votes
-            mutableData.value = raw
-            
-            return FTransactionResult.successWithValue(mutableData)
-        })
     }
     
 }
