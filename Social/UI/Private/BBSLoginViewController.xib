@@ -7,6 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BBSLoginViewController" customModule="Social" customModuleProvider="target">
             <connections>
+                <outlet property="hintLabel" destination="ZQi-ZF-wG3" id="pnN-FH-Vgv"/>
+                <outlet property="loginButton" destination="j0L-es-3mr" id="4d9-2I-e3l"/>
+                <outlet property="subtitleLabel" destination="Fat-h9-UHP" id="Xj8-1P-3K1"/>
+                <outlet property="titleLabel" destination="361-dv-I7m" id="ofH-bf-M3a"/>
                 <outlet property="usernameTextField" destination="q1F-3a-49v" id="a99-7S-5Jz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -17,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q1F-3a-49v">
-                    <rect key="frame" x="200" y="100" width="200" height="30"/>
+                    <rect key="frame" x="200" y="258" width="200" height="30"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="hD8-bC-GYD"/>
@@ -25,23 +29,55 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bellabeat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fat-h9-UHP">
+                    <rect key="frame" x="230" y="50" width="140" height="41"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Social" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="361-dv-I7m">
+                    <rect key="frame" x="206" y="91" width="188" height="86"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="72"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Belleabeat Social demo app! Please enter any username to continue." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="ZQi-ZF-wG3" customClass="BBSLabel" customModule="Social" customModuleProvider="target">
+                    <rect key="frame" x="20" y="197" width="560" height="41"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j0L-es-3mr">
-                    <rect key="frame" x="281" y="140" width="38" height="30"/>
+                    <rect key="frame" x="281" y="298" width="38" height="30"/>
                     <animations/>
                     <state key="normal" title="Login"/>
-                    <connections>
-                        <action selector="loginTapped:" destination="-1" eventType="touchUpInside" id="q7C-lh-uv3"/>
-                    </connections>
                 </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Fat-h9-UHP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="9nB-BT-gVR"/>
                 <constraint firstItem="j0L-es-3mr" firstAttribute="top" secondItem="q1F-3a-49v" secondAttribute="bottom" constant="10" id="CUD-X8-xoO"/>
                 <constraint firstItem="q1F-3a-49v" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="GCt-1L-A2N"/>
+                <constraint firstItem="361-dv-I7m" firstAttribute="top" secondItem="Fat-h9-UHP" secondAttribute="bottom" id="GOc-Om-MlH"/>
+                <constraint firstItem="ZQi-ZF-wG3" firstAttribute="top" secondItem="361-dv-I7m" secondAttribute="bottom" constant="20" id="I1M-ME-JFA"/>
                 <constraint firstItem="j0L-es-3mr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Qfj-wF-jbq"/>
+                <constraint firstItem="Fat-h9-UHP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hWm-dj-dCS"/>
+                <constraint firstItem="ZQi-ZF-wG3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lMr-fi-rbi"/>
+                <constraint firstAttribute="trailing" secondItem="ZQi-ZF-wG3" secondAttribute="trailing" constant="20" id="m3Y-ww-NvL"/>
+                <constraint firstItem="361-dv-I7m" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mun-GV-9LY"/>
                 <constraint firstItem="q1F-3a-49v" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="p5x-cu-R7a"/>
+                <constraint firstItem="q1F-3a-49v" firstAttribute="top" secondItem="ZQi-ZF-wG3" secondAttribute="bottom" constant="20" id="q8L-uF-COj"/>
+                <constraint firstItem="ZQi-ZF-wG3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="uxs-TI-YZW"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="GCt-1L-A2N"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

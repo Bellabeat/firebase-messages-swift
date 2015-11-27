@@ -15,7 +15,6 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
     public var theme: BBSUITheme?
     
     internal var didLoad = false
-    internal var isVisible = false
     internal let sizingLabel: UILabel
     internal var refreshControl: UIRefreshControl
     
@@ -50,12 +49,7 @@ public class BBSBaseCollectionViewController: UICollectionViewController, UIColl
     
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.isVisible = true
-    }
-    
-    public override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.isVisible = false
+        self.navigationController?.navigationBarHidden = false
     }
     
     public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {

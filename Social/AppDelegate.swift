@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let root = BBSLoginViewController(nibName: "BBSLoginViewController", bundle: NSBundle.mainBundle())
         root.title = "Login"
+        root.theme = BBSUITheme()
         let nav = BBSNavigationController(rootViewController: root)
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)

@@ -20,6 +20,7 @@ internal class BBSMessageCollectionViewCell: BBSBaseCollectionViewCell {
     @IBOutlet weak var messagePointsLabel: UILabel!
     @IBOutlet weak var downvoteButton: UIButton!
     @IBOutlet weak var clockImageView: UIImageView!
+    @IBOutlet weak var separatorView: UIView!
     
     // MARK: - Properties
     
@@ -53,13 +54,13 @@ internal class BBSMessageCollectionViewCell: BBSBaseCollectionViewCell {
     
     private static let timeFormatter = TTTTimeIntervalFormatter()
     
-    private static let neutralColor = UIColor(white: 225.0/255.0, alpha: 1.0)
     private static let clockImage = UIImage(named: "Clock")?.imageWithRenderingMode(.AlwaysTemplate)
     private static let upvoteImage = UIImage(named: "Upvote")?.imageWithRenderingMode(.AlwaysTemplate)
     private static let downvoteImage = UIImage(named: "Downvote")?.imageWithRenderingMode(.AlwaysTemplate)
     
-    private var cellTextColor = UIColor.blackColor()
-    private var cellTintColor = SystemTintColor
+    private var textColor = UIColor.blackColor()
+    private var highlightColor = SystemTintColor
+    private var dimmedColor = UIColor.lightGrayColor()
     
     // MARK: - Init
     
@@ -75,27 +76,29 @@ internal class BBSMessageCollectionViewCell: BBSBaseCollectionViewCell {
         self.messageTimestampLabel.font = UIFont(name: theme.contentFontName, size: 16.0)
         self.messagePointsLabel.font = UIFont(name: theme.contentFontName, size: 30.0)
         
-        self.cellTextColor = theme.contentTextColor
-        self.cellTintColor = theme.contentTintColor
+        self.textColor = theme.contentTextColor
+        self.highlightColor = theme.contentHighlightColor
+        self.dimmedColor = theme.contentDimmedColor
     }
     
     // MARK: - Private methods
     
     private func updateAppearance() {
-        self.messageTextLabel.textColor = self.cellTextColor
+        self.messageTextLabel.textColor = self.textColor
         self.clockImageView.image = BBSMessageCollectionViewCell.clockImage
-        self.clockImageView.tintColor = self.cellTintColor
-        self.messageTimestampLabel.textColor = self.cellTintColor
-        self.messagePointsLabel.textColor = self.cellTintColor
+        self.clockImageView.tintColor = self.dimmedColor
+        self.messageTimestampLabel.textColor = self.dimmedColor
+        self.messagePointsLabel.textColor = self.highlightColor
+        self.separatorView.backgroundColor = self.dimmedColor
         
-        self.upvoteButton.tintColor = BBSMessageCollectionViewCell.neutralColor
-        self.downvoteButton.tintColor = BBSMessageCollectionViewCell.neutralColor
+        self.upvoteButton.tintColor = self.dimmedColor
+        self.downvoteButton.tintColor = self.dimmedColor
         self.upvoteButton.setImage(BBSMessageCollectionViewCell.upvoteImage, forState: .Normal)
         self.downvoteButton.setImage(BBSMessageCollectionViewCell.downvoteImage, forState: .Normal)
         
         if let message = self.message {
-            self.upvoteButton.tintColor = message.didUpvoteForUser(self.userId) ? self.cellTintColor : BBSMessageCollectionViewCell.neutralColor
-            self.downvoteButton.tintColor = message.didDownvoteForUser(self.userId) ? self.cellTintColor : BBSMessageCollectionViewCell.neutralColor
+            self.upvoteButton.tintColor = message.didUpvoteForUser(self.userId) ? self.highlightColor : self.dimmedColor
+            self.downvoteButton.tintColor = message.didDownvoteForUser(self.userId) ? self.highlightColor : self.dimmedColor
         }
     }
     

@@ -16,7 +16,7 @@ public class BBSUIDarkTheme: BBSUITheme {
         self.contentFontName = "Arial"
         self.contentBackgroundColor = UIColor.darkGrayColor()
         self.contentTextColor = UIColor.whiteColor()
-        self.contentTintColor = UIColor.redColor()
+        self.contentHighlightColor = UIColor.redColor()
         
         self.navigationBarColor = UIColor.blackColor()
         self.navigationBarTextColor = UIColor.whiteColor()

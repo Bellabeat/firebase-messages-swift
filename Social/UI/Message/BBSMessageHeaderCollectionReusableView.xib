@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YBm-cW-1nm">
-                    <rect key="frame" x="259" y="10" width="83" height="29"/>
+                    <rect key="frame" x="10" y="10" width="580" height="29"/>
                     <animations/>
                     <segments>
                         <segment title="Top"/>
@@ -29,6 +29,8 @@
             </subviews>
             <animations/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="YBm-cW-1nm" secondAttribute="trailing" constant="10" id="7AU-Aj-JH4"/>
+                <constraint firstItem="YBm-cW-1nm" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="Equ-aV-C50"/>
                 <constraint firstItem="YBm-cW-1nm" firstAttribute="centerX" secondItem="U6b-Vx-4bR" secondAttribute="centerX" id="Fpj-5a-YbV"/>
                 <constraint firstItem="FPL-8R-jZp" firstAttribute="top" secondItem="YBm-cW-1nm" secondAttribute="bottom" constant="10" id="VvM-9b-JGe"/>
                 <constraint firstItem="FPL-8R-jZp" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="WpM-kW-Age"/>

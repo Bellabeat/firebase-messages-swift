@@ -50,7 +50,7 @@ public class BBSNewMessageViewController: UIViewController {
             theme.applyToViewController(self)
             self.inputTextView.font = UIFont(name: theme.contentFontName, size: 15.0)
             self.inputTextView.textColor = theme.contentTextColor
-            self.inputTextView.tintColor = theme.contentTintColor
+            self.inputTextView.tintColor = theme.contentHighlightColor
         }
         
         let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: nil, action: nil)

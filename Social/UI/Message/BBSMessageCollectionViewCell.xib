@@ -56,7 +56,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GwE-Eq-MTO" userLabel="Separator">
                         <rect key="frame" x="10" y="109" width="580" height="1"/>
                         <animations/>
-                        <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="ZXS-Q0-BFI"/>
                         </constraints>
@@ -106,6 +106,7 @@
                 <outlet property="messagePointsLabel" destination="EtB-NN-o7g" id="pjC-93-Dy8"/>
                 <outlet property="messageTextLabel" destination="vgF-rN-1wt" id="anw-eJ-5rX"/>
                 <outlet property="messageTimestampLabel" destination="bsq-LA-zSP" id="JQm-o6-edn"/>
+                <outlet property="separatorView" destination="GwE-Eq-MTO" id="VhJ-FP-mM0"/>
                 <outlet property="upvoteButton" destination="RYe-iS-q03" id="C7C-6m-dYg"/>
             </connections>
         </collectionViewCell>

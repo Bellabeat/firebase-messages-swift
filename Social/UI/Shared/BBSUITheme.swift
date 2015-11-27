@@ -15,7 +15,8 @@ public class BBSUITheme: NSObject {
     public var contentFontName: String
     public var contentBackgroundColor: UIColor
     public var contentTextColor: UIColor
-    public var contentTintColor: UIColor
+    public var contentHighlightColor: UIColor
+    public var contentDimmedColor: UIColor
     
     public var navigationBarColor: UIColor
     public var navigationBarTextColor: UIColor
@@ -28,7 +29,8 @@ public class BBSUITheme: NSObject {
         self.contentFontName = "Helvetica Neue"
         self.contentBackgroundColor = UIColor.whiteColor()
         self.contentTextColor = UIColor.blackColor()
-        self.contentTintColor = SystemTintColor
+        self.contentHighlightColor = SystemTintColor
+        self.contentDimmedColor = UIColor.lightGrayColor()
         
         self.navigationBarColor = UIColor.whiteColor()
         self.navigationBarTextColor = UIColor.blackColor()

@@ -28,4 +28,11 @@ internal class BBSMessageHeaderCollectionReusableView: BBSBaseCollectionReusable
         }
     }
     
+    // MARK: - Overrides
+    
+    override func applyTheme(theme: BBSUITheme) {
+        self.sorterSegmentedControl.tintColor = theme.contentHighlightColor
+        self.textLabel.textColor = theme.contentTextColor
+    }
+    
 }
