@@ -31,6 +31,7 @@ public class BBSRoomDataStore: NSObject {
         
         let rooms = root.childByAppendingPath("rooms")
         self.query = rooms.queryOrderedByChild("name")
+        self.query.keepSynced(true)
         
         super.init()
     }
@@ -45,8 +46,9 @@ public class BBSRoomDataStore: NSObject {
     
     public func loadAsync() {
         weak var weakSelf = self
-        self.query.keepSynced(true)
         self.query.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if !snapshot.exists() { return }
+            
             var rooms = Array<BBSRoomModel>()
             let enumerator = snapshot.children
             while let child = enumerator.nextObject() as? FDataSnapshot {

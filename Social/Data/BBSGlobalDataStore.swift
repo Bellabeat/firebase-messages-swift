@@ -35,9 +35,7 @@ public class BBSGlobalDataStore: NSObject {
         
         // Value
         self.root.observeEventType(.Value, withBlock: { snapshot in
-            if snapshot.value is NSNull {
-                return
-            }
+            if !snapshot.exists() { return }
             
             weakSelf?.global.updateWithObject(snapshot.value)
             

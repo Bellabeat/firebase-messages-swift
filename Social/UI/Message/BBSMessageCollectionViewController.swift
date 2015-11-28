@@ -167,4 +167,8 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
         self.collectionView?.reloadData()
     }
     
+    public func messageDataStoreNewDataAvailable(dataStore: BBSMessageDataStore) {
+        
+    }
+    
 }

@@ -11,6 +11,7 @@ import Firebase
 
 public protocol BBSMessageDataStoreDelegate: NSObjectProtocol {
     func messageDataStore(dataStore: BBSMessageDataStore, didLoadData data:Array<BBSMessageModel>)
+    func messageDataStoreNewDataAvailable(dataStore: BBSMessageDataStore)
 }
 
 public class BBSMessageDataStore: NSObject {
@@ -31,7 +32,7 @@ public class BBSMessageDataStore: NSObject {
     
     public init(root: Firebase, room: BBSRoomModel?, sorter: BBSMessageSorter?, userId: String) {
         self.root = root
-        self.sorter = sorter != nil ? sorter! : BBSTopMessageSorter()
+        self.sorter = sorter != nil ? sorter! : BBSHotMessageSorter()
         self.userId = userId
         
         let path = room != nil ? "messages/\(room!.key)" : "messages"
@@ -61,6 +62,8 @@ public class BBSMessageDataStore: NSObject {
         weak var weakSelf = self
         self.query.keepSynced(true)
         self.query.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if !snapshot.exists() { return }
+            
             var messages = Array<BBSMessageModel>()
             let enumerator = snapshot.children
             while let child = enumerator.nextObject() as? FDataSnapshot {
@@ -71,6 +74,14 @@ public class BBSMessageDataStore: NSObject {
             if let delegate = weakSelf?.delegate {
                 let sortedMessages = weakSelf!.sorter.sortMessages(messages)
                 delegate.messageDataStore(weakSelf!, didLoadData: sortedMessages)
+            }
+        })
+        
+        self.query.observeEventType(.ChildAdded, withBlock: { snapshot in
+            if !snapshot.exists() { return }
+            
+            if let delegate = weakSelf?.delegate {
+                delegate.messageDataStoreNewDataAvailable(weakSelf!)
             }
         })
     }
