@@ -14,9 +14,13 @@ public let DownvoteValue = "d"
 internal let KeyMessageMessage = "message"
 internal let KeyMessageSender = "sender"
 internal let KeyMessagePoints = "points"
+internal let KeyMessageHotRank = "hotRank"
 internal let KeyMessageTotalActivity = "totalActivity"
 internal let KeyMessageTimestamp = "timestamp"
 internal let KeyMessageVotes = "votes"
+
+private let RedditHotTimestampConstant = 1134028003.0
+private let RedditHotDividerConstant = 45000.0
 
 public class BBSMessageModel: BBSModelBase {
     
@@ -25,6 +29,7 @@ public class BBSMessageModel: BBSModelBase {
     public var message = Variable<String>("")
     public var sender = Variable<String>("")
     public var points = Variable<Int>(0)
+    public var hotRank = Variable<Double>(0)
     public var totalActivity = Variable<Int>(0)
     public var timestamp = Variable<Double>(0)
     public var votes: Dictionary<String, String> = [:]
@@ -38,8 +43,6 @@ public class BBSMessageModel: BBSModelBase {
     public init(dataStore: BBSMessageDataStore, senderId: String) {
         self.dataStore = dataStore
         self.sender.value = senderId
-        self.points.value = 1
-        self.totalActivity.value = 1
         super.init()
         
         self.votes[senderId] = UpvoteValue
@@ -62,9 +65,10 @@ public class BBSMessageModel: BBSModelBase {
     public override func updateWithObject(object: AnyObject) {
         self.message.value = object.objectForKey(KeyMessageMessage) as? String ?? ""
         self.sender.value = object.objectForKey(KeyMessageSender) as? String ?? ""
-        self.timestamp.value = object.objectForKey(KeyMessageTimestamp) as? Double ?? 0.0
+        self.timestamp.value = object.objectForKey(KeyMessageTimestamp) as? Double ?? 0
         self.votes = object.objectForKey(KeyMessageVotes) as? Dictionary<String, String> ?? Dictionary<String, String>()
         self.points.value = object.objectForKey(KeyMessagePoints) as? Int ?? 0
+        self.hotRank.value = object.objectForKey(KeyMessageHotRank) as? Double ?? 0
         self.totalActivity.value = object.objectForKey(KeyMessageTotalActivity) as? Int ?? 0
     }
     
@@ -73,20 +77,39 @@ public class BBSMessageModel: BBSModelBase {
             KeyMessageMessage: self.message.value,
             KeyMessageSender: self.sender.value,
             KeyMessagePoints: self.points.value,
+            KeyMessageHotRank: self.hotRank.value,
             KeyMessageTotalActivity: self.totalActivity.value,
             KeyMessageTimestamp: self.timestamp.value,
             KeyMessageVotes: self.votes
         ]
     }
     
-    // MARK: - Internal methods
+    // MARK: - Methods
     
-    internal class func pointsForVotes(votes: Dictionary<String, String>) -> Int {
-        var points = 0
+    internal class func scoresForVotes(votes: Dictionary<String, String>, timestamp: Double) -> (points: Int, hotRank: Double) {
+        var upvotes = 0
+        var downvotes = 0
         for (_, value) in votes {
-            points += value == UpvoteValue ? 1 : -1
+            if value == UpvoteValue {
+                upvotes++
+            } else {
+                downvotes++
+            }
         }
-        return points
+        
+        let points = upvotes - downvotes
+        let hotRank = self.hotRankForUpvotes(upvotes, downvotes: downvotes, timestamp: timestamp)
+        
+        return (points: points, hotRank: hotRank)
+    }
+    
+    private class func hotRankForUpvotes(upvotes: Int, downvotes: Int, timestamp: Double) -> Double {
+        let score = upvotes - downvotes
+        let order = log10(Double(max(abs(score), 1)))
+        let sign = score > 0 ? 1.0 : score < 0 ? -1.0 : 0
+        let seconds = timestamp - RedditHotTimestampConstant
+        
+        return (sign * order + seconds / RedditHotDividerConstant)
     }
     
     // MARK: - Public methods

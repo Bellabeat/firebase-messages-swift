@@ -21,6 +21,7 @@
 		8108CFE21C05DCB600836B65 /* BBSUITheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8108CFE11C05DCB600836B65 /* BBSUITheme.swift */; };
 		8108CFE51C05E2FD00836B65 /* BBSUIDarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8108CFE41C05E2FD00836B65 /* BBSUIDarkTheme.swift */; };
 		8108CFE71C05E6C500836B65 /* BBSFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8108CFE61C05E6C500836B65 /* BBSFactory.swift */; };
+		8127A34C1C0A2A1300CBA96E /* BBSHotMessageSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127A34B1C0A2A1300CBA96E /* BBSHotMessageSorter.swift */; };
 		81886E431C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E411C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.swift */; };
 		81886E441C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81886E421C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.xib */; };
 		81886E461C0602590011A8D3 /* BBSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81886E451C0602590011A8D3 /* BBSLabel.swift */; };
@@ -322,6 +323,7 @@
 		8108CFE11C05DCB600836B65 /* BBSUITheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSUITheme.swift; path = UI/Shared/BBSUITheme.swift; sourceTree = "<group>"; };
 		8108CFE41C05E2FD00836B65 /* BBSUIDarkTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSUIDarkTheme.swift; path = UI/Shared/BBSUIDarkTheme.swift; sourceTree = "<group>"; };
 		8108CFE61C05E6C500836B65 /* BBSFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSFactory.swift; sourceTree = "<group>"; };
+		8127A34B1C0A2A1300CBA96E /* BBSHotMessageSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSHotMessageSorter.swift; path = Logic/BBSHotMessageSorter.swift; sourceTree = "<group>"; };
 		81886E411C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSInfoCollectionReusableView.swift; path = UI/Shared/BBSInfoCollectionReusableView.swift; sourceTree = "<group>"; };
 		81886E421C05FDDA0011A8D3 /* BBSInfoCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSInfoCollectionReusableView.xib; path = UI/Shared/BBSInfoCollectionReusableView.xib; sourceTree = "<group>"; };
 		81886E451C0602590011A8D3 /* BBSLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSLabel.swift; path = UI/Shared/BBSLabel.swift; sourceTree = "<group>"; };
@@ -1175,6 +1177,7 @@
 				81F2B7171C0499EC00C7772E /* BBSMessageSorter.swift */,
 				81F2B7191C049DC000C7772E /* BBSNewMessageSorter.swift */,
 				81F2B71B1C04A08F00C7772E /* BBSTopMessageSorter.swift */,
+				8127A34B1C0A2A1300CBA96E /* BBSHotMessageSorter.swift */,
 			);
 			name = Logic;
 			sourceTree = "<group>";
@@ -1511,6 +1514,7 @@
 				8108CFE21C05DCB600836B65 /* BBSUITheme.swift in Sources */,
 				81EF0C351C045E4000881166 /* AppDelegate.swift in Sources */,
 				81EF0DC61C04706700881166 /* Just.swift in Sources */,
+				8127A34C1C0A2A1300CBA96E /* BBSHotMessageSorter.swift in Sources */,
 				81EF0CDF1C04705800881166 /* RxScrollViewDelegateProxy.swift in Sources */,
 				81EF0DD41C04706700881166 /* Scan.swift in Sources */,
 				81EF0DDC1C04706700881166 /* StartWith.swift in Sources */,

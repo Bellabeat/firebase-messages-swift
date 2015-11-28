@@ -80,19 +80,25 @@ public class BBSMessageDataStore: NSObject {
     }
     
     public func createMessage(message: BBSMessageModel) {
-        let raw = message.serialize()
-        if message.key.isEmpty {
-            let child = self.messages.childByAutoId()
-            child.setValue(raw)
-            message.key = child.key
-        } else {
+        if !message.key.isEmpty {
             print("Attemped to update message in createMessage method")
+            return
         }
+        
+        let scores = BBSMessageModel.scoresForVotes(message.votes, timestamp: message.timestamp.value)
+        message.points.value = scores.points
+        message.hotRank.value = scores.hotRank
+        message.totalActivity.value = 1
+        
+        let child = self.messages.childByAutoId()
+        child.setValue(message.serialize())
+        message.key = child.key
     }
     
     public func updateMessage(message: BBSMessageModel, forUser userId: String) {
         var raw = message.serialize()
         let voteValue = message.votes[userId]
+        let timestamp = message.timestamp.value
         let ref = self.messages.childByAppendingPath(message.key)
         ref.runTransactionBlock { mutableData -> FTransactionResult! in
             if mutableData.value is NSNull {
@@ -104,12 +110,13 @@ public class BBSMessageDataStore: NSObject {
             var votes = mutableData.value.objectForKey(KeyMessageVotes) as? Dictionary<String, String> ?? Dictionary<String, String>()
             // Update it with local value for user
             votes[userId] = voteValue
-            // Calculate points and total activity
-            let points = BBSMessageModel.pointsForVotes(votes)
+            // Calculate message scores for votes
+            let scores = BBSMessageModel.scoresForVotes(votes, timestamp: timestamp)
             let totalActivity = votes.count
             
             // Update mutable data
-            raw[KeyMessagePoints] = points
+            raw[KeyMessagePoints] = scores.points
+            raw[KeyMessageHotRank] = scores.hotRank
             raw[KeyMessageTotalActivity] = totalActivity
             raw[KeyMessageVotes] = votes
             mutableData.value = raw

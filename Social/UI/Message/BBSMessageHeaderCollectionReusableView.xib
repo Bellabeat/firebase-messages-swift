@@ -15,8 +15,9 @@
                     <rect key="frame" x="10" y="10" width="580" height="29"/>
                     <animations/>
                     <segments>
-                        <segment title="Top"/>
+                        <segment title="Hot"/>
                         <segment title="New"/>
+                        <segment title="Top"/>
                     </segments>
                 </segmentedControl>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="580" translatesAutoresizingMaskIntoConstraints="NO" id="FPL-8R-jZp" customClass="BBSLabel" customModule="Social" customModuleProvider="target">
