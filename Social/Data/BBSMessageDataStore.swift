@@ -14,6 +14,8 @@ public protocol BBSMessageDataStoreDelegate: NSObjectProtocol {
     func messageDataStoreNewDataAvailable(dataStore: BBSMessageDataStore)
 }
 
+private let UnregisterTimerInterval = 5.0
+
 public class BBSMessageDataStore: NSObject {
     
     // MARK: - Properties
@@ -27,6 +29,8 @@ public class BBSMessageDataStore: NSObject {
     private var query: FQuery
     private let userId: String
     private var sorter: BBSMessageSorter
+    
+    private var unregisterTimer: NSTimer?
     
     // MARK: - Init
     
@@ -51,6 +55,7 @@ public class BBSMessageDataStore: NSObject {
     }
     
     deinit {
+        self.clearTimer()
         self.query.removeAllObservers()
         self.query.keepSynced(false)
         print("BBSMessageDataStore deinit")
@@ -61,7 +66,7 @@ public class BBSMessageDataStore: NSObject {
     public func loadAsync() {
         weak var weakSelf = self
         self.query.keepSynced(true)
-        self.query.observeSingleEventOfType(.Value, withBlock: { snapshot in
+        self.query.observeEventType(.Value, withBlock: { snapshot in
             if !snapshot.exists() { return }
             
             var messages = Array<BBSMessageModel>()
@@ -71,18 +76,15 @@ public class BBSMessageDataStore: NSObject {
                 messages.append(model)
             }
             
-            if let delegate = weakSelf?.delegate {
+            if let delegate = weakSelf!.delegate {
                 let sortedMessages = weakSelf!.sorter.sortMessages(messages)
                 delegate.messageDataStore(weakSelf!, didLoadData: sortedMessages)
             }
-        })
-        
-        self.query.observeEventType(.ChildAdded, withBlock: { snapshot in
-            if !snapshot.exists() { return }
             
-            if let delegate = weakSelf?.delegate {
-                delegate.messageDataStoreNewDataAvailable(weakSelf!)
-            }
+            // Queue this event to be unregistered in the near future, because
+            // we don't want to bombard user with new messages, but we do need
+            // to listen for several changes on initial registration
+            weakSelf!.queueUnregisterEvent()
         })
     }
     
@@ -138,6 +140,7 @@ public class BBSMessageDataStore: NSObject {
     
     public func changeSorter(sorter: BBSMessageSorter) -> Bool {
         if self.sorter.title != sorter.title {
+            self.clearTimer()
             self.query.removeAllObservers()
             self.query.keepSynced(false)
             
@@ -146,6 +149,35 @@ public class BBSMessageDataStore: NSObject {
             return true
         }
         return false
+    }
+    
+    // MARK: - Unregister timer
+    
+    private func clearTimer() {
+        if let timer = self.unregisterTimer {
+            timer.invalidate()
+            self.unregisterTimer = nil
+        }
+    }
+    
+    private func queueUnregisterEvent() {
+        self.clearTimer()
+        self.unregisterTimer = NSTimer.scheduledTimerWithTimeInterval(UnregisterTimerInterval, target: self, selector: "unregisterEventFired", userInfo: nil, repeats: false)
+    }
+    
+    internal func unregisterEventFired() {
+        // Remove the .Value observer
+        self.query.removeAllObservers()
+        
+        // Register a .ChildAdded observer
+        weak var weakSelf = self
+        self.query.observeEventType(.ChildAdded, withBlock: { snapshot in
+            if !snapshot.exists() { return }
+            
+            if let delegate = weakSelf?.delegate {
+                delegate.messageDataStoreNewDataAvailable(weakSelf!)
+            }
+        })
     }
     
 }

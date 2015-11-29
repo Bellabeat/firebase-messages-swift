@@ -165,6 +165,7 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
         self.hideLoader()
         self.data = data
         self.collectionView?.reloadData()
+        self.collectionView?.layoutIfNeeded()
     }
     
     public func messageDataStoreNewDataAvailable(dataStore: BBSMessageDataStore) {
