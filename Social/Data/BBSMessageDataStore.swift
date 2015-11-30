@@ -14,7 +14,7 @@ public protocol BBSMessageDataStoreDelegate: NSObjectProtocol {
     func messageDataStoreNewDataAvailable(dataStore: BBSMessageDataStore)
 }
 
-private let UnregisterTimerInterval = 5.0
+private let UnregisterTimerInterval = 2.0
 
 public class BBSMessageDataStore: NSObject {
     
@@ -80,12 +80,12 @@ public class BBSMessageDataStore: NSObject {
                 let sortedMessages = weakSelf!.sorter.sortMessages(messages)
                 delegate.messageDataStore(weakSelf!, didLoadData: sortedMessages)
             }
-            
-            // Queue this event to be unregistered in the near future, because
-            // we don't want to bombard user with new messages, but we do need
-            // to listen for several changes on initial registration
-            weakSelf!.queueUnregisterEvent()
         })
+        
+        // Queue .Value event to be unregistered in the near future, because
+        // we don't want to bombard user with new messages, but we do need
+        // to listen for several changes on initial registration
+        weakSelf!.queueUnregisterEvent()
     }
     
     public func newMessage() -> BBSMessageModel {

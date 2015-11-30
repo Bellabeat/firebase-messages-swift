@@ -612,7 +612,6 @@
 				81F2B70A1C048CBF00C7772E /* CFNetwork.framework */,
 				81F2B7081C048CBA00C7772E /* libc++.tbd */,
 				81F2B7061C048CB400C7772E /* libicucore.tbd */,
-				81F2B7041C048CA100C7772E /* Firebase.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1170,6 +1169,7 @@
 		81F2B7031C048C7700C7772E /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				81F2B7041C048CA100C7772E /* Firebase.framework */,
 			);
 			name = Firebase;
 			sourceTree = "<group>";

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class BBSNewMessageViewController: UIViewController {
+public class BBSNewMessageViewController: UIViewController, UITextViewDelegate {
     
     // MARK: - Outlets
     
@@ -22,6 +22,7 @@ public class BBSNewMessageViewController: UIViewController {
     // MARK: - Private members
     
     private let dataStore: BBSMessageDataStore
+    private let saveButton: UIBarButtonItem
     
     private var observerContainer = BBSObserverContainer()
     
@@ -29,6 +30,8 @@ public class BBSNewMessageViewController: UIViewController {
     
     public init(dataStore: BBSMessageDataStore) {
         self.dataStore = dataStore
+        self.saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: nil, action: nil)
+        self.saveButton.enabled = false
         super.init(nibName: "BBSNewMessageViewController", bundle: NSBundle.mainBundle())
     }
     
@@ -52,12 +55,9 @@ public class BBSNewMessageViewController: UIViewController {
             self.inputTextView.textColor = theme.contentTextColor
             self.inputTextView.tintColor = theme.contentHighlightColor
         }
-        
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: nil, action: nil)
+
         weak var weakSelf = self
         
-        // Enabled
-        self.observerContainer.add(self.inputTextView.rx_text.map { $0.characters.count > 9 }.bindTo(saveButton.rx_enabled))
         // Tap
         self.observerContainer.add(saveButton.rx_tap.bindNext {
             let message = weakSelf!.dataStore.newMessage()
@@ -68,7 +68,7 @@ public class BBSNewMessageViewController: UIViewController {
             
             weakSelf!.navigationController!.popViewControllerAnimated(true)
         })
-        self.navigationItem.rightBarButtonItem = saveButton
+        self.navigationItem.rightBarButtonItem = self.saveButton
     }
     
     public override func viewWillAppear(animated: Bool) {
@@ -78,6 +78,12 @@ public class BBSNewMessageViewController: UIViewController {
     
     public override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return self.theme != nil ? self.theme!.statusBarStyle : .Default
+    }
+    
+    // MARK: - UITextViewDelegate
+    
+    public func textViewDidChange(textView: UITextView) {
+        self.saveButton.enabled = textView.text.characters.count > 9
     }
 
 }
