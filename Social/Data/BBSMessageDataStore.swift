@@ -11,7 +11,10 @@ import Firebase
 
 public protocol BBSMessageDataStoreDelegate: NSObjectProtocol {
     func messageDataStore(dataStore: BBSMessageDataStore, didLoadData data:Array<BBSMessageModel>)
+    func messageDataStoreNewDataAvailable(dataStore: BBSMessageDataStore)
 }
+
+private let UnregisterTimerInterval = 5.0
 
 public class BBSMessageDataStore: NSObject {
     
@@ -27,11 +30,13 @@ public class BBSMessageDataStore: NSObject {
     private let userId: String
     private var sorter: BBSMessageSorter
     
+    private var unregisterTimer: NSTimer?
+    
     // MARK: - Init
     
     public init(root: Firebase, room: BBSRoomModel?, sorter: BBSMessageSorter?, userId: String) {
         self.root = root
-        self.sorter = sorter != nil ? sorter! : BBSTopMessageSorter()
+        self.sorter = sorter != nil ? sorter! : BBSHotMessageSorter()
         self.userId = userId
         
         let path = room != nil ? "messages/\(room!.key)" : "messages"
@@ -50,6 +55,7 @@ public class BBSMessageDataStore: NSObject {
     }
     
     deinit {
+        self.clearTimer()
         self.query.removeAllObservers()
         self.query.keepSynced(false)
         print("BBSMessageDataStore deinit")
@@ -60,7 +66,9 @@ public class BBSMessageDataStore: NSObject {
     public func loadAsync() {
         weak var weakSelf = self
         self.query.keepSynced(true)
-        self.query.observeSingleEventOfType(.Value, withBlock: { snapshot in
+        self.query.observeEventType(.Value, withBlock: { snapshot in
+            if !snapshot.exists() { return }
+            
             var messages = Array<BBSMessageModel>()
             let enumerator = snapshot.children
             while let child = enumerator.nextObject() as? FDataSnapshot {
@@ -68,10 +76,15 @@ public class BBSMessageDataStore: NSObject {
                 messages.append(model)
             }
             
-            if let delegate = weakSelf?.delegate {
+            if let delegate = weakSelf!.delegate {
                 let sortedMessages = weakSelf!.sorter.sortMessages(messages)
                 delegate.messageDataStore(weakSelf!, didLoadData: sortedMessages)
             }
+            
+            // Queue this event to be unregistered in the near future, because
+            // we don't want to bombard user with new messages, but we do need
+            // to listen for several changes on initial registration
+            weakSelf!.queueUnregisterEvent()
         })
     }
     
@@ -80,19 +93,25 @@ public class BBSMessageDataStore: NSObject {
     }
     
     public func createMessage(message: BBSMessageModel) {
-        let raw = message.serialize()
-        if message.key.isEmpty {
-            let child = self.messages.childByAutoId()
-            child.setValue(raw)
-            message.key = child.key
-        } else {
+        if !message.key.isEmpty {
             print("Attemped to update message in createMessage method")
+            return
         }
+        
+        let scores = BBSMessageModel.scoresForVotes(message.votes, timestamp: message.timestamp.value)
+        message.points.value = scores.points
+        message.hotRank.value = scores.hotRank
+        message.totalActivity.value = 1
+        
+        let child = self.messages.childByAutoId()
+        child.setValue(message.serialize())
+        message.key = child.key
     }
     
     public func updateMessage(message: BBSMessageModel, forUser userId: String) {
         var raw = message.serialize()
         let voteValue = message.votes[userId]
+        let timestamp = message.timestamp.value
         let ref = self.messages.childByAppendingPath(message.key)
         ref.runTransactionBlock { mutableData -> FTransactionResult! in
             if mutableData.value is NSNull {
@@ -104,12 +123,13 @@ public class BBSMessageDataStore: NSObject {
             var votes = mutableData.value.objectForKey(KeyMessageVotes) as? Dictionary<String, String> ?? Dictionary<String, String>()
             // Update it with local value for user
             votes[userId] = voteValue
-            // Calculate points and total activity
-            let points = BBSMessageModel.pointsForVotes(votes)
+            // Calculate message scores for votes
+            let scores = BBSMessageModel.scoresForVotes(votes, timestamp: timestamp)
             let totalActivity = votes.count
             
             // Update mutable data
-            raw[KeyMessagePoints] = points
+            raw[KeyMessagePoints] = scores.points
+            raw[KeyMessageHotRank] = scores.hotRank
             raw[KeyMessageTotalActivity] = totalActivity
             raw[KeyMessageVotes] = votes
             mutableData.value = raw
@@ -120,6 +140,7 @@ public class BBSMessageDataStore: NSObject {
     
     public func changeSorter(sorter: BBSMessageSorter) -> Bool {
         if self.sorter.title != sorter.title {
+            self.clearTimer()
             self.query.removeAllObservers()
             self.query.keepSynced(false)
             
@@ -128,6 +149,35 @@ public class BBSMessageDataStore: NSObject {
             return true
         }
         return false
+    }
+    
+    // MARK: - Unregister timer
+    
+    private func clearTimer() {
+        if let timer = self.unregisterTimer {
+            timer.invalidate()
+            self.unregisterTimer = nil
+        }
+    }
+    
+    private func queueUnregisterEvent() {
+        self.clearTimer()
+        self.unregisterTimer = NSTimer.scheduledTimerWithTimeInterval(UnregisterTimerInterval, target: self, selector: "unregisterEventFired", userInfo: nil, repeats: false)
+    }
+    
+    internal func unregisterEventFired() {
+        // Remove the .Value observer
+        self.query.removeAllObservers()
+        
+        // Register a .ChildAdded observer
+        weak var weakSelf = self
+        self.query.observeEventType(.ChildAdded, withBlock: { snapshot in
+            if !snapshot.exists() { return }
+            
+            if let delegate = weakSelf?.delegate {
+                delegate.messageDataStoreNewDataAvailable(weakSelf!)
+            }
+        })
     }
     
 }

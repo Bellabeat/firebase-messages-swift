@@ -141,7 +141,12 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
                 weak var weakSelf = self
                 self.sorterObserver?.dispose()
                 self.sorterObserver = view.sorterSegmentedControl.rx_value.bindNext { index in
-                    let sorter = index == 0 ? BBSTopMessageSorter() : BBSNewMessageSorter()
+                    let sorter: BBSMessageSorter
+                    switch index {
+                        case 1: sorter = BBSNewMessageSorter()
+                        case 2: sorter = BBSTopMessageSorter()
+                        default: sorter = BBSHotMessageSorter()
+                    }
                     if weakSelf!.dataStore.changeSorter(sorter) {
                         weakSelf!.showLoader()
                         weakSelf!.dataStore.loadAsync()
@@ -160,6 +165,11 @@ public class BBSMessageCollectionViewController: BBSBaseCollectionViewController
         self.hideLoader()
         self.data = data
         self.collectionView?.reloadData()
+        self.collectionView?.layoutIfNeeded()
+    }
+    
+    public func messageDataStoreNewDataAvailable(dataStore: BBSMessageDataStore) {
+        
     }
     
 }
