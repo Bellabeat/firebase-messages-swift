@@ -18,6 +18,7 @@ public class BBSUITheme: NSObject {
     public var contentHighlightColor: UIColor
     public var contentDimmedColor: UIColor
     
+    public var navigationBarFont: UIFont
     public var navigationBarColor: UIColor
     public var navigationBarTextColor: UIColor
     public var navigationBarTinColor: UIColor
@@ -32,6 +33,7 @@ public class BBSUITheme: NSObject {
         self.contentHighlightColor = SystemTintColor
         self.contentDimmedColor = UIColor.lightGrayColor()
         
+        self.navigationBarFont = UIFont(name: "Helvetica Neue", size: 16.0)!
         self.navigationBarColor = UIColor.whiteColor()
         self.navigationBarTextColor = UIColor.blackColor()
         self.navigationBarTinColor = SystemTintColor
@@ -49,7 +51,10 @@ public class BBSUITheme: NSObject {
         }
         
         viewController.navigationController?.navigationBar.barTintColor = self.navigationBarColor
-        viewController.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: self.navigationBarTextColor]
+        viewController.navigationController?.navigationBar.titleTextAttributes = [
+            NSForegroundColorAttributeName: self.navigationBarTextColor,
+            NSFontAttributeName: self.navigationBarFont
+        ]
         viewController.navigationController?.navigationBar.tintColor = self.navigationBarTinColor
     }
     
