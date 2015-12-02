@@ -27,6 +27,15 @@ internal class BBSInfoCollectionReusableView: BBSBaseCollectionReusableView {
         }
     }
     
+    internal var room: BBSRoomModel? {
+        didSet {
+            self.observerContainer.dispose()
+            if let room = self.room {
+                self.observerContainer.add(room.note.bindTo(self.textLabel.rx_text))
+            }
+        }
+    }
+    
     // MARK: - Methods
     
     internal override func applyTheme(theme: BBSUITheme) {

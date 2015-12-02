@@ -39,8 +39,7 @@ public class BBSMessageDataStore: NSObject {
         self.sorter = sorter != nil ? sorter! : BBSHotMessageSorter()
         self.userId = userId
         
-        let path = room != nil ? "messages/\(room!.key)" : "messages"
-        self.messages = root.childByAppendingPath(path)
+        self.messages = room != nil ? root.childByAppendingPath("messages/\(room!.key)") : root
         self.query = self.sorter.queryForRef(self.messages)
         
         super.init()
